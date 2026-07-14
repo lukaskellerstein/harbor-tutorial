@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "playwright-harbor-tutor": {
+            "command": "npx",
+            "args": [
+                "@playwright/mcp@latest",
+                "--isolated"
+            ]
+        }
+    }
+}
