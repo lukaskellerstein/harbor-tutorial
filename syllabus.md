@@ -45,7 +45,17 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 | 3 | `prompt-templates` | Prompt Templates | Use `@with_prompt_template` and SKILL.md files to structure agent prompts |
 | 4 | `agent-with-llm` | LLM-Powered Custom Agent | Build a custom agent that uses an LLM (via LiteLLM) to reason about and solve tasks |
 
-### Module 5: Datasets & Benchmarks
+### Module 5: Evaluating Real-World Agents
+
+| # | Lesson | Topic | What You'll Learn |
+|---|--------|-------|-------------------|
+| 1 | `claude-code-eval` | Evaluating Claude Code | Run the built-in `claude-code` agent against custom tasks and benchmarks, analyze trajectories and performance |
+| 2 | `langchain-agent` | Langchain Agent in Harbor | Wrap a Langchain ReAct agent as a Harbor `BaseAgent`, run it against tasks, compare results |
+| 3 | `langgraph-agent` | Langgraph Agent in Harbor | Wrap a Langgraph stateful graph agent as a Harbor `BaseAgent`, evaluate multi-step reasoning |
+| 4 | `deepagents-agent` | Deepagents in Harbor | Wrap a Deepagents agent as a Harbor `BaseAgent`, evaluate it alongside other agents |
+| 5 | `claude-sdk-agent` | Claude Agent SDK in Harbor | Wrap a Claude Agent SDK agent as a Harbor `BaseAgent`, leverage tool use and agentic loops |
+
+### Module 6: Datasets & Benchmarks
 
 | # | Lesson | Topic | What You'll Learn |
 |---|--------|-------|-------------------|
@@ -53,7 +63,7 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 | 2 | `registered-datasets` | Using Registered Datasets | Browse `harbor dataset list`, run evaluations against public benchmarks |
 | 3 | `task-metadata` | Task Configuration Deep Dive | Master `task.toml` — metadata, timeouts, difficulty levels, tags, categories |
 
-### Module 6: Environments & Configuration
+### Module 7: Environments & Configuration
 
 | # | Lesson | Topic | What You'll Learn |
 |---|--------|-------|-------------------|
@@ -65,7 +75,7 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 
 ## Level 3: Advanced
 
-### Module 7: Adapters
+### Module 8: Adapters
 
 | # | Lesson | Topic | What You'll Learn |
 |---|--------|-------|-------------------|
@@ -73,7 +83,7 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 | 2 | `swe-bench-adapter` | Running SWE-Bench | Use the SWE-bench adapter to evaluate agents on real-world GitHub issues |
 | 3 | `custom-adapter` | Building a Custom Adapter | Scaffold and implement an adapter for a new benchmark using `harbor adapter init` |
 
-### Module 8: Scaling & Cloud
+### Module 9: Scaling & Cloud
 
 | # | Lesson | Topic | What You'll Learn |
 |---|--------|-------|-------------------|
@@ -81,7 +91,7 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 | 2 | `parallel-evaluation` | Parallel Evaluation | Scale to dozens or hundreds of concurrent trials with `-n` and cloud environments |
 | 3 | `network-policies` | Network Policies | Control egress with allowlists and network policies per container |
 
-### Module 9: Analysis & Optimization
+### Module 10: Analysis & Optimization
 
 | # | Lesson | Topic | What You'll Learn |
 |---|--------|-------|-------------------|
@@ -90,7 +100,7 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 | 3 | `sweeps` | Configuration Sweeps | Use `harbor sweeps run` to sweep across models, agents, and hyperparameters |
 | 4 | `analyze-check` | Task Quality Analysis | Use `harbor analyze` and `harbor check` to validate task quality with LLM-powered analysis |
 
-### Module 10: Advanced Workflows
+### Module 11: Advanced Workflows
 
 | # | Lesson | Topic | What You'll Learn |
 |---|--------|-------|-------------------|
@@ -107,6 +117,7 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 ```
 Level 1 is sequential: M1 → M2 → M3
 Level 2 modules can be taken in any order (all depend on Level 1)
+  Module 5 (Real-World Agents) depends on Module 4 (Custom Agents)
 Level 3 modules can be taken in any order (all depend on Level 2)
 ```
 
@@ -115,9 +126,9 @@ Level 3 modules can be taken in any order (all depend on Level 2)
 | Level | Estimated Time |
 |-------|---------------|
 | Level 1: Foundations | 4–6 hours |
-| Level 2: Intermediate | 6–8 hours |
+| Level 2: Intermediate | 8–12 hours |
 | Level 3: Advanced | 8–12 hours |
-| **Total** | **18–26 hours** |
+| **Total** | **20–30 hours** |
 
 ### Prerequisites
 
