@@ -1,0 +1,7 @@
+[project]
+name = "harbor-tutorial-infra"
+version = "0.1.0"
+description = "Infrastructure verification for the Harbor tutorial"
+requires-python = ">=3.12"
+
+[project.dependencies]
