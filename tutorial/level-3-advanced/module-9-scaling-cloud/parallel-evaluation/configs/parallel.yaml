@@ -1,0 +1,12 @@
+datasets:
+  - path: tasks
+
+agents:
+  - name: oracle
+
+environment:
+  type: docker
+  delete: true
+
+n_concurrent_trials: 4
+quiet: false

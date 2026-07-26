@@ -1,0 +1,16 @@
+# Sweep configuration for Module 10, Lesson 3
+# Used with: harbor sweeps run -c sweep-config.yaml --max-sweeps 3 --trials-per-task 2
+
+datasets:
+  - path: tasks
+
+agents:
+  - name: oracle
+
+environment:
+  type: docker
+  delete: true
+
+orchestrator:
+  type: local
+  n_concurrent_trials: 2

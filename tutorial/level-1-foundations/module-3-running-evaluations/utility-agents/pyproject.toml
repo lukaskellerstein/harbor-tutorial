@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L1-M3-utility-agents"
+version = "0.1.0"
+description = "Oracle & Nop Agents"
+requires-python = ">=3.12"
+
+[project.dependencies]
+harbor = ">=0.16"

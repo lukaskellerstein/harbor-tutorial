@@ -1,0 +1,20 @@
+version = "1.0"
+
+[task]
+name = "tutorial/quality-task"
+
+[metadata]
+author_name = "Harbor Tutorial"
+author_email = "tutorial@example.com"
+difficulty = "medium"
+category = "programming"
+tags = ["python", "parsing", "error-handling"]
+
+[agent]
+timeout_sec = 120.0
+
+[verifier]
+timeout_sec = 30.0
+
+[environment]
+build_timeout_sec = 120.0

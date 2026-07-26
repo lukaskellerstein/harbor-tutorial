@@ -1,0 +1,26 @@
+# Harbor Exec Configuration
+#
+# This config tells `harbor exec` which files to evaluate
+# and what instruction to give the agent for each file.
+#
+# The ExecConfig has two top-level sections:
+#   map    - defines compile rules and the map job (required)
+#   reduce - defines a reduce task to aggregate map results (optional)
+
+schema_version: "1.0"
+
+map:
+  compile:
+    instructions:
+      - text: "Review this Python code for bugs and fix any issues found. Focus on error handling, input validation, and data mutation bugs."
+    environments:
+      - paths:
+          - "sample-code/*.py"
+    artifacts:
+      - "fixed_code.py"
+
+  job:
+    n_concurrent_trials: 2
+    agents:
+      - name: claude-code
+        model_name: "anthropic/claude-sonnet-4-5-20250929"

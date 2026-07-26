@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L3-M8-adapter-intro"
+version = "0.1.0"
+description = "What Are Adapters?"
+requires-python = ">=3.12"
+
+[project.dependencies]
+harbor = ">=0.16"

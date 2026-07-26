@@ -1,0 +1,4 @@
+id,instruction,expected_output,difficulty
+fizzbuzz,"Write a Python script called solution.py that prints numbers from 1 to 30. For multiples of 3 print 'Fizz' instead of the number. For multiples of 5 print 'Buzz'. For multiples of both 3 and 5 print 'FizzBuzz'.",FizzBuzz,easy
+word-count,"Write a Python script called solution.py that reads /home/user/input.txt and prints the total number of words in the file as a single integer.",42,medium
+csv-parser,"Write a Python script called solution.py that reads /home/user/data.csv (with columns: name, age, city) and prints the names of all people older than 25, one per line, sorted alphabetically.",Alice,hard

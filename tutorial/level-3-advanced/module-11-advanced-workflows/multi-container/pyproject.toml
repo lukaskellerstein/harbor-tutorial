@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L3-M11-multi-container"
+version = "0.1.0"
+description = "Multi-Container Tasks"
+requires-python = ">=3.12"
+
+[project.dependencies]
+harbor = ">=0.16"

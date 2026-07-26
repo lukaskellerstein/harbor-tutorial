@@ -81,7 +81,8 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 |---|--------|-------|-------------------|
 | 1 | `adapter-intro` | What Are Adapters? | Understand how adapters convert external benchmarks into Harbor task format |
 | 2 | `swe-bench-adapter` | Running SWE-Bench | Use the SWE-bench adapter to evaluate agents on real-world GitHub issues |
-| 3 | `custom-adapter` | Building a Custom Adapter | Scaffold and implement an adapter for a new benchmark using `harbor adapter init` |
+| 3 | `swe-bench-claude-code` | Benchmarking Claude Code on SWE-bench | End-to-end: configure, run, and analyze a SWE-bench evaluation with the built-in claude-code agent |
+| 4 | `custom-adapter` | Building a Custom Adapter | Scaffold and implement an adapter for a new benchmark using `harbor adapter init` |
 
 ### Module 9: Scaling & Cloud
 

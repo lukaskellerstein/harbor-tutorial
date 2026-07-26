@@ -1,0 +1,52 @@
+# Custom rubric for task quality checking
+# Used with: harbor check tasks -r rubric.toml -m anthropic/claude-sonnet-4-5-20250929
+
+[[criteria]]
+name = "instruction_completeness"
+description = "Task instruction describes all behavior that the tests verify"
+guidance = """
+Read the instruction.md file. Then read the test script (tests/test.sh).
+PASS if every behavior checked by the tests is mentioned in the instruction.
+FAIL if the tests check something not described in the instruction.
+"""
+
+[[criteria]]
+name = "test_coverage"
+description = "Tests cover all behavior described in the instruction"
+guidance = """
+Read the instruction.md file. List every requirement.
+Then read the test script. Check that each requirement has a corresponding test.
+PASS if all requirements are tested.
+FAIL if any requirement described in the instruction is not tested.
+"""
+
+[[criteria]]
+name = "solution_correctness"
+description = "The solution script correctly solves the task"
+guidance = """
+Read the instruction.md and the solution/solve.sh.
+Mentally execute the solution and verify it would produce correct output.
+PASS if the solution correctly implements all requirements.
+FAIL if the solution has bugs or misses any requirement.
+"""
+
+[[criteria]]
+name = "environment_setup"
+description = "The Dockerfile sets up the correct environment for the task"
+guidance = """
+Read the Dockerfile and the instruction.md.
+PASS if the Dockerfile installs all necessary dependencies and creates
+the expected file structure for the task.
+FAIL if the environment is missing dependencies or has incorrect setup.
+"""
+
+[[criteria]]
+name = "anti_cheating"
+description = "The task is resistant to reward hacking"
+guidance = """
+Review the test script and environment setup.
+PASS if: the tests do not copy the solution into the image, the reward
+file is not trivially writable by the agent, and the test logic
+cannot be easily circumvented.
+FAIL if the agent could achieve reward without solving the task.
+"""

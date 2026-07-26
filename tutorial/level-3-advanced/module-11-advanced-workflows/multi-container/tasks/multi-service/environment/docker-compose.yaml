@@ -1,0 +1,37 @@
+# Multi-container environment for Harbor task
+#
+# IMPORTANT: Harbor requires a service named "main" — this is where
+# the agent runs. All other services are "sidecars" that provide
+# supporting infrastructure.
+#
+# Harbor overlays this file with its own compose files to inject
+# environment variables, mount volumes, set resource limits, and
+# optionally add egress control.
+
+services:
+  main:
+    build:
+      context: ./api
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: "postgresql://harbor:harbor@db:5432/harbordb"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: harbor
+      POSTGRES_PASSWORD: harbor
+      POSTGRES_DB: harbordb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U harbor -d harbordb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5

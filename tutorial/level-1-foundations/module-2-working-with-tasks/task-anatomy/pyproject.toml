@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L1-M2-task-anatomy"
+version = "0.1.0"
+description = "Task Directory Structure"
+requires-python = ">=3.12"
+
+[project.dependencies]
+harbor = ">=0.16"

@@ -1,0 +1,34 @@
+# Multi-model comparison job configuration
+#
+# This job.yaml shows how to evaluate the same task with multiple models.
+# Each agent + model combination produces a separate trial.
+#
+# To run:  harbor run -c job.yaml
+
+datasets:
+  - path: tasks/model-test
+
+agents:
+  # Cloud model: Anthropic Claude
+  - name: claude-code
+    model_name: anthropic/claude-sonnet-4-5-20250929
+
+  # Cloud model: OpenAI GPT
+  - name: claude-code
+    model_name: openai/gpt-4o
+
+  # Local model via LMStudio
+  # Requires: lms server start (LMStudio running on localhost:1234)
+  # - name: claude-code
+  #   model_name: openai/gemma4-e4b
+  #   env:
+  #     OPENAI_BASE_URL: "http://host.docker.internal:1234/v1"
+  #     OPENAI_API_KEY: "lm-studio"
+
+environment:
+  type: docker
+  delete: true
+
+orchestrator:
+  type: local
+  n_concurrent_trials: 2

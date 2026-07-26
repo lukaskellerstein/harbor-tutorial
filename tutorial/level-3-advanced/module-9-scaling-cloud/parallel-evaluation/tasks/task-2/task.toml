@@ -1,0 +1,20 @@
+version = "1.0"
+
+[task]
+name = "parallel-eval/task-2"
+
+[metadata]
+author_name = "Harbor Tutorial"
+author_email = "tutorial@example.com"
+difficulty = "easy"
+category = "file-operations"
+tags = ["parallel", "basics"]
+
+[agent]
+timeout_sec = 60.0
+
+[verifier]
+timeout_sec = 30.0
+
+[environment]
+build_timeout_sec = 120.0

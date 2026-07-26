@@ -1,0 +1,13 @@
+datasets:
+  - name: harbor-framework/hello-world
+
+agents:
+  - name: claude-code
+    model_name: anthropic/claude-sonnet-4-5-20250929
+
+environment:
+  type: modal
+  delete: true
+
+n_concurrent_trials: 16
+quiet: false

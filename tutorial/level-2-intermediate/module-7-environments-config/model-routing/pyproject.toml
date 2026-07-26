@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L2-M7-model-routing"
+version = "0.1.0"
+description = "Model Selection & LiteLLM"
+requires-python = ">=3.12"
+
+[project.dependencies]
+harbor = ">=0.16"

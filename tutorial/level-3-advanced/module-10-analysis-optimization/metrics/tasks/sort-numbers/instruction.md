@@ -1,0 +1,1 @@
+Create a Python script at `/home/user/sort_numbers.py` that reads numbers from `/home/user/numbers.txt` (one number per line), sorts them in ascending order, and writes the sorted numbers to `/home/user/sorted.txt` (one number per line).

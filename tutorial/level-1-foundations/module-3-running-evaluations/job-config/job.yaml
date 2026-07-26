@@ -1,0 +1,17 @@
+jobs_dir: jobs
+n_attempts: 1
+
+orchestrator:
+  type: local
+  n_concurrent_trials: 2
+
+environment:
+  type: docker
+  force_build: true
+  delete: true
+
+agents:
+  - name: oracle
+
+datasets:
+  - path: tasks

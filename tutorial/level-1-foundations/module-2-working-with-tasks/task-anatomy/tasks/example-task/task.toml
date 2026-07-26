@@ -1,0 +1,21 @@
+version = "1.0"
+
+[task]
+name = "tutorial/count-words"
+authors = []
+keywords = ["python", "beginner"]
+
+[metadata]
+author_name = "Harbor Tutorial"
+difficulty = "easy"
+category = "programming"
+tags = ["python", "file-io", "string-processing"]
+
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 120.0
+
+[environment]
+build_timeout_sec = 600.0

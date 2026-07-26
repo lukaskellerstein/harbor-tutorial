@@ -1,0 +1,17 @@
+jobs_dir: jobs
+n_attempts: 1
+n_concurrent_trials: 32
+
+environment:
+  type: daytona
+  force_build: true
+  delete: true
+  env:
+    - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+
+agents:
+  - name: claude-code
+    model_name: anthropic/claude-sonnet-4-5-20250929
+
+datasets:
+  - name: harbor-framework/swe-bench-verified

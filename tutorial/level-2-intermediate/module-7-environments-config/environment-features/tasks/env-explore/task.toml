@@ -1,0 +1,20 @@
+version = "1.0"
+
+[task]
+name = "env-features/env-explore"
+
+[metadata]
+author_name = "Harbor Tutorial"
+author_email = "tutorial@example.com"
+difficulty = "easy"
+category = "environments"
+tags = ["environment", "exec", "file-operations"]
+
+[agent]
+timeout_sec = 120.0
+
+[verifier]
+timeout_sec = 30.0
+
+[environment]
+build_timeout_sec = 300.0
