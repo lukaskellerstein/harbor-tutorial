@@ -1,0 +1,22 @@
+jobs_dir: jobs
+n_attempts: 1
+orchestrator:
+  type: local
+  n_concurrent_trials: 1
+
+agent_setup_timeout_multiplier: 3.0
+environment:
+  type: docker
+  force_build: true
+  delete: false
+
+# Note what is NOT here: no skills, no mcp_servers, no agent kwargs. Every bit
+# of Claude Code configuration for this task lives in the task image instead,
+# as ordinary project-scoped files under /app -- the same layout you would use
+# on your own machine. Harbor does not need to know about any of it.
+agents:
+  - name: claude-code
+    model_name: anthropic/claude-sonnet-4-5-20250929
+
+datasets:
+  - path: tasks-configured

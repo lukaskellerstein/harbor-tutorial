@@ -1,0 +1,16 @@
+{
+  "enableAllProjectMcpServers": true,
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat >> /logs/agent/hook-events.jsonl"
+          }
+        ]
+      }
+    ]
+  }
+}

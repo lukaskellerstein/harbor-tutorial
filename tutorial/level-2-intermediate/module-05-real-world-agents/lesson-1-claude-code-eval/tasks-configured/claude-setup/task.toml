@@ -1,0 +1,22 @@
+version = "1.0"
+
+[task]
+name = "tutorial/claude-setup"
+
+[metadata]
+author_name = "Harbor Tutorial"
+author_email = "tutorial@example.com"
+difficulty = "medium"
+category = "agent-configuration"
+tags = ["tutorial", "claude-code", "skills", "subagents", "mcp", "hooks"]
+
+[verifier]
+timeout_sec = 120.0
+
+# Longer than the other tasks in this lesson: the agent has to call an MCP
+# tool and delegate to a subagent before it can write the report.
+[agent]
+timeout_sec = 600.0
+
+[environment]
+build_timeout_sec = 600.0

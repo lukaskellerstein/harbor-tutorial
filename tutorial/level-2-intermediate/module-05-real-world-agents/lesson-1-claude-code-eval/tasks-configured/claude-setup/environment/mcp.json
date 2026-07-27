@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "harbor-demo": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["/app/mcp_server/harbor_demo.py"]
+    }
+  }
+}
