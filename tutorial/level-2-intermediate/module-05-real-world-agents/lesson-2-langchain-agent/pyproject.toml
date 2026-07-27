@@ -1,0 +1,13 @@
+[project]
+name = "harbor-tutorial-L2-M5-langchain-agent"
+version = "0.1.0"
+description = "LangChain Agent in Harbor"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+    # v1 for create_agent() — the v0.3 agent APIs are a different shape
+    "langchain>=1.0",
+    "langchain-core>=1.0",
+    # ChatOpenAI speaks to the OpenAI-compatible LiteLLM proxy
+    "langchain-openai>=1.0",
+]

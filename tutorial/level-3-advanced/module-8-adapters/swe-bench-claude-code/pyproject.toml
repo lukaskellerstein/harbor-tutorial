@@ -1,8 +1,0 @@
-[project]
-name = "harbor-tutorial-L3-M8-swe-bench-claude-code"
-version = "0.1.0"
-description = "Benchmarking Claude Code on SWE-bench"
-requires-python = ">=3.12"
-
-[project.dependencies]
-harbor = ">=0.16"

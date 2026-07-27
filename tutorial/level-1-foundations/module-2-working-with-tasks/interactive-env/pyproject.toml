@@ -1,8 +1,0 @@
-[project]
-name = "harbor-tutorial-L1-M2-interactive-env"
-version = "0.1.0"
-description = "Debugging with Interactive Environments"
-requires-python = ">=3.12"
-
-[project.dependencies]
-harbor = ">=0.16"

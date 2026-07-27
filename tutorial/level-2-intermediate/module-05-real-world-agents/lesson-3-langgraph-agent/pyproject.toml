@@ -1,0 +1,13 @@
+[project]
+name = "harbor-tutorial-L2-M5-langgraph-agent"
+version = "0.1.0"
+description = "Langgraph Agent in Harbor"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+    # LangGraph 1.x: START/END edges, tools_condition, async ToolNode
+    "langgraph>=1.2",
+    "langchain-core>=1.4",
+    # ChatOpenAI speaks to the OpenAI-compatible LiteLLM proxy
+    "langchain-openai>=1.0",
+]

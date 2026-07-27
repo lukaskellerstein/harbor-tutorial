@@ -11,6 +11,7 @@ Before starting, make sure you have:
 - **Docker** — installed and running
 - **Harbor** — `uv tool install harbor`
 - **Git** — for cloning benchmark repos
+- **Git LFS** — `brew install git-lfs && git lfs install` (required for Hugging Face datasets, which store large files via LFS)
 
 ## Quick Start
 

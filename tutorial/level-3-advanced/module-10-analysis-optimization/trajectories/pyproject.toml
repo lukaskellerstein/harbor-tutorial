@@ -1,8 +1,0 @@
-[project]
-name = "harbor-tutorial-L3-M10-trajectories"
-version = "0.1.0"
-description = "Agent Trajectories"
-requires-python = ">=3.12"
-
-[project.dependencies]
-harbor = ">=0.16"

@@ -1,0 +1,11 @@
+[project]
+name = "harbor-tutorial-L2-M5-claude-sdk-agent"
+version = "0.1.0"
+description = "Claude Agent SDK in Harbor"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+    "claude-agent-sdk>=0.1",
+    # Loads CLAUDE_CODE_OAUTH_TOKEN from this lesson's .env file
+    "python-dotenv>=1.0",
+]

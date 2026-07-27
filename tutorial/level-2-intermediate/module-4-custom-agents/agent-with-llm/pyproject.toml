@@ -1,9 +1,0 @@
-[project]
-name = "harbor-tutorial-L2-M4-agent-with-llm"
-version = "0.1.0"
-description = "LLM-Powered Custom Agent"
-requires-python = ">=3.12"
-
-[project.dependencies]
-harbor = ">=0.16"
-litellm = ">=1.0"

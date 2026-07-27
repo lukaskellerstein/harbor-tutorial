@@ -1,8 +1,0 @@
-[project]
-name = "harbor-tutorial-L1-M1-hello-harbor"
-version = "0.1.0"
-description = "Installation & First Run"
-requires-python = ">=3.12"
-
-[project.dependencies]
-harbor = ">=0.16"

@@ -1,8 +1,0 @@
-[project]
-name = "harbor-tutorial-L1-M3-job-config"
-version = "0.1.0"
-description = "Job Configuration with job.yaml"
-requires-python = ">=3.12"
-
-[project.dependencies]
-harbor = ">=0.16"

@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L2-M4-installed-agent"
+version = "0.1.0"
+description = "Custom Installed Agent (BaseInstalledAgent)"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+]

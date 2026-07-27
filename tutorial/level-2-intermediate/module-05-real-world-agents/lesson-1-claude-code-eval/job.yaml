@@ -1,0 +1,27 @@
+jobs_dir: jobs
+n_attempts: 1
+orchestrator:
+  type: local
+  n_concurrent_trials: 1
+
+# Installing Claude Code into a fresh container (download + npm/bootstrap) can
+# exceed Harbor's built-in 360s agent-setup limit on a slow network. This
+# multiplier raises it to 1080s. Symptom without it: AgentSetupTimeoutError.
+agent_setup_timeout_multiplier: 3.0
+# Auth note: no env block needed here. Harbor's built-in claude-code agent
+# reads CLAUDE_CODE_OAUTH_TOKEN (subscription) or ANTHROPIC_API_KEY from the
+# host environment and injects it into the container when it invokes the CLI.
+environment:
+  type: docker
+  force_build: true
+  # delete: false keeps the container alive after the trial so you can inspect
+  # it with `docker exec -it <id> bash` when something fails. Harbor has no
+  # "delete only on success" option -- it is all-or-nothing -- so containers
+  # accumulate while this is false. Clean up with `docker container prune`,
+  # and set it back to true once you are done debugging.
+  delete: false
+agents:
+  - name: claude-code
+    model_name: anthropic/claude-sonnet-4-5-20250929
+datasets:
+  - path: tasks

@@ -1,8 +1,0 @@
-[project]
-name = "harbor-tutorial-L3-M10-sweeps"
-version = "0.1.0"
-description = "Configuration Sweeps"
-requires-python = ">=3.12"
-
-[project.dependencies]
-harbor = ">=0.16"

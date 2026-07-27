@@ -1,9 +1,0 @@
-[project]
-name = "harbor-tutorial-L3-M9-parallel-evaluation"
-version = "0.1.0"
-description = "Parallel Evaluation"
-requires-python = ">=3.12"
-
-[project.dependencies]
-harbor = ">=0.16"
-pyyaml = ">=6.0"

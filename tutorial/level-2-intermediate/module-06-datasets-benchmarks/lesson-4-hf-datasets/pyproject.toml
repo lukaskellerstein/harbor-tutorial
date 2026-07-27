@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L2-M6-hf-datasets"
+version = "0.1.0"
+description = "Running Datasets Straight from Hugging Face"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.20",
+]

@@ -26,6 +26,29 @@ def check_command(name: str, cmd: list[str], expected: str = "") -> bool:
         return check(name, False, str(e))
 
 
+def check_git_lfs() -> bool:
+    """Git LFS must be installed AND initialized.
+
+    `git lfs install` registers the smudge filter that materializes LFS
+    pointers into real files on checkout. Without it, Hugging Face datasets
+    clone as ~130 byte pointer stubs and every task silently scores 0.0.
+    """
+    if not shutil.which("git-lfs"):
+        return check("Git LFS", False, "not installed — run: brew install git-lfs")
+    try:
+        result = subprocess.run(
+            ["git", "config", "--get", "filter.lfs.smudge"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except Exception as e:
+        return check("Git LFS", False, str(e))
+    if not result.stdout.strip():
+        return check("Git LFS", False, "not initialized — run: git lfs install")
+    return check("Git LFS", True, "installed and initialized")
+
+
 def check_url(name: str, url: str) -> bool:
     try:
         req = urllib.request.Request(url, method="GET")
@@ -48,6 +71,7 @@ def main() -> None:
     results.append(check_command("Docker", ["docker", "--version"]))
     results.append(check_command("Harbor CLI", ["harbor", "--version"]))
     results.append(check_command("Git", ["git", "--version"]))
+    results.append(check_git_lfs())
 
     # ── Docker daemon ──
     print("\n2. Docker Daemon")
@@ -80,7 +104,7 @@ def main() -> None:
         print("Note: LMStudio checks are optional for most lessons.")
     print("=" * 60)
 
-    sys.exit(0 if all(results[:6]) else 1)
+    sys.exit(0 if all(results[:7]) else 1)
 
 
 if __name__ == "__main__":

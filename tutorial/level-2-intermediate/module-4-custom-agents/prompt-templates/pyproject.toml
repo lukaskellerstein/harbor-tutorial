@@ -1,8 +1,0 @@
-[project]
-name = "harbor-tutorial-L2-M4-prompt-templates"
-version = "0.1.0"
-description = "Prompt Templates"
-requires-python = ">=3.12"
-
-[project.dependencies]
-harbor = ">=0.16"

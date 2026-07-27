@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L2-M6-registered-datasets"
+version = "0.1.0"
+description = "Using Registered Datasets"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+]

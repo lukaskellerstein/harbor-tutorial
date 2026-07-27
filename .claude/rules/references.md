@@ -7,7 +7,7 @@ globs: ["tutorial/**"]
 Always consult these sources when building lessons. Do NOT guess at APIs — read the source code first.
 
 ## Harbor
-- **Source code**: /Users/lkellers/Projects/github/harbor-framework/harbor
+- **Source code**: ~/Projects/github/harbor-framework/harbor
 - **GitHub**: https://github.com/harbor-framework/harbor
 - **Docs**: https://harborframework.com/docs
 - **Cookbook**: https://github.com/harbor-framework/harbor-cookbook
@@ -20,10 +20,10 @@ Always consult these sources when building lessons. Do NOT guess at APIs — rea
 ## AI Agent Frameworks
 | Framework | Source Code | Examples |
 |-----------|------------|----------|
-| Langchain | /Users/lkellers/Projects/github/langchain-ai/langchain | /Users/lkellers/Projects/github/lukaskellerstein/ai-agents-course/Version_2/6_langchain-ai/1_langchain |
-| Langgraph | /Users/lkellers/Projects/github/langchain-ai/langgraph | /Users/lkellers/Projects/github/lukaskellerstein/ai-agents-course/Version_2/6_langchain-ai/2_langgraph |
-| Deepagents | /Users/lkellers/Projects/github/langchain-ai/deepagents | /Users/lkellers/Projects/github/lukaskellerstein/ai-agents-course/Version_2/6_langchain-ai/3_deepagents |
-| Claude Agent SDK | /Users/lkellers/Projects/github/anthropics/claude-agent-sdk-python | /Users/lkellers/Projects/github/lukaskellerstein/vibe-coding-course/5_Claude_Agent_SDK/python |
+| Langchain | ~/Projects/github/langchain-ai/langchain | ~/Projects/github/lukaskellerstein/ai-agents-course/Version_2/6_langchain-ai/1_langchain |
+| Langgraph | ~/Projects/github/langchain-ai/langgraph | ~/Projects/github/lukaskellerstein/ai-agents-course/Version_2/6_langchain-ai/2_langgraph |
+| Deepagents | ~/Projects/github/langchain-ai/deepagents | ~/Projects/github/lukaskellerstein/ai-agents-course/Version_2/6_langchain-ai/3_deepagents |
+| Claude Agent SDK | ~/Projects/github/anthropics/claude-agent-sdk-python | ~/Projects/github/lukaskellerstein/vibe-coding-course/5_Claude_Agent_SDK/python |
 
 ## RAG
 - **Vector DB**: Qdrant — https://qdrant.tech/
