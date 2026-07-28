@@ -1,0 +1,37 @@
+# Reward dimension: "quality".
+#
+# A judge rubric and a .py criteria file can live in the same directory -- both
+# would contribute to a reward named after that directory. Here the dimension is
+# purely judged, because "is this readable?" is not something a criterion can
+# answer.
+
+[judge]
+judge = "openai/gemma-large"
+files = ["/app/textstats.py", "/app/analyze.py"]
+mode = "batched"
+timeout = 300
+
+[[criterion]]
+name = "documented"
+description = """Do the functions have docstrings that explain what they \
+actually do, rather than restating their names?"""
+type = "binary"
+weight = 1.0
+
+[[criterion]]
+name = "readability"
+description = """How readable is this code? 1 = cryptic, 3 = acceptable, \
+5 = exemplary naming and structure."""
+type = "likert"
+points = 5
+weight = 2.0
+
+[[criterion]]
+name = "handles_empty_input"
+description = """Does the code handle empty or whitespace-only input without \
+raising an exception?"""
+type = "binary"
+weight = 2.0
+
+[scoring]
+aggregation = "weighted_mean"

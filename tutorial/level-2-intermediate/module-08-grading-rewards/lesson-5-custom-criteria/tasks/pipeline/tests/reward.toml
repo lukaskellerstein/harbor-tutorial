@@ -1,0 +1,22 @@
+# Aggregated scores layered on top of the per-dimension ones.
+#
+# This file is NOT a judge rubric -- it has no [judge] table -- so RewardKit
+# treats it as reward configuration instead. That is the whole reason a rubric
+# needs both [judge] and [[criterion]] to be recognised as one.
+#
+# Each [[reward]] adds ONE key to reward.json, computed by aggregating the
+# dimension scores (correctness, structure, quality). The per-dimension scores
+# stay alongside it; nothing is replaced.
+
+# The "reward" key that one-dimensional tooling looks for -- min_reward gates,
+# harbor analyze --passing/--failing, harbor check.
+[[reward]]
+name = "reward"
+aggregation = "weighted_mean"
+
+# A strict gate as a separate key: 1.0 only if EVERY dimension scored above 0.
+# Reporting both means you never have to choose between "how good was it" and
+# "did it clear the bar".
+[[reward]]
+name = "all_dimensions_passed"
+aggregation = "all_pass"

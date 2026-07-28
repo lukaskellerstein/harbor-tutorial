@@ -146,4 +146,4 @@ Step 6: Validating the Test Task
 
 ## Next Steps
 
-Continue to Module 8 -- Adapters, to learn how to convert external benchmarks (like SWE-Bench) into Harbor task format.
+Continue to Module 8 -- Grading & Rewards, to learn how rewards are actually produced: multi-dimensional `reward.json`, RewardKit criteria, and LLM-as-a-judge verifiers.

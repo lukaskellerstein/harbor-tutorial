@@ -1,0 +1,11 @@
+[project]
+name = "harbor-tutorial-L2-M8-judge-criteria"
+version = "0.1.0"
+description = "RewardKit Judge Criteria"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+    # Imported by main.py so the aggregation table uses RewardKit's own
+    # aggregate_scores rather than a reimplementation that could drift.
+    "harbor-rewardkit>=0.1,<0.2",
+]

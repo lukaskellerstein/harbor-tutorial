@@ -1,8 +1,0 @@
-[project]
-name = "harbor-tutorial-L3-M10-analyze-check"
-version = "0.1.0"
-description = "Task Quality Analysis"
-requires-python = ">=3.12"
-dependencies = [
-    "harbor>=0.16",
-]

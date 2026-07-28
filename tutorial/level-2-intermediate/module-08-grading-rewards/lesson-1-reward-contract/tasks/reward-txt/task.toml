@@ -1,0 +1,21 @@
+version = "1.0"
+
+[task]
+name = "tutorial/reward-txt"
+authors = []
+keywords = ["grading"]
+
+[metadata]
+author_name = "Harbor Tutorial"
+difficulty = "easy"
+category = "writing"
+tags = ["reward-txt", "single-dimension", "grading"]
+
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 120.0
+
+[environment]
+build_timeout_sec = 600.0

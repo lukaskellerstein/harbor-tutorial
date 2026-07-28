@@ -138,8 +138,88 @@ class MyInstalledAgent(BaseInstalledAgent):
         await self.exec_as_agent(environment, command=f"my-tool run '{instruction}'")
 ```
 
+## RewardKit (declarative verifiers)
+
+Source: `packages/rewardkit/` in the Harbor repo. Published as `harbor-rewardkit`, executable is `rewardkit`.
+
+**Invocation from `tests/test.sh` — always use the `--from` form:**
+```bash
+#!/bin/bash
+uvx --from 'harbor-rewardkit==0.1.*' rewardkit /tests
+```
+`uvx harbor-rewardkit@0.1` FAILS — package name and executable name differ. (The published docs
+show the broken form; `skills/create-task/SKILL.md` has the correct one.)
+
+**Tests directory layout** — each subdirectory of `/tests` becomes one named reward. A flat
+layout (no subdirectories) produces a single reward named `reward`.
+```
+tests/
+  test.sh
+  criteria.py          # @criterion(shared=True) helpers, importable by subdirs
+  reward.toml          # [[reward]] blocks: aggregate dimensions into extra keys
+  correctness/check.py # -> reward key "correctness"
+  quality/judge.toml   # -> reward key "quality"
+```
+
+**Programmatic criteria** — every built-in accepts `weight=`, `name=`, `isolated=`:
+```python
+import rewardkit as rk
+
+rk.file_exists("output.txt", weight=2.0)
+rk.command_succeeds("python main.py", isolated=True)
+rk.json_key_equals("results.json", "most_common", "the")
+```
+Built-ins (23): `file_exists`, `file_not_exists`, `file_contains`, `file_contains_regex`,
+`file_matches`, `files_equal`, `diff_ratio`, `command_succeeds`, `command_output_contains`,
+`command_output_matches`, `command_output_matches_regex`, `json_key_equals`, `json_path_equals`,
+`csv_cell_equals`, `xlsx_cell_equals`, `sqlite_query_equals`, `http_status_equals`,
+`http_response_contains`, `image_similarity`, `image_size_equals`, `trajectory_tool_used`,
+`trajectory_tool_not_used`, `trajectory_turn_count`.
+
+Return types: `bool` -> 1.0/0.0; `int`/`float` used verbatim (NOT clamped); anything else raises.
+
+**Custom criteria:**
+```python
+from pathlib import Path
+from rewardkit import criterion
+
+@criterion(description="output has at least {n} lines")
+def has_n_lines(workspace: Path, n: int) -> bool:
+    return len((workspace / "output.txt").read_text().splitlines()) >= n
+```
+Call through the module (`rk.has_n_lines(10)`), never directly. Use `@criterion(shared=True)` for
+helpers defined in a root-level `tests/*.py` when subdirectories exist — otherwise `discover()` raises.
+
+**Judge rubric TOML** — a `.toml` is treated as a rubric only if it has BOTH `[judge]` and `[[criterion]]`:
+```toml
+[judge]
+judge = "openai/gemma-large"   # LiteLLM model string, or "claude-code"/"codex" for an agent judge
+files = ["/app/main.py"]
+mode = "batched"               # "individual" required if any criterion sets its own `files`
+atif-trajectory = "/logs/agent/trajectory.json"   # note the HYPHEN in TOML
+
+[[criterion]]
+name = "edge_cases"
+description = "Does the code handle empty input?"
+type = "binary"                # binary | likert (+points) | numeric (+min/max)
+weight = 2.0
+
+[scoring]
+aggregation = "all_pass"       # weighted_mean | all_pass | any_pass | threshold | required_pass
+```
+
+**Judge model override without editing files:** `REWARDKIT_JUDGE` / `--judge` and
+`REWARDKIT_MODEL` / `--model` take precedence over the TOML.
+
+**Outputs:** `/logs/verifier/reward.json` (scores Harbor reads) and `/logs/verifier/reward-details.json`
+(per-criterion value, reasoning, errors — rendered by `harbor view jobs`).
+
 ## Key Facts
 
+- **`reward.json` takes precedence over `reward.txt`** when both exist (`src/harbor/verifier/verifier.py`).
+  The published docs claim the opposite — trust the source.
+- `reward.txt` holds a single float, always keyed `"reward"`. `reward.json` holds any
+  `{name: number}` map, enabling multi-dimensional rewards.
 - Model format uses LiteLLM convention: `anthropic/claude-opus-4-1`, `openai/gpt-5-mini`, etc.
 - Built-in agents: `claude-code`, `copilot-cli`, `openhands`, `codex`, `aider`, `gemini-cli`, `terminus-2`, `goose`, `grok-build`, and more.
 - Utility agents: `oracle` (runs solution script for testing), `nop` (no-operation).

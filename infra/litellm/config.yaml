@@ -1,0 +1,83 @@
+# =============================================================================
+# LiteLLM proxy config — the single gateway every judge in the tutorial calls.
+#
+# Lessons refer to the ALIASES below (gemma-local, gemma-large, gpt-mini, ...).
+# Swapping which provider/model backs an alias is a change HERE, never a change
+# in lesson code or in a task's tests/ directory.
+#
+# Provider wiring (keys come from infra/.env, forwarded by docker-compose):
+#   - Local      : LMStudio  gemma-4-e4b                (LM_STUDIO_API_BASE)
+#   - OpenRouter : gemma-4-26b-a4b-it / -31b-it         (OPENROUTER_API_KEY)
+#   - OpenAI     : gpt-5.4-mini                          (OPENAI_API_KEY)
+#
+# COSTS: LiteLLM only prices models it knows in its built-in cost map. None of
+# the gemma-4 routes below are in it, so every call would log spend=$0 until you
+# state the rate. Each entry therefore carries explicit `input_cost_per_token` /
+# `output_cost_per_token` (USD **per token**, so $0.14/1M = 0.00000014). This is
+# what makes "$0.00 because it ran locally" distinguishable from "$0.00 because
+# nobody set a price" in a spend report.
+#
+# Docs: https://docs.litellm.ai/docs/proxy/configs
+# =============================================================================
+
+model_list:
+  # ---- Local (LMStudio) — free, offline, no API key -------------------------
+  # Requires `lms server start && lms load google/gemma-4-e4b` on the host.
+  - model_name: gemma-local
+    litellm_params:
+      model: lm_studio/google/gemma-4-e4b
+      api_base: os.environ/LM_STUDIO_API_BASE
+      api_key: "sk-lmstudio" # LMStudio ignores it; must be non-empty
+      input_cost_per_token: 0
+      output_cost_per_token: 0
+
+  # ---- OpenRouter — the default judge; FREE tier primary --------------------
+  # The `:free` tier really is $0 — priced explicitly so a run that silently
+  # fell back from free to paid shows up as a non-zero line in the spend log.
+  - model_name: gemma-large # <- DEFAULT JUDGE for Module 8
+    litellm_params:
+      model: openrouter/google/gemma-4-26b-a4b-it:free
+      api_key: os.environ/OPENROUTER_API_KEY
+      input_cost_per_token: 0
+      output_cost_per_token: 0
+
+  # paid OpenRouter (fallback targets — see litellm_settings.fallbacks)
+  - model_name: gemma-26b # $0.12 / $0.35 per 1M tokens
+    litellm_params:
+      model: openrouter/google/gemma-4-26b-a4b-it
+      api_key: os.environ/OPENROUTER_API_KEY
+      input_cost_per_token: 0.00000012
+      output_cost_per_token: 0.00000035
+  - model_name: gemma-31b # $0.14 / $0.40 per 1M tokens
+    litellm_params:
+      model: openrouter/google/gemma-4-31b-it
+      api_key: os.environ/OPENROUTER_API_KEY
+      input_cost_per_token: 0.00000014
+      output_cost_per_token: 0.0000004
+
+  # ---- OpenAI — last-resort fallback ---------------------------------------
+  # gpt-5.4-mini IS in LiteLLM's built-in cost map, so it is left unpinned and
+  # tracks upstream price updates.
+  - model_name: gpt-mini
+    litellm_params:
+      model: openai/gpt-5.4-mini
+      api_key: os.environ/OPENAI_API_KEY
+
+litellm_settings:
+  # Silently drop params a provider does not support instead of erroring.
+  #
+  # NOTE for judge lessons: RewardKit sends
+  #   response_format={"type": "json_schema", ..., "strict": true}
+  # If the backing provider does not support strict JSON schema, this setting
+  # drops it and the judge returns prose, which RewardKit cannot parse (it
+  # retries 3x, then records the criterion as 0 with an `error` in
+  # reward-details.json). The fallback chain below exists to route around that.
+  drop_params: true
+
+  # Free OpenRouter tiers rate-limit and occasionally 404 → fall back to the
+  # paid gemma-4 routes, then to OpenAI.
+  fallbacks:
+    - { "gemma-large": ["gemma-26b", "gemma-31b", "gpt-mini"] }
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY

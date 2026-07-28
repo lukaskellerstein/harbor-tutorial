@@ -1,0 +1,50 @@
+version = "1.0"
+
+[task]
+name = "tutorial/poem-rubric"
+authors = []
+keywords = ["grading", "rewardkit", "llm-as-a-judge"]
+
+[metadata]
+author_name = "Harbor Tutorial"
+difficulty = "easy"
+category = "writing"
+tags = ["rewardkit", "judge-grading", "grading"]
+
+[verifier]
+# uvx download + a judge round-trip. Do not be stingy here: a judge that times
+# out scores 0, which is indistinguishable from a genuine failure.
+timeout_sec = 300.0
+
+# RewardKit's LLM judge goes through LiteLLM, which reads these standard
+# variables itself -- nothing in judge.toml mentions a URL or a key.
+#
+# Both spellings are set because LiteLLM accepts either depending on the code
+# path taken.
+[verifier.env]
+OPENAI_BASE_URL = "${LITELLM_BASE_URL:-http://host.docker.internal:4000/v1}"
+OPENAI_API_BASE = "${LITELLM_BASE_URL:-http://host.docker.internal:4000/v1}"
+OPENAI_API_KEY = "${LITELLM_MASTER_KEY:-sk-litellm-master}"
+
+# REQUIRED when judging through an OpenAI-compatible gateway.
+#
+# RewardKit's LLMJudge always sends reasoning_effort (it defaults to "medium").
+# The litellm CLIENT inside this container validates parameters per provider
+# before sending anything, and the `openai/` provider rejects reasoning_effort:
+#
+#   litellm.UnsupportedParamsError: openai does not support parameters:
+#   ['reasoning_effort'], for model=gemma-large
+#
+# The `drop_params: true` in the gateway's own config does NOT help -- that is
+# server-side, and the request never leaves the container. This variable sets
+# litellm.drop_params in the client instead (litellm/__init__.py reads it).
+LITELLM_DROP_PARAMS = "1"
+
+# Overrides whatever [judge].judge says in the rubric, without editing it.
+REWARDKIT_JUDGE = "${REWARDKIT_JUDGE:-openai/gemma-large}"
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 600.0

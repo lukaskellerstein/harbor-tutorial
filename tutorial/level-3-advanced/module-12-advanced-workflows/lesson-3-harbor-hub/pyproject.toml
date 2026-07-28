@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L3-M12-harbor-hub"
+version = "0.1.0"
+description = "Hub — Sharing & Leaderboards"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+]

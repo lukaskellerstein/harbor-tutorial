@@ -1,0 +1,28 @@
+version = "1.0"
+
+[task]
+name = "tutorial/trajectory-graded"
+authors = []
+keywords = ["grading", "rewardkit", "trajectory"]
+
+[metadata]
+author_name = "Harbor Tutorial"
+difficulty = "easy"
+category = "programming"
+tags = ["rewardkit", "trajectory", "process-grading", "grading"]
+
+[verifier]
+timeout_sec = 300.0
+
+[verifier.env]
+OPENAI_BASE_URL = "${LITELLM_BASE_URL:-http://host.docker.internal:4000/v1}"
+OPENAI_API_BASE = "${LITELLM_BASE_URL:-http://host.docker.internal:4000/v1}"
+OPENAI_API_KEY = "${LITELLM_MASTER_KEY:-sk-litellm-master}"
+LITELLM_DROP_PARAMS = "1"
+REWARDKIT_JUDGE = "${REWARDKIT_JUDGE:-openai/gemma-large}"
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 600.0

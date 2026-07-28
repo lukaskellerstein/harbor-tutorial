@@ -1,0 +1,34 @@
+version = "1.0"
+
+[task]
+name = "tutorial/poem-judge"
+authors = []
+keywords = ["grading", "llm-as-a-judge"]
+
+[metadata]
+author_name = "Harbor Tutorial"
+difficulty = "easy"
+category = "writing"
+tags = ["llm-as-a-judge", "reward-json", "grading"]
+
+[verifier]
+# LLM calls are slow and occasionally retried. Give the verifier real headroom
+# -- a judge that times out scores 0, which is indistinguishable from a genuine
+# failure and will quietly poison your results.
+timeout_sec = 300.0
+
+# How the judge reaches the LiteLLM gateway. Only variable NAMES live here; the
+# values come from the host at run time.
+#
+# host.docker.internal is the host machine as seen from inside the container.
+# Docker Desktop (macOS/Windows) resolves it automatically.
+[verifier.env]
+OPENAI_BASE_URL = "${LITELLM_BASE_URL:-http://host.docker.internal:4000/v1}"
+OPENAI_API_KEY = "${LITELLM_MASTER_KEY:-sk-litellm-master}"
+JUDGE_MODEL = "${JUDGE_MODEL:-gemma-large}"
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 600.0

@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L2-M8-llm-judge"
+version = "0.1.0"
+description = "LLM-as-a-Judge from Scratch"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+]

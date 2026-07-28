@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L2-M8-trajectory-judging"
+version = "0.1.0"
+description = "Judging the Process, Not Just the Output"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+]

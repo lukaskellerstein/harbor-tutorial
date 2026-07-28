@@ -1,0 +1,89 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "tutorial-recorded-session",
+  "agent": {
+    "name": "claude-code",
+    "version": "2.1.220",
+    "model_name": "claude-sonnet-4-5-20250929",
+    "extra": {
+      "cwds": ["/app"],
+      "git_branches": ["HEAD"]
+    }
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": "2026-07-28T02:20:00.000Z",
+      "source": "user",
+      "message": "There is a file at /app/numbers.txt containing integers, one per line. Write /app/sort_numbers.py that sorts them ascending into /app/sorted.txt, then run it.",
+      "extra": {"is_sidechain": false}
+    },
+    {
+      "step_id": 2,
+      "timestamp": "2026-07-28T02:20:04.100Z",
+      "source": "agent",
+      "message": "Let me look at the input file first.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_read_numbers",
+          "function_name": "Read",
+          "arguments": {"file_path": "/app/numbers.txt"}
+        }
+      ],
+      "extra": {"is_sidechain": false}
+    },
+    {
+      "step_id": 3,
+      "timestamp": "2026-07-28T02:20:09.700Z",
+      "source": "agent",
+      "message": "Now I'll write the script.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_write_script",
+          "function_name": "Write",
+          "arguments": {"file_path": "/app/sort_numbers.py"}
+        }
+      ],
+      "extra": {"is_sidechain": false}
+    },
+    {
+      "step_id": 4,
+      "timestamp": "2026-07-28T02:20:14.200Z",
+      "source": "agent",
+      "message": "Running it to produce sorted.txt.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_run_script",
+          "function_name": "Bash",
+          "arguments": {"command": "cd /app && python sort_numbers.py"}
+        }
+      ],
+      "extra": {"is_sidechain": false}
+    },
+    {
+      "step_id": 5,
+      "timestamp": "2026-07-28T02:20:18.900Z",
+      "source": "agent",
+      "message": "Verifying the output.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_read_sorted",
+          "function_name": "Read",
+          "arguments": {"file_path": "/app/sorted.txt"}
+        }
+      ],
+      "extra": {"is_sidechain": false}
+    },
+    {
+      "step_id": 6,
+      "timestamp": "2026-07-28T02:20:21.400Z",
+      "source": "agent",
+      "message": "Done. /app/sort_numbers.py reads numbers.txt, sorts ascending, and writes sorted.txt.",
+      "extra": {"is_sidechain": false}
+    }
+  ],
+  "final_metrics": {
+    "n_input_tokens": 8421,
+    "n_output_tokens": 612
+  }
+}

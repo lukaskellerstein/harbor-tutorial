@@ -1,0 +1,79 @@
+# A judge rubric. RewardKit treats a .toml in a tests directory as a rubric if
+# and only if it has BOTH a [judge] table and at least one [[criterion]] --
+# anything else is ignored, which is how tests/reward.toml (lesson 5) coexists
+# with files like this one.
+
+[judge]
+# A LiteLLM model string routes to an LLM judge; "claude-code" or "codex" would
+# route to an AGENT judge that can explore the filesystem instead.
+#
+# Note there is no URL and no key here. LiteLLM reads OPENAI_BASE_URL and
+# OPENAI_API_KEY from the environment, which task.toml supplies. And the
+# REWARDKIT_JUDGE environment variable overrides this line entirely.
+judge = "openai/gemma-large"
+
+# What the judge is allowed to see. Without this the judge grades nothing.
+files = ["/app/poem.txt"]
+
+# "batched"    -> one call scoring every criterion (cheap, the default)
+# "individual" -> one call per criterion (costlier, but required if any
+#                 criterion sets its own `files`)
+mode = "batched"
+
+timeout = 300
+
+# --- binary: yes/no -> 1.0/0.0 ----------------------------------------------
+[[criterion]]
+name = "on_topic"
+description = """Is the poem genuinely about debugging code -- bugs, stack \
+traces, print statements, failing tests? A poem about programming in general \
+does not count."""
+type = "binary"
+weight = 1.0
+
+# --- likert: an N-point scale, normalised to 0.0-1.0 as (raw-1)/(points-1) ---
+[[criterion]]
+name = "humor"
+description = """How funny is this poem? 1 = not funny at all, 3 = mildly \
+amusing, 5 = genuinely laugh-out-loud."""
+type = "likert"
+points = 5
+weight = 3.0
+
+# --- numeric: a free score inside an explicit range -------------------------
+[[criterion]]
+name = "originality"
+description = """How original is the imagery? 0.0 for stock programmer cliches \
+(coffee, rubber ducks, "it works on my machine"), 1.0 for genuinely fresh \
+images."""
+type = "numeric"
+min = 0.0
+max = 1.0
+weight = 2.0
+
+# --- negate: the judge answers the question, RewardKit flips the score -------
+# Ask the natural question ("IS there profanity?") and let negate handle the
+# polarity. Writing "is the poem free of profanity?" instead works too, but
+# double negatives in rubrics are where judges start guessing.
+#
+# NAME THE CRITERION AFTER THE QUESTION, NOT AFTER THE DESIRED OUTCOME.
+# The name goes into the judge's prompt verbatim
+# (rewardkit/judges.py:_build_criteria_block):
+#
+#     - 'contains_profanity': Does the poem contain profanity or slurs? (score: yes/no)
+#
+# Naming this "no_profanity" while asking "does it contain profanity?" puts a
+# contradiction in front of the judge. It answers the label rather than the
+# question, negate flips the already-correct answer, and a clean poem scores
+# 0.00 with reasoning that says it is clean. Diagnosing that from reward.json
+# alone is miserable.
+[[criterion]]
+name = "contains_profanity"
+description = "Does the poem contain profanity or slurs?"
+type = "binary"
+negate = true
+weight = 1.0
+
+[scoring]
+# weighted_mean | all_pass | any_pass | threshold | required_pass
+aggregation = "weighted_mean"

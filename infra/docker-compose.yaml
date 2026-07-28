@@ -1,3 +1,9 @@
+# Explicit project name. Without it Compose derives the project from the
+# directory name -- "infra" -- which collides with every other repo that also
+# keeps its stack in an infra/ folder, silently adopting or clobbering their
+# containers.
+name: harbor-tutorial
+
 services:
   # ── Qdrant ── vector database for RAG-based evaluation tasks ──
   qdrant:
@@ -12,6 +18,42 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  # ── LiteLLM ── OpenAI-compatible gateway used by every LLM judge ──
+  # Tasks reach it from inside their container at http://host.docker.internal:4000/v1.
+  # Which model backs an alias is decided in ./litellm/config.yaml, never in lesson code.
+  litellm:
+    image: ghcr.io/berriai/litellm:main-stable
+    restart: unless-stopped
+    command: ["--config", "/app/config.yaml", "--port", "4000", "--num_workers", "1"]
+    ports:
+      # Host port is overridable: 4000 is a popular default and you may already
+      # have another LiteLLM running on it.
+      - "${LITELLM_PORT:-4000}:4000"
+    volumes:
+      - ./litellm/config.yaml:/app/config.yaml:ro
+    extra_hosts:
+      # Lets this container reach LMStudio running natively on the host.
+      # (Podman adds host.containers.internal automatically; this covers both.)
+      - "host.docker.internal:host-gateway"
+      - "host.containers.internal:host-gateway"
+    environment:
+      LITELLM_MASTER_KEY: ${LITELLM_MASTER_KEY:-sk-litellm-master}
+      LM_STUDIO_API_BASE: ${LM_STUDIO_API_BASE:-http://host.containers.internal:1234/v1}
+      # Optional hosted providers — only needed for the aliases that use them.
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    healthcheck:
+      # /health/liveliness is unauthenticated; /health requires the master key.
+      test:
+        - "CMD"
+        - "python"
+        - "-c"
+        - "import urllib.request,sys; sys.exit(0) if urllib.request.urlopen('http://localhost:4000/health/liveliness').status==200 else sys.exit(1)"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
 
 volumes:
   qdrant-data:

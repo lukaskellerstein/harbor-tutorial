@@ -1,0 +1,9 @@
+[project]
+name = "harbor-tutorial-L3-M10-network-policies"
+version = "0.1.0"
+description = "Network Policies"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+    "pyyaml>=6.0",
+]

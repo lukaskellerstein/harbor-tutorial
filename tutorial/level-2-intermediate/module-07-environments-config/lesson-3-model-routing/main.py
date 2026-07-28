@@ -172,7 +172,7 @@ def show_summary() -> None:
     print("  - host.docker.internal bridges container to host network")
     print("  - --agent-env passes API keys and endpoints to the agent")
     print()
-    print("Next module: Module 8 — Adapters")
+    print("Next module: Module 8 — Grading & Rewards")
 
 
 def main() -> None:

@@ -1,9 +1,0 @@
-[project]
-name = "harbor-tutorial-L3-M9-cloud-environments"
-version = "0.1.0"
-description = "Cloud Sandbox Environments"
-requires-python = ">=3.12"
-dependencies = [
-    "harbor>=0.16",
-    "pyyaml>=6.0",
-]

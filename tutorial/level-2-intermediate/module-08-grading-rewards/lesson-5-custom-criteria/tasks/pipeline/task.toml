@@ -1,0 +1,30 @@
+version = "1.0"
+
+[task]
+name = "tutorial/pipeline"
+authors = []
+keywords = ["grading", "rewardkit"]
+
+[metadata]
+author_name = "Harbor Tutorial"
+difficulty = "medium"
+category = "programming"
+tags = ["rewardkit", "custom-criteria", "multi-dimension", "grading"]
+
+[verifier]
+timeout_sec = 300.0
+
+[verifier.env]
+OPENAI_BASE_URL = "${LITELLM_BASE_URL:-http://host.docker.internal:4000/v1}"
+OPENAI_API_BASE = "${LITELLM_BASE_URL:-http://host.docker.internal:4000/v1}"
+OPENAI_API_KEY = "${LITELLM_MASTER_KEY:-sk-litellm-master}"
+# See lesson 4: RewardKit always sends reasoning_effort, and the litellm client
+# rejects it for the openai/ provider before the request leaves the container.
+LITELLM_DROP_PARAMS = "1"
+REWARDKIT_JUDGE = "${REWARDKIT_JUDGE:-openai/gemma-large}"
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 600.0

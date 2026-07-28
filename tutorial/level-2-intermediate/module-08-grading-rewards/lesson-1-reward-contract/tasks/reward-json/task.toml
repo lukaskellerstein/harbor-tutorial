@@ -1,0 +1,27 @@
+version = "1.0"
+
+[task]
+name = "tutorial/reward-json"
+authors = []
+keywords = ["grading"]
+
+[metadata]
+author_name = "Harbor Tutorial"
+difficulty = "easy"
+category = "writing"
+tags = ["reward-json", "multi-dimension", "grading"]
+
+[verifier]
+timeout_sec = 120.0
+
+# Environment variables the verifier needs. `${VAR}` reads from the host
+# environment at run time; `${VAR:-default}` supplies a fallback. Nothing
+# secret belongs in this file -- only the names of the values to pull in.
+[verifier.env]
+REQUIRED_WORDS = "${REQUIRED_WORDS:-50}"
+
+[agent]
+timeout_sec = 120.0
+
+[environment]
+build_timeout_sec = 600.0

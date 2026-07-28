@@ -83,9 +83,17 @@ def main() -> None:
     except Exception:
         results.append(check("Docker daemon running", False, "cannot connect"))
 
+    # Everything above this point must pass for any lesson to work.
+    required = list(results)
+
     # ── Docker Compose services ──
     print("\n3. Docker Compose Services")
     results.append(check_url("Qdrant", "http://localhost:6333/healthz"))
+    # /health/liveliness is unauthenticated; /health would 401 without the master key.
+    litellm_ok = check_url("LiteLLM gateway", "http://localhost:4000/health/liveliness")
+    results.append(litellm_ok)
+    # Module 8's judge lessons route every LLM call through this gateway.
+    required.append(litellm_ok)
 
     # ── LMStudio (local model server) ──
     print("\n4. LMStudio (optional — needed for local model lessons)")
@@ -101,10 +109,13 @@ def main() -> None:
         print("All systems go! You're ready to start the tutorial.")
     else:
         print("Some checks failed. See above for details.")
-        print("Note: LMStudio checks are optional for most lessons.")
+        print("Note: LMStudio and Qdrant checks are optional for most lessons.")
+        if not litellm_ok:
+            print("      LiteLLM is required for Module 8 (Grading & Rewards):")
+            print("      cd infra && docker compose up -d litellm")
     print("=" * 60)
 
-    sys.exit(0 if all(results[:7]) else 1)
+    sys.exit(0 if all(required) else 1)
 
 
 if __name__ == "__main__":

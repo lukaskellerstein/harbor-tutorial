@@ -1,0 +1,71 @@
+# Reward dimension: "approach" -- a judge grading strategy rather than output.
+#
+# ---------------------------------------------------------------------------
+# WHY atif-trajectory IS COMMENTED OUT HERE
+# ---------------------------------------------------------------------------
+# Handing the judge the trajectory would switch RewardKit's system prompt from
+# prompts/llm.md to prompts/llm_trajectory.md, so the judge grades reasoning and
+# tool calls as well as the workspace. Enable it with:
+#
+#     atif-trajectory = "/logs/agent/trajectory.json"
+#
+# NOTE THE HYPHEN. The TOML key is `atif-trajectory`, mapping to the
+# atif_trajectory field. An underscore is silently ignored and the judge simply
+# never sees the trajectory.
+#
+# THE CATCH: to budget how much trajectory fits in the context, RewardKit calls
+# litellm.get_model_info(judge.model) (rewardkit/judges.py). That looks the
+# model up in litellm's built-in price/context map -- and a GATEWAY ALIAS is not
+# in it. With judge = "openai/gemma-large" the whole dimension dies:
+#
+#     Exception: This model isn't mapped yet. model=openai/gemma-large,
+#     custom_llm_provider=openai.
+#
+# So trajectory-aware judging requires a judge model litellm recognises by name.
+# Either judge directly against a provider (anthropic/claude-..., openai/gpt-4o)
+# instead of through the gateway for this dimension, or name your gateway alias
+# after the model actually behind it so the lookup succeeds. Do not name an
+# alias after a model it is not -- that trades one broken thing for a lie.
+#
+# Everything else about trajectory grading still works through the gateway; it
+# is only this token-budgeting lookup that needs real model metadata. The
+# programmatic trajectory criteria in ../process/how.py are unaffected.
+# ---------------------------------------------------------------------------
+
+[judge]
+judge = "openai/gemma-large"
+files = ["/app/sort_numbers.py"]
+mode = "batched"
+timeout = 300
+
+# These grade the APPROACH as evidenced by the code the agent wrote. Each is
+# answerable from sort_numbers.py alone, which is what keeps this dimension
+# working without the trajectory.
+
+[[criterion]]
+name = "reads_the_input"
+description = """Does the script actually read and sort /app/numbers.txt, \
+rather than writing out a precomputed answer that only works for this one \
+input file?"""
+type = "binary"
+weight = 3.0
+
+[[criterion]]
+name = "uses_real_sorting"
+description = """Does the script sort using the language's sorting facilities \
+or a genuine algorithm, rather than relying on the input already being \
+ordered or on a hardcoded ordering?"""
+type = "binary"
+weight = 2.0
+
+[[criterion]]
+name = "robustness"
+description = """How well would this handle a messier input file -- blank \
+lines, trailing whitespace, negative numbers? 1 = breaks immediately, \
+3 = handles the common cases, 5 = genuinely robust."""
+type = "likert"
+points = 5
+weight = 1.0
+
+[scoring]
+aggregation = "weighted_mean"

@@ -72,11 +72,22 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 | 2 | `lesson-2-environment-features` | Environment Capabilities | Explore `exec()`, file operations, and environment lifecycle |
 | 3 | `lesson-3-model-routing` | Model Selection & LiteLLM | Understand the LiteLLM model format (`anthropic/claude-sonnet-4-5-20250929`), routing, and configuration |
 
+### Module 8: Grading & Rewards
+
+| # | Lesson | Topic | What You'll Learn |
+|---|--------|-------|-------------------|
+| 1 | `lesson-1-reward-contract` | Rewards & the Verifier Contract | Go beyond `reward.txt` — multi-dimensional `reward.json`, precedence rules, `[verifier]` config, how named rewards feed metrics |
+| 2 | `lesson-2-llm-judge` | LLM-as-a-Judge from Scratch | Write a judge script that scores open-ended output with structured JSON, routed through the LiteLLM gateway |
+| 3 | `lesson-3-rewardkit-basics` | RewardKit: Programmatic Criteria | Replace hand-written bash verifiers with declarative criteria, weights, isolation, and `reward-details.json` |
+| 4 | `lesson-4-judge-criteria` | RewardKit Judge Criteria | Define TOML rubrics — binary/likert/numeric criteria, aggregation modes, and swapping judge models via env |
+| 5 | `lesson-5-custom-criteria` | Custom Criteria & Multi-Dimensional Rewards | Write `@criterion` functions, split `tests/` into reward dimensions, aggregate with `reward.toml`, compare verifier variants |
+| 6 | `lesson-6-trajectory-judging` | Judging the Process | Score *how* the agent worked with trajectory criteria and ATIF-aware judges; defend against reward hacking with separate verifier environments |
+
 ---
 
 ## Level 3: Advanced
 
-### Module 8: Adapters
+### Module 9: Adapters
 
 | # | Lesson | Topic | What You'll Learn |
 |---|--------|-------|-------------------|
@@ -85,7 +96,7 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 | 3 | `lesson-3-swe-bench-claude-code` | Benchmarking Claude Code on SWE-bench | End-to-end: configure, run, and analyze a SWE-bench evaluation with the built-in claude-code agent |
 | 4 | `lesson-4-custom-adapter` | Building a Custom Adapter | Scaffold and implement an adapter for a new benchmark using `harbor adapter init` |
 
-### Module 9: Scaling & Cloud
+### Module 10: Scaling & Cloud
 
 | # | Lesson | Topic | What You'll Learn |
 |---|--------|-------|-------------------|
@@ -93,7 +104,7 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 | 2 | `lesson-2-parallel-evaluation` | Parallel Evaluation | Scale to dozens or hundreds of concurrent trials with `-n` and cloud environments |
 | 3 | `lesson-3-network-policies` | Network Policies | Control egress with allowlists and network policies per container |
 
-### Module 10: Analysis & Optimization
+### Module 11: Analysis & Optimization
 
 | # | Lesson | Topic | What You'll Learn |
 |---|--------|-------|-------------------|
@@ -102,7 +113,7 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 | 3 | `lesson-3-sweeps` | Configuration Sweeps | Use `harbor sweeps run` to sweep across models, agents, and hyperparameters |
 | 4 | `lesson-4-analyze-check` | Task Quality Analysis | Use `harbor analyze` and `harbor check` to validate task quality with LLM-powered analysis |
 
-### Module 11: Advanced Workflows
+### Module 12: Advanced Workflows
 
 | # | Lesson | Topic | What You'll Learn |
 |---|--------|-------|-------------------|
@@ -120,7 +131,9 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 Level 1 is sequential: M1 → M2 → M3
 Level 2 modules can be taken in any order (all depend on Level 1)
   Module 5 (Real-World Agents) depends on Module 4 (Custom Agents)
+  Module 8 (Grading & Rewards) is sequential and depends on M2 L3 (Test Scripts)
 Level 3 modules can be taken in any order (all depend on Level 2)
+  Module 11 (Analysis & Optimization) assumes Module 8 (Grading & Rewards)
 ```
 
 ### Time Estimates
@@ -128,9 +141,9 @@ Level 3 modules can be taken in any order (all depend on Level 2)
 | Level | Estimated Time |
 |-------|---------------|
 | Level 1: Foundations | 4–6 hours |
-| Level 2: Intermediate | 8–12 hours |
+| Level 2: Intermediate | 11–16 hours |
 | Level 3: Advanced | 8–12 hours |
-| **Total** | **20–30 hours** |
+| **Total** | **23–34 hours** |
 
 ### Prerequisites
 

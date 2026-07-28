@@ -1,0 +1,11 @@
+[project]
+name = "harbor-tutorial-L2-M8-custom-criteria"
+version = "0.1.0"
+description = "Custom Criteria & Multi-Dimensional Rewards"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+    # main.py and guardrails.py import RewardKit directly to demonstrate its
+    # guardrails and to compare verifier variants without a container.
+    "harbor-rewardkit>=0.1,<0.2",
+]

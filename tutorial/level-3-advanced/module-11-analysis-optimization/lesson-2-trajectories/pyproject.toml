@@ -1,0 +1,8 @@
+[project]
+name = "harbor-tutorial-L3-M11-trajectories"
+version = "0.1.0"
+description = "Agent Trajectories"
+requires-python = ">=3.12"
+dependencies = [
+    "harbor>=0.16",
+]
