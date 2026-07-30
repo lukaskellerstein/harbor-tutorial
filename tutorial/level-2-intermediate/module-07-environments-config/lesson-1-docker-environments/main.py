@@ -30,7 +30,8 @@ def check_prerequisites() -> bool:
     harbor_ok = shutil.which("harbor") is not None
     if docker_ok:
         docker_ok = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True
+            ["docker", "info"], capture_output=True, text=True,
+            check=False,
         ).returncode == 0
     print(f"  Docker: {'[OK]' if docker_ok else '[FAIL] not running'}")
     print(f"  Harbor: {'[OK]' if harbor_ok else '[FAIL] not found'}")
@@ -92,6 +93,7 @@ def run_task(task_name: str, label: str) -> tuple[str, str]:
     result = subprocess.run(
         ["harbor", "run", "-p", str(task_path), "-a", "oracle"],
         capture_output=True, text=True, cwd=str(LESSON_DIR),
+        check=False,
     )
     elapsed = f"{time.time() - start:.1f}s"
     status = "PASS" if result.returncode == 0 else "FAIL"

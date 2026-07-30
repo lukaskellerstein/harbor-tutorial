@@ -127,7 +127,7 @@ A progressive, hands-on tutorial for learning Harbor — the open-source framewo
 
 ### Lesson Dependencies
 
-```
+```text
 Level 1 is sequential: M1 → M2 → M3
 Level 2 modules can be taken in any order (all depend on Level 1)
   Module 5 (Real-World Agents) depends on Module 4 (Custom Agents)

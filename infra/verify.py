@@ -18,11 +18,13 @@ def check_command(name: str, cmd: list[str], expected: str = "") -> bool:
     if not path:
         return check(name, False, f"`{cmd[0]}` not found in PATH")
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
+        result = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=10, check=False
+        )
         version = result.stdout.strip() or result.stderr.strip()
         version_line = version.splitlines()[0] if version else "installed"
         return check(name, True, version_line)
-    except Exception as e:
+    except (OSError, subprocess.SubprocessError) as e:
         return check(name, False, str(e))
 
 
@@ -41,8 +43,9 @@ def check_git_lfs() -> bool:
             capture_output=True,
             text=True,
             timeout=10,
+            check=False,
         )
-    except Exception as e:
+    except (OSError, subprocess.SubprocessError) as e:
         return check("Git LFS", False, str(e))
     if not result.stdout.strip():
         return check("Git LFS", False, "not initialized — run: git lfs install")
@@ -54,7 +57,9 @@ def check_url(name: str, url: str) -> bool:
         req = urllib.request.Request(url, method="GET")
         with urllib.request.urlopen(req, timeout=5) as resp:
             return check(name, resp.status == 200, f"{url} reachable")
-    except Exception:
+    # urllib.error.URLError (and HTTPError under it) subclass OSError, so this
+    # single catch covers refused connections, DNS failures and timeouts alike.
+    except OSError:
         return check(name, False, f"{url} not reachable")
 
 
@@ -77,10 +82,11 @@ def main() -> None:
     print("\n2. Docker Daemon")
     try:
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, timeout=10
+            ["docker", "info"], capture_output=True, text=True, timeout=10,
+            check=False,
         )
         results.append(check("Docker daemon running", result.returncode == 0))
-    except Exception:
+    except (OSError, subprocess.SubprocessError):
         results.append(check("Docker daemon running", False, "cannot connect"))
 
     # Everything above this point must pass for any lesson to work.

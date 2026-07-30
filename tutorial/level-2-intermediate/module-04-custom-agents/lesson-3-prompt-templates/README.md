@@ -141,7 +141,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Module 4, Lesson 3         #
 #     Prompt Templates                                  #

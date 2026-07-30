@@ -1,0 +1,27 @@
+# hadolint rules for the tutorial's task environments.
+#
+# hadolint reads this file from the working directory it is invoked in, so it
+# applies when linting from the repo root (which is what the editor integration
+# does). Everything not listed here stays enabled.
+
+ignored:
+  # DL3008 / DL3018 -- "pin versions in apt-get install / apk add".
+  #
+  # Sound advice for a production image, actively harmful here. Debian and
+  # Alpine drop superseded package versions from their mirrors within months,
+  # so a pinned `curl=8.5.0-2ubuntu10.1` stops resolving and every task build in
+  # the tutorial fails with "Version not found" -- for a reader who did nothing
+  # wrong. The reproducibility control that actually holds is the base image
+  # tag (python:3.12-slim, ubuntu:24.04, golang:1.22-alpine), which is pinned.
+  #
+  # Application dependencies are a different matter and ARE pinned: see the
+  # `pip install ... ==<version>` lines, where the registry keeps old releases.
+  - DL3008
+  - DL3018
+
+  # DL3059 -- "multiple consecutive RUN instructions, consider consolidation".
+  #
+  # Layer count is the subject being taught in module 07, not an oversight.
+  # Those Dockerfiles keep one RUN per demonstrated step so each layer is
+  # visible in `docker history`; merging them would delete the lesson.
+  - DL3059

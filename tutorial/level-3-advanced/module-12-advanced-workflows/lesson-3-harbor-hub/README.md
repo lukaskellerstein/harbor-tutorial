@@ -46,7 +46,7 @@ Leaderboards rank agents and models on published datasets. They are configurable
 
 The Hub commands live under `harbor hub`:
 
-```
+```text
 harbor hub
   job
     list / show / tasks / trials / shares / compare / download / copy / delete
@@ -69,6 +69,7 @@ Run the lesson to get an overview of what Harbor Hub provides and how it fits in
 ### Step 2: Authentication
 
 Learn the authentication flow:
+
 ```bash
 harbor auth login              # GitHub OAuth (opens browser)
 harbor auth login --no-browser # For headless environments
@@ -79,6 +80,7 @@ harbor auth logout             # Revoke key and delete credentials
 ### Step 3: Publishing Datasets
 
 Publishing packages your tasks into tar.gz archives, uploads them to storage, and registers them in the Hub database:
+
 ```bash
 # Validate first
 harbor check -p path/to/dataset
@@ -93,6 +95,7 @@ harbor publish path/to/dataset --public
 ### Step 4: Uploading Results
 
 After running an evaluation, upload the results:
+
 ```bash
 # Upload a completed job
 harbor upload jobs/<job-id>
@@ -107,6 +110,7 @@ harbor run -d "org/dataset" -a claude-code --upload
 ### Step 5: Browsing and Downloading
 
 Discover and download community datasets:
+
 ```bash
 harbor dataset list                        # List registered datasets
 harbor download org/dataset-name           # Download to current directory
@@ -115,6 +119,7 @@ harbor download org/dataset-name --cache   # Content-addressable cache
 ```
 
 Browse job results:
+
 ```bash
 harbor hub job list                  # List your jobs
 harbor hub job show <job-id>          # Job details
@@ -125,6 +130,7 @@ harbor hub job download <job-id>      # Download results
 ### Step 6: Leaderboards
 
 Create and manage leaderboards:
+
 ```bash
 harbor hub leaderboard list              # List leaderboards
 harbor hub leaderboard show <ref>         # View a leaderboard
@@ -147,7 +153,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ============================================================
   Harbor Hub -- Sharing & Leaderboards
 ============================================================

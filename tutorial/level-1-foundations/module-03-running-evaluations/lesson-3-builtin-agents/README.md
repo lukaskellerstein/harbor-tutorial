@@ -82,7 +82,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ============================================================
   Harbor Tutorial - Module 3, Lesson 3
   Built-in Agents

@@ -93,7 +93,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ============================================================
   Harbor Tutorial - Module 3, Lesson 2
   Job Configuration with job.yaml

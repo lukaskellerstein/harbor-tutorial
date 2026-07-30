@@ -53,8 +53,8 @@ uv run python verify.py
 
 ### Qdrant
 
-- **REST API**: http://localhost:6333
-- **Dashboard**: http://localhost:6333/dashboard
+- **REST API**: <http://localhost:6333>
+- **Dashboard**: <http://localhost:6333/dashboard>
 - **gRPC**: localhost:6334
 
 Data is persisted in a Docker volume (`qdrant-data`).
@@ -63,7 +63,7 @@ Data is persisted in a Docker volume (`qdrant-data`).
 
 Module 8 (Grading & Rewards) grades open-ended agent output with LLM judges. Every one of those calls goes through this proxy rather than to a provider directly, so **which model does the judging is a config change here, never a code change in a lesson**.
 
-- **API**: http://localhost:4000/v1 (OpenAI-compatible)
+- **API**: <http://localhost:4000/v1> (OpenAI-compatible)
 - **Auth**: send `LITELLM_MASTER_KEY` as the bearer token (default `sk-litellm-master`)
 - **Config**: [`litellm/config.yaml`](litellm/config.yaml)
 
@@ -116,8 +116,8 @@ Two ways, no code change either way:
 
 LMStudio runs natively on your machine (not in Docker) because it needs GPU access.
 
-- **API**: http://localhost:1234/v1
-- **Docs**: https://lmstudio.ai/docs/cli
+- **API**: <http://localhost:1234/v1>
+- **Docs**: <https://lmstudio.ai/docs/cli>
 
 ## Teardown
 
@@ -132,6 +132,7 @@ docker compose down -v
 ## Troubleshooting
 
 ### Docker not running
+
 ```bash
 # macOS
 open -a Docker
@@ -141,18 +142,22 @@ sudo systemctl start docker
 ```
 
 ### Port conflicts
+
 If ports 6333/6334/4000 are in use, stop the conflicting service or edit `docker-compose.yaml` to remap ports.
 
 ### LMStudio model not loading
+
 ```bash
 lms ls           # list available models
 lms load --gpu max google/gemma-4-e4b
 ```
 
 ### LiteLLM returns 401
+
 The proxy rejects requests without the master key. Check that the token you send matches `LITELLM_MASTER_KEY` in `.env`, and note that `docker compose restart litellm` is required after changing it.
 
 ### A judge scores 0 with an error in `reward-details.json`
+
 RewardKit asks for strict JSON-schema output. If the model behind the alias cannot produce it, `drop_params: true` silently drops the request for structured output and the model answers in prose, which RewardKit cannot parse.
 
 ```bash

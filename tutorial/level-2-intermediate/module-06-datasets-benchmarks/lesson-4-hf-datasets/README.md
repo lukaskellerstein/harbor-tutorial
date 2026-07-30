@@ -15,6 +15,7 @@ Hugging Face dataset repos are git repositories, so they work as-is. This lesson
 - Docker installed and running
 - Git
 - **Git LFS -- installed *and* initialized:**
+
   ```bash
   brew install git-lfs      # or: apt-get install git-lfs
   git lfs install
@@ -56,7 +57,7 @@ Because the ref resolves to a SHA before anything downloads, the run is reproduc
 
 **A) With `registry.json`** -- named, versioned datasets:
 
-```
+```text
 my-benchmarks/
 ├── registry.json      <-- declares datasets and their tasks
 ├── task-a/
@@ -67,7 +68,7 @@ Select one with `--repo org/my-benchmarks -d lite@1.2`. When a repo declares onl
 
 **B) Without `registry.json`** -- an implicit dataset:
 
-```
+```text
 datasets/bird-bench/
 ├── california_schools__13/task.toml
 └── california_schools__23/task.toml
@@ -81,7 +82,7 @@ Hugging Face stores large files with Git LFS. In this dataset, each bird-bench t
 
 Without Git LFS, the clone still succeeds -- but every LFS file arrives as a ~130 byte text pointer instead of real content:
 
-```
+```text
 version https://git-lfs.github.com/spec/v1
 oid sha256:986817d793479801ed55133e55aa27e...
 size 11116544
@@ -108,7 +109,7 @@ git lfs install
 harbor dataset list --repo https://huggingface.co/datasets/harborframework/harbor-datasets/tree/main/datasets/bird-bench
 ```
 
-```
+```text
                       Available Datasets
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳┳┳┓
 ┃ Name                                                     ┃┃┃┃
@@ -193,7 +194,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 1: Checking Prerequisites
   Docker:  [OK]
   Harbor:  [OK]

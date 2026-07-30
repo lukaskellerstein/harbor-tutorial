@@ -16,7 +16,6 @@ import urllib.request
 from datetime import datetime
 from pathlib import Path
 
-
 LESSON_DIR = Path(__file__).parent
 
 #: Alias defined in agent-eval-benchmark/infra/litellm/config.yaml (Gemma 4 26B).
@@ -26,7 +25,7 @@ MODEL = "gemma-large"
 def litellm_root() -> str:
     """The LiteLLM gateway root URL (base URL without the /v1 suffix)."""
     base = os.environ.get("LITELLM_BASE_URL", "http://localhost:4000/v1")
-    return base[: -len("/v1")] if base.endswith("/v1") else base
+    return base.removesuffix("/v1")
 
 
 def check_prerequisites() -> bool:
@@ -38,7 +37,9 @@ def check_prerequisites() -> bool:
     ok = True
 
     if shutil.which("docker"):
-        result = subprocess.run(["docker", "info"], capture_output=True, text=True)
+        result = subprocess.run(
+            ["docker", "info"], capture_output=True, text=True, check=False
+        )
         if result.returncode == 0:
             print("  [OK] Docker is running")
         else:
@@ -150,6 +151,7 @@ def run_evaluation() -> None:
         text=True,
         cwd=str(LESSON_DIR),
         env=env,
+        check=False,
     )
 
     if result.stdout:

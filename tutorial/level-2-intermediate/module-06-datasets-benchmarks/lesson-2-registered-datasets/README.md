@@ -94,7 +94,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 1: Checking Prerequisites
   Docker:  [OK]
   Harbor:  [OK]

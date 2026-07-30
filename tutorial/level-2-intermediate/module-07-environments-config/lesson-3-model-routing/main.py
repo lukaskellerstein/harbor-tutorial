@@ -22,7 +22,8 @@ def check_prerequisites() -> bool:
     harbor_ok = shutil.which("harbor") is not None
     if docker_ok:
         docker_ok = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True
+            ["docker", "info"], capture_output=True, text=True,
+            check=False,
         ).returncode == 0
     print(f"  Docker: {'[OK]' if docker_ok else '[FAIL] not running'}")
     print(f"  Harbor: {'[OK]' if harbor_ok else '[FAIL] not found'}")
@@ -109,7 +110,8 @@ def explain_lmstudio() -> None:
     if lms_available:
         print("  LMStudio CLI detected on this system!")
         result = subprocess.run(
-            ["lms", "status"], capture_output=True, text=True
+            ["lms", "status"], capture_output=True, text=True,
+            check=False,
         )
         status = result.stdout.strip() if result.returncode == 0 else "not running"
         print(f"  Status: {status}")
@@ -147,6 +149,7 @@ def run_task_validation() -> None:
     result = subprocess.run(
         ["harbor", "run", "-p", str(TASK_DIR), "-a", "oracle"],
         capture_output=True, text=True, cwd=str(LESSON_DIR),
+        check=False,
     )
     if result.stdout:
         for line in result.stdout.strip().splitlines():

@@ -142,7 +142,7 @@ harbor task start-env \
 
 ## Expected Output
 
-```
+```text
 ============================================================
   Multi-Container Tasks with Docker Compose
 ============================================================

@@ -102,16 +102,19 @@ Results are stored in the standard `jobs/` directory. Each sweep round creates a
 For hard tasks that consistently fail, you can provide hints:
 
 **Generic hint** (same hint for all tasks):
+
 ```bash
 harbor sweeps run -c config.yaml --hint "Focus on edge cases and error handling"
 ```
 
 **Per-task hints** (targeted guidance):
+
 ```bash
 harbor sweeps run -c config.yaml --hints-file hints.json
 ```
 
 Where `hints.json` contains:
+
 ```json
 {
   "tutorial/sweeps-reverse-string": "Use Python slicing [::-1]",
@@ -132,7 +135,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ============================================================
   Harbor Tutorial
   Module 11, Lesson 3: Configuration Sweeps

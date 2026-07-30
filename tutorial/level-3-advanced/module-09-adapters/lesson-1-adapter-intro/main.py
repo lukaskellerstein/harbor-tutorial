@@ -7,8 +7,6 @@ into Harbor's standard task format so any agent can be evaluated against them.
 
 import shutil
 import subprocess
-import sys
-
 
 # ── A curated selection of the 85+ adapters available in Harbor ──────────
 ADAPTER_CATALOG: dict[str, list[str]] = {
@@ -160,6 +158,7 @@ def try_list_datasets() -> None:
     result = subprocess.run(
         ["harbor", "dataset", "list"],
         capture_output=True, text=True, timeout=30,
+        check=False,
     )
     if result.returncode == 0 and result.stdout.strip():
         for line in result.stdout.strip().split("\n")[:15]:

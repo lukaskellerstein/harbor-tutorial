@@ -5,7 +5,6 @@ import shutil
 import subprocess
 from pathlib import Path
 
-
 LESSON_DIR = Path(__file__).parent.resolve()
 TASKS_DIR = LESSON_DIR / "tasks"
 TRIALS_DIR = LESSON_DIR / "trials"
@@ -22,6 +21,7 @@ def check_prerequisites() -> bool:
         result = subprocess.run(
             ["docker", "info"],
             capture_output=True, text=True, timeout=15,
+            check=False,
         )
         if result.returncode != 0:
             print("[ERROR] Docker is not running. Please start Docker first.")
@@ -35,6 +35,7 @@ def check_prerequisites() -> bool:
         result = subprocess.run(
             ["harbor", "--help"],
             capture_output=True, text=True, timeout=10,
+            check=False,
         )
         if result.returncode != 0:
             print("[ERROR] Harbor CLI returned an error.")
@@ -67,6 +68,7 @@ def run_trial() -> str | None:
         cmd,
         capture_output=True, text=True, timeout=120,
         cwd=str(LESSON_DIR),
+        check=False,
     )
 
     if result.stdout:

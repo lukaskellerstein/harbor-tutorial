@@ -27,7 +27,9 @@ def check_prerequisites() -> bool:
     else:
         print("  [WARN] Harbor CLI not found (install: uv tool install harbor)")
     if shutil.which("docker"):
-        result = subprocess.run(["docker", "info"], capture_output=True, text=True)
+        result = subprocess.run(
+            ["docker", "info"], capture_output=True, text=True, check=False
+        )
         docker_ok = result.returncode == 0
     print(f"  [{'OK' if docker_ok else 'WARN'}] Docker is {'running' if docker_ok else 'not running'}")
     print()

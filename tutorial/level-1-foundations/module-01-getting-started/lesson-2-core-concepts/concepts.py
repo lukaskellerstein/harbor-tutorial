@@ -258,7 +258,7 @@ def explore_example_task() -> None:
             content = file_path.read_text().strip()
             print(f"  {rel_path}")
             print(f"  Purpose: {description}")
-            print(f"  Content:")
+            print("  Content:")
             for line in content.split("\n"):
                 print(f"    | {line}")
             print()

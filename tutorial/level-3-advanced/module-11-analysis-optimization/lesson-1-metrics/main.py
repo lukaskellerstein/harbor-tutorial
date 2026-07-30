@@ -33,7 +33,8 @@ def check_prerequisites() -> bool:
     harbor_ok = shutil.which("harbor") is not None
     if docker_ok:
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True
+            ["docker", "info"], capture_output=True, text=True,
+            check=False,
         )
         docker_ok = result.returncode == 0
     print(f"  Docker:  {'[OK]' if docker_ok else '[FAIL] Docker daemon not running'}")
@@ -94,6 +95,7 @@ def run_evaluation() -> None:
     print("-" * 60)
     result = subprocess.run(
         cmd, capture_output=True, text=True, cwd=str(LESSON_DIR),
+        check=False,
     )
     if result.stdout:
         print(result.stdout)

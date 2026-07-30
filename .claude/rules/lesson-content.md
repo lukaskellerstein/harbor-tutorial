@@ -38,12 +38,15 @@ uv run python main.py
 ```
 
 ## Expected Output
+
 <Show what the user should see in the terminal>
 
 ## Key Takeaways
+
 - <3-5 bullet points>
 
 ## Next Steps
+
 <Point to the next lesson>
 ```
 

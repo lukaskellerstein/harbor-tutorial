@@ -9,7 +9,10 @@ RUN apt-get update \
 
 # The MCP SDK, for the local stdio server below. Installed at build time so the
 # task needs no network while the agent is running.
-RUN pip install --no-cache-dir mcp
+#
+# Pinned to 1.x on purpose: mcp 2.0 removed the mcp.server.fastmcp module that
+# mcp_server/harbor_demo.py imports, so an unpinned install breaks this task.
+RUN pip install --no-cache-dir mcp==1.29.0
 
 # Every piece of Claude Code configuration, baked into the image at project
 # scope. /app is the WORKDIR, so this is exactly the layout Claude Code reads

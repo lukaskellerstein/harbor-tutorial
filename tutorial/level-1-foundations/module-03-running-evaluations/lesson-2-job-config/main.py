@@ -31,7 +31,9 @@ def explain_job_config() -> None:
     print(config_text)
     print("--- end ---")
 
-    config = yaml.safe_load(config_text)
+    config = yaml.safe_load(config_text) or {}
+    if not isinstance(config, dict):
+        raise TypeError("job.yaml must have a mapping at the top level")
     print("Section-by-section breakdown:\n")
     print(f"  jobs_dir: {config.get('jobs_dir', 'jobs')}")
     print("    -> Where job results are stored\n")

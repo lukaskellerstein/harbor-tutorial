@@ -9,6 +9,7 @@ When solving a programming task:
 5. **Verify** the output matches expectations
 
 ## Code Quality Standards
+
 - Use meaningful variable names
 - Add comments for non-obvious logic
 - Handle errors explicitly

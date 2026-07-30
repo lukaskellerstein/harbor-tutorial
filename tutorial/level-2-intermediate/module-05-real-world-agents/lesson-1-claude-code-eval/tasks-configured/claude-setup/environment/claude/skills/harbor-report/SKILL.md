@@ -7,7 +7,7 @@ description: The required format for build reports in this project. Use whenever
 
 Write `/app/report.md` containing exactly these three lines, in this order:
 
-```
+```markdown
 # Build Report
 Build-Code: <the code returned by the harbor-demo MCP server's get_build_code tool>
 Verified-By: fact-checker

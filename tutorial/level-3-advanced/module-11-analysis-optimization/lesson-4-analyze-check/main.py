@@ -34,6 +34,7 @@ def check_prerequisites() -> bool:
     try:
         result = subprocess.run(
             ["docker", "info"], capture_output=True, text=True, timeout=15,
+            check=False,
         )
         if result.returncode != 0:
             print("[ERROR] Docker is not running. Please start Docker first.")
@@ -46,6 +47,7 @@ def check_prerequisites() -> bool:
     try:
         result = subprocess.run(
             ["harbor", "--help"], capture_output=True, text=True, timeout=10,
+            check=False,
         )
         if result.returncode != 0:
             print("[ERROR] Harbor CLI returned an error.")
@@ -85,6 +87,7 @@ def run_oracle_trial() -> str | None:
 
     result = subprocess.run(
         cmd, capture_output=True, text=True, timeout=120, cwd=str(LESSON_DIR),
+        check=False,
     )
 
     if result.stdout:

@@ -36,7 +36,8 @@ def check_prerequisites() -> bool:
         print("ERROR: Docker is not installed. Please install Docker first.")
         return False
     result = subprocess.run(
-        ["docker", "info"], capture_output=True, text=True, timeout=15
+        ["docker", "info"], capture_output=True, text=True, timeout=15,
+        check=False,
     )
     if result.returncode != 0:
         print("ERROR: Docker is not running. Please start Docker first.")
@@ -78,6 +79,7 @@ def run_sweep() -> list[Path]:
         text=True,
         cwd=str(LESSON_DIR),
         timeout=600,
+        check=False,
     )
 
     if result.stdout:

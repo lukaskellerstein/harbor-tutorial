@@ -32,6 +32,7 @@ def check_harbor_installed() -> bool:
         result = subprocess.run(
             ["harbor", "--version"],
             capture_output=True, text=True, timeout=10,
+            check=False,
         )
         if result.returncode == 0:
             print(f"Harbor version: {result.stdout.strip()}")
@@ -127,7 +128,9 @@ def simulate_compile_phase() -> None:
     """Simulate what the compile phase would produce."""
     print_header("Step 5: Simulating the Compile Phase")
     with open(EXEC_CONFIG) as f:
-        config = yaml.safe_load(f)
+        config = yaml.safe_load(f) or {}
+    if not isinstance(config, dict):
+        raise TypeError(f"{EXEC_CONFIG} must have a mapping at the top level")
 
     compile_cfg = config.get("map", {}).get("compile", {})
     environments = compile_cfg.get("environments", [])

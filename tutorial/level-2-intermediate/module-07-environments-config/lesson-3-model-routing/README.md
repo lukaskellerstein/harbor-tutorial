@@ -34,7 +34,7 @@ The `openai/` prefix is special: by overriding `OPENAI_BASE_URL`, you can route 
 
 LMStudio serves local models via an OpenAI-compatible API at `http://localhost:1234/v1`. Because Harbor tasks run inside Docker containers, you use `host.docker.internal` to reach the host machine:
 
-```
+```text
 http://host.docker.internal:1234/v1
 ```
 
@@ -84,7 +84,7 @@ Each entry creates a separate trial, letting you compare performance across mode
 
 ### Step 4: Set Up LMStudio (Optional)
 
-1. Install LMStudio from https://lmstudio.ai
+1. Install LMStudio from <https://lmstudio.ai>
 2. Download a model (recommended: Gemma4-E4B)
 3. Start the server: `lms server start`
 4. Run with Harbor:
@@ -110,7 +110,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 1: LiteLLM Model Format
 
   Provider Examples:

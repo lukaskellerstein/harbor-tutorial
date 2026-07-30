@@ -29,7 +29,7 @@ Trajectories are stored in ATIF (Agent Trajectory Interchange Format) v1.7, a st
 
 Each trial produces a directory containing:
 
-```
+```text
 trial-<id>/
   agent/              -- Agent logs and trajectory (trajectory.json)
   verifier/           -- Test output (test-stdout.txt, test-stderr.txt, reward.txt)
@@ -88,15 +88,19 @@ We examine the ATIF v1.7 schema in detail, showing how each step in the trajecto
 Harbor provides two ways to work with trajectories after they are recorded:
 
 **Web viewer:**
+
 ```bash
 harbor view trials/
 ```
+
 Launches an interactive web UI that renders trajectories as a timeline with expandable steps.
 
 **Export for analysis:**
+
 ```bash
 harbor traces export -p trials/
 ```
+
 Extracts trajectories into formats suitable for analysis or fine-tuning. Key flags include `--filter` (success/failure/all), `--sharegpt` (ShareGPT format), and `--subagents` (include sub-agent traces).
 
 ## Running the Lesson
@@ -109,7 +113,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ============================================================
   HARBOR TUTORIAL
   Level 3 | Module 11 | Lesson 2: Agent Trajectories

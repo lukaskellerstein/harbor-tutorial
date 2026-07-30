@@ -57,7 +57,7 @@ rk.json_key_equals("results.json", "words", 19)       # RACE -- may run first
 
 That reads plausibly and fails most of the time:
 
-```
+```text
 UserWarning: json_key_equals: 'results.json' not found in workspace, assigning reward 0
 ```
 
@@ -90,7 +90,7 @@ A script that exists and runs but computes garbage scores well below one that wo
 
 Every criterion accepts `isolated=True`, which runs it against an overlayfs copy of the workspace so its side effects cannot leak. It requires either the kernel `overlay` module (needs `CAP_SYS_ADMIN`) or `fuse-overlayfs` (needs `/dev/fuse`). A stock Harbor Docker container has neither, and the criterion fails with:
 
-```
+```text
 Workspace isolation requires overlayfs but neither the kernel overlay
 module nor fuse-overlayfs is available, and auto-install failed.
 ```
@@ -100,9 +100,11 @@ Know the flag exists; reach for it only in an environment you have deliberately 
 ## Step-by-Step
 
 ### Step 1: What RewardKit is
+
 The invocation, the `--from` gotcha, and the two output files.
 
 ### Step 2: The built-in criteria
+
 All 23, grouped by what they inspect — see `criteria_catalogue.py`.
 
 | Group | Criteria |
@@ -115,9 +117,11 @@ All 23, grouped by what they inspect — see `criteria_catalogue.py`.
 | Trajectory | `trajectory_tool_used`, `trajectory_tool_not_used`, `trajectory_turn_count` (Lesson 6) |
 
 ### Step 3: Criteria in practice (`tasks/wordstats/`)
+
 An agent writes a word-statistics script. Seven criteria across structure, behavior, and correctness — then the run prints `reward-details.json`, which is where a failing verifier becomes debuggable.
 
 ### Step 4: Rewriting Lesson 1's verifier (`tasks/report-rewardkit/`)
+
 The same report task, same scale, three lines:
 
 ```python
@@ -140,7 +144,7 @@ No API keys and no gateway needed — every criterion here is deterministic.
 
 ## Expected Output
 
-```
+```text
 ============================================================
 Step 3: Criteria in Practice
 ============================================================

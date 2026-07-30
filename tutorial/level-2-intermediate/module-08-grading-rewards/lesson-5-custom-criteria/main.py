@@ -38,7 +38,9 @@ def check_prerequisites() -> bool:
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
     docker_running = (
-        subprocess.run(["docker", "info"], capture_output=True, text=True).returncode
+        subprocess.run(
+            ["docker", "info"], capture_output=True, text=True, check=False
+        ).returncode
         == 0
     )
     gateway_ok = gateway_reachable()
@@ -204,7 +206,9 @@ def step_compare() -> None:
         "--output",
         str(LOCAL / "reward.json"),
     ]
-    result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(LESSON_DIR))
+    result = subprocess.run(
+        cmd, capture_output=True, text=True, cwd=str(LESSON_DIR), check=False
+    )
     for line in (result.stdout or "").splitlines():
         print(f"    {line}")
     for line in (result.stderr or "").splitlines():

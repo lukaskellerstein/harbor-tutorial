@@ -4,3 +4,12 @@ version = "0.1.0"
 description = "Exploring Results"
 requires-python = ">=3.12"
 dependencies = ["harbor>=0.16"]
+
+[tool.basedpyright]
+typeCheckingMode = "standard"
+
+[tool.ruff]
+# This lesson directory is its own source root, so sibling modules
+# (results.py, helpers.py, agent.py) sort as first-party imports
+# whether ruff is invoked here or from the repo root.
+src = ["."]

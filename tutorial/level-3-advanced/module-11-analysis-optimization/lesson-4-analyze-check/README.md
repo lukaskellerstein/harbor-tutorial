@@ -69,7 +69,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ============================================================
   HARBOR TUTORIAL
   Level 3 | Module 11 | Lesson 4: Task Quality Analysis

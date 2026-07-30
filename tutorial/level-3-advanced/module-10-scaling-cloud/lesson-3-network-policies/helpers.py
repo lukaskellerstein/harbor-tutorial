@@ -17,6 +17,7 @@ def run_task(task_path: Path, label: str, network_mode: str) -> None:
         capture_output=True,
         text=True,
         cwd=str(task_path.parent.parent),
+        check=False,
     )
 
     if result.stdout:

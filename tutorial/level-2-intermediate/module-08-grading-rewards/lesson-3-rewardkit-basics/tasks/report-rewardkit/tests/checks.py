@@ -8,6 +8,10 @@ the same 0.00 / 0.33 / 0.67 / 1.00 scale -- RewardKit does the averaging.
 there is no separate existence check to write.
 """
 
+# The imports below are provided by the task container image, not by this
+# lesson's virtualenv, so they do not resolve when you open this file locally.
+# pyright: reportMissingImports=false, reportMissingModuleSource=false
+
 import rewardkit as rk
 
 rk.file_contains("report.md", "## Summary")

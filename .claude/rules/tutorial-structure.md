@@ -35,7 +35,7 @@ harbor = ">=0.16"
 
 ## .gitignore Template
 
-```
+```text
 .venv/
 __pycache__/
 *.pyc

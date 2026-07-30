@@ -9,3 +9,12 @@ dependencies = [
     # Loads CLAUDE_CODE_OAUTH_TOKEN from this lesson's .env file
     "python-dotenv>=1.0",
 ]
+
+[tool.basedpyright]
+typeCheckingMode = "standard"
+
+[tool.ruff]
+# This lesson directory is its own source root, so sibling modules
+# (results.py, helpers.py, agent.py) sort as first-party imports
+# whether ruff is invoked here or from the repo root.
+src = ["."]

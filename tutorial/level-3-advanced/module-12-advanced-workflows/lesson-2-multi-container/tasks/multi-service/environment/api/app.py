@@ -1,5 +1,9 @@
 """Simple Flask API for the multi-container Harbor task."""
 
+# The imports below are provided by the task container image, not by this
+# lesson's virtualenv, so they do not resolve when you open this file locally.
+# pyright: reportMissingImports=false, reportMissingModuleSource=false
+
 import os
 
 import psycopg2
@@ -42,7 +46,9 @@ def create_user():
         "INSERT INTO users (name, email) VALUES (%s, %s) RETURNING id",
         (data["name"], data["email"]),
     )
-    user_id = cur.fetchone()[0]
+    row = cur.fetchone()
+    assert row is not None, "INSERT ... RETURNING id always yields exactly one row"
+    user_id = row[0]
     conn.commit()
     cur.close()
     conn.close()

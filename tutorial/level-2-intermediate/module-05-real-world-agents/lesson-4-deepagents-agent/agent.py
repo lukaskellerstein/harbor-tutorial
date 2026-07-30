@@ -29,12 +29,12 @@ from deepagents.backends.protocol import (
     FileUploadResponse,
 )
 from deepagents.backends.sandbox import BaseSandbox
-from langchain_core.messages import HumanMessage
-from langchain_openai import ChatOpenAI
-
 from harbor.agents.base import BaseAgent
 from harbor.environments.base import BaseEnvironment
 from harbor.models.agent.context import AgentContext
+from langchain_core.messages import HumanMessage
+from langchain_openai import ChatOpenAI
+from pydantic import SecretStr
 
 # Alias defined in agent-eval-benchmark/infra/litellm/config.yaml (Gemma 4 26B).
 DEFAULT_MODEL = "gemma-large"
@@ -148,7 +148,7 @@ class DeepagentsHarborAgent(BaseAgent):
         llm = ChatOpenAI(
             model=model_name,
             base_url=os.environ.get("LITELLM_BASE_URL", "http://localhost:4000/v1"),
-            api_key=os.environ.get("LITELLM_API_KEY", "sk-litellm-master"),
+            api_key=SecretStr(os.environ.get("LITELLM_API_KEY", "sk-litellm-master")),
             temperature=0.0,
         )
 

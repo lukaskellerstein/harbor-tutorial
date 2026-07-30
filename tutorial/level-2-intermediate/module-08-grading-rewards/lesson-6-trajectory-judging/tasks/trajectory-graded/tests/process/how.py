@@ -15,6 +15,10 @@ dimension reading zero looks like a badly behaved agent, not a typo.
 Always pass `path=` explicitly.
 """
 
+# The imports below are provided by the task container image, not by this
+# lesson's virtualenv, so they do not resolve when you open this file locally.
+# pyright: reportMissingImports=false, reportMissingModuleSource=false
+
 import rewardkit as rk
 
 TRAJECTORY = "/logs/agent/trajectory.json"

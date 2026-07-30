@@ -46,6 +46,7 @@ The Dockerfile in your task's `environment/` directory defines what the agent ha
 The lesson includes three tasks, each with a different Dockerfile approach. Review each one to understand the trade-offs.
 
 **Ubuntu task** (`tasks/ubuntu-task/environment/Dockerfile`):
+
 ```dockerfile
 FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
@@ -56,6 +57,7 @@ WORKDIR /app
 ```
 
 **Python task** (`tasks/python-task/environment/Dockerfile`):
+
 ```dockerfile
 FROM python:3.12-slim
 RUN pip install --no-cache-dir requests==2.32.3
@@ -64,6 +66,7 @@ RUN echo '{"sample": "data", "count": 42}' > /app/sample_data.json
 ```
 
 **Multi-stage task** (`tasks/multistage-task/environment/Dockerfile`):
+
 ```dockerfile
 FROM golang:1.22-alpine AS builder
 WORKDIR /build
@@ -98,7 +101,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 1: Three Dockerfile Approaches for Harbor Tasks
 
   1. Simple Ubuntu Base Image

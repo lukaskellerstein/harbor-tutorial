@@ -8,6 +8,10 @@ a real test of the project-scoped .mcp.json rather than of the model's guessing.
 Runs entirely locally over stdio, so the task needs no network at run time.
 """
 
+# The imports below are provided by the task container image, not by this
+# lesson's virtualenv, so they do not resolve when you open this file locally.
+# pyright: reportMissingImports=false, reportMissingModuleSource=false
+
 from mcp.server.fastmcp import FastMCP
 
 BUILD_CODE = "HRB-7391"

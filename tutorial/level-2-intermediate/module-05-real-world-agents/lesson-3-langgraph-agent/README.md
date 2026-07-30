@@ -28,7 +28,7 @@ LangGraph adds explicit state management and graph-based control flow on top of 
 
 `create_agent()` returns a compiled graph with the ReAct loop already wired. Dropping to `StateGraph` means writing those nodes and edges yourself — more code, in exchange for control over every hop:
 
-```
+```text
 [START] -> [chatbot] --(has tool calls)--> [tools]
                ^                              |
                |______________________________|
@@ -142,7 +142,7 @@ PYTHONPATH=. harbor run -p tasks/multi-step-task --agent agent:LanggraphHarborAg
 
 ## Expected Output
 
-```
+```text
 Step 2: LangGraph vs create_agent()
   StateGraph components:
     - State: TypedDict defining the data flowing through the graph

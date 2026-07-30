@@ -89,7 +89,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ============================================================
   Harbor Tutorial - Module 3, Lesson 4
   Oracle & Nop Agents

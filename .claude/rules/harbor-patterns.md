@@ -33,7 +33,7 @@ harbor adapter init                                  # Interactive scaffold
 
 ## Task Directory Format
 
-```
+```text
 task-name/
 ├── instruction.md         # Natural language task for the agent
 ├── task.toml              # Configuration and metadata
@@ -143,16 +143,19 @@ class MyInstalledAgent(BaseInstalledAgent):
 Source: `packages/rewardkit/` in the Harbor repo. Published as `harbor-rewardkit`, executable is `rewardkit`.
 
 **Invocation from `tests/test.sh` — always use the `--from` form:**
+
 ```bash
 #!/bin/bash
 uvx --from 'harbor-rewardkit==0.1.*' rewardkit /tests
 ```
+
 `uvx harbor-rewardkit@0.1` FAILS — package name and executable name differ. (The published docs
 show the broken form; `skills/create-task/SKILL.md` has the correct one.)
 
 **Tests directory layout** — each subdirectory of `/tests` becomes one named reward. A flat
 layout (no subdirectories) produces a single reward named `reward`.
-```
+
+```text
 tests/
   test.sh
   criteria.py          # @criterion(shared=True) helpers, importable by subdirs
@@ -162,6 +165,7 @@ tests/
 ```
 
 **Programmatic criteria** — every built-in accepts `weight=`, `name=`, `isolated=`:
+
 ```python
 import rewardkit as rk
 
@@ -169,6 +173,7 @@ rk.file_exists("output.txt", weight=2.0)
 rk.command_succeeds("python main.py", isolated=True)
 rk.json_key_equals("results.json", "most_common", "the")
 ```
+
 Built-ins (23): `file_exists`, `file_not_exists`, `file_contains`, `file_contains_regex`,
 `file_matches`, `files_equal`, `diff_ratio`, `command_succeeds`, `command_output_contains`,
 `command_output_matches`, `command_output_matches_regex`, `json_key_equals`, `json_path_equals`,
@@ -179,6 +184,7 @@ Built-ins (23): `file_exists`, `file_not_exists`, `file_contains`, `file_contain
 Return types: `bool` -> 1.0/0.0; `int`/`float` used verbatim (NOT clamped); anything else raises.
 
 **Custom criteria:**
+
 ```python
 from pathlib import Path
 from rewardkit import criterion
@@ -187,10 +193,12 @@ from rewardkit import criterion
 def has_n_lines(workspace: Path, n: int) -> bool:
     return len((workspace / "output.txt").read_text().splitlines()) >= n
 ```
+
 Call through the module (`rk.has_n_lines(10)`), never directly. Use `@criterion(shared=True)` for
 helpers defined in a root-level `tests/*.py` when subdirectories exist — otherwise `discover()` raises.
 
 **Judge rubric TOML** — a `.toml` is treated as a rubric only if it has BOTH `[judge]` and `[[criterion]]`:
+
 ```toml
 [judge]
 judge = "openai/gemma-large"   # LiteLLM model string, or "claude-code"/"codex" for an agent judge

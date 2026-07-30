@@ -114,7 +114,7 @@ def inspect_trial_results(trial_dir: Path) -> None:
     reward_path = trial_dir / "verifier" / "reward.txt"
     if reward_path.exists():
         reward = reward_path.read_text().strip()
-        print(f"\n--- verifier/reward.txt ---")
+        print("\n--- verifier/reward.txt ---")
         print(f"  Reward: {reward}")
         if float(reward) == 1.0:
             print("  The oracle agent solved the task perfectly!")

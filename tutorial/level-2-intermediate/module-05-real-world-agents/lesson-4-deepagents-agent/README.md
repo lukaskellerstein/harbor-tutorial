@@ -84,7 +84,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 2: Understanding Deepagents
   Deepagents (by LangChain) is a higher-level framework...
 

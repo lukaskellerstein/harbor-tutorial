@@ -38,7 +38,9 @@ def check_prerequisites() -> bool:
     docker_ok = shutil.which("docker") is not None
     if docker_ok:
         docker_ok = (
-            subprocess.run(["docker", "info"], capture_output=True).returncode == 0
+            subprocess.run(
+                ["docker", "info"], capture_output=True, check=False
+            ).returncode == 0
         )
 
     harbor_ok = shutil.which("harbor") is not None
@@ -54,6 +56,7 @@ def check_prerequisites() -> bool:
             ["git", "config", "--get", "filter.lfs.smudge"],
             capture_output=True,
             text=True,
+            check=False,
         )
         lfs_initialized = bool(smudge.stdout.strip())
 
@@ -106,6 +109,7 @@ def list_datasets_from_hf() -> None:
         capture_output=True,
         text=True,
         cwd=str(LESSON_DIR),
+        check=False,
     )
 
     print(result.stdout or "")
@@ -142,6 +146,7 @@ def run_hf_dataset() -> None:
         capture_output=True,
         text=True,
         cwd=str(LESSON_DIR),
+        check=False,
     )
 
     print(result.stdout or "")

@@ -17,7 +17,6 @@ import urllib.request
 from datetime import datetime
 from pathlib import Path
 
-
 LESSON_DIR = Path(__file__).parent
 
 #: Alias defined in agent-eval-benchmark/infra/litellm/config.yaml (Gemma 4 26B).
@@ -39,7 +38,9 @@ def check_prerequisites() -> bool:
     ok = True
 
     if shutil.which("docker"):
-        result = subprocess.run(["docker", "info"], capture_output=True, text=True)
+        result = subprocess.run(
+            ["docker", "info"], capture_output=True, text=True, check=False
+        )
         if result.returncode == 0:
             print("  [OK] Docker is running")
         else:
@@ -141,6 +142,7 @@ def run_evaluation() -> None:
         text=True,
         cwd=str(LESSON_DIR),
         env=env,
+        check=False,
     )
 
     if result.stdout:

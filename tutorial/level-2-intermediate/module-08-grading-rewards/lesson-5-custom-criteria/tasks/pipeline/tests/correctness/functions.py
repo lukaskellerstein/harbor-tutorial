@@ -34,7 +34,8 @@ def top_word_correct(workspace: Path) -> bool:
         spec.loader.exec_module(module)
         module.top_word("")  # must not raise
         return module.top_word("the the fox") == "the"
-    except Exception:
+    # The agent wrote this module, so importing or calling it can raise anything.
+    except Exception:  # noqa: BLE001
         return False
 
 

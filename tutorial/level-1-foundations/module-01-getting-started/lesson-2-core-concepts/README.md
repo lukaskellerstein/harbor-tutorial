@@ -15,7 +15,7 @@ This lesson introduces Harbor's six core building blocks: Task, Dataset, Agent, 
 
 Harbor's architecture is built on six concepts that fit together like this:
 
-```
+```text
                     ┌──────────────────────────┐
                     │           JOB            │
                     │                          │
@@ -38,7 +38,7 @@ A Task is the fundamental unit of evaluation. It defines:
 
 Every task is a directory:
 
-```
+```text
 my-task/
 ├── instruction.md         # Natural language instruction
 ├── task.toml              # Configuration & metadata
@@ -54,7 +54,7 @@ my-task/
 
 A Dataset is a collection of Tasks, grouped by theme or benchmark. It is simply a directory containing multiple task directories:
 
-```
+```text
 my-dataset/
 ├── task-001/
 ├── task-002/
@@ -118,7 +118,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Lesson 2                   #
 #          Core Concepts                                #

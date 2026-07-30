@@ -66,7 +66,7 @@ If this prints system information, Docker is ready. If it shows an error, start 
 
 This lesson includes a simple hello-world task in `tasks/hello-world/`:
 
-```
+```text
 tasks/hello-world/
 ├── instruction.md      # "Create a file called hello.txt with 'Hello, world!'"
 ├── task.toml           # Configuration (name, difficulty, timeouts)
@@ -115,7 +115,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Lesson 1                   #
 #          Hello Harbor: Installation & First Run       #
