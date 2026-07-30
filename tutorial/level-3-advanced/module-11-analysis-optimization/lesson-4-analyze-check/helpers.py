@@ -8,7 +8,6 @@ harbor check and harbor analyze concepts and output formats.
 import json
 from pathlib import Path
 
-
 LESSON_DIR = Path(__file__).parent.resolve()
 TASKS_DIR = LESSON_DIR / "tasks"
 TRIALS_DIR = LESSON_DIR / "trials"

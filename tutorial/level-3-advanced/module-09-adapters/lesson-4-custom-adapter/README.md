@@ -83,7 +83,7 @@ harbor run -p generated-tasks -a oracle
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Level 3, Module 9          #
 #          Lesson 3: Building a Custom Adapter          #

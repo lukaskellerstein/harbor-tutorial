@@ -53,6 +53,7 @@ The simplest approach. Check a single condition and write 0 or 1.
 **Task:** `tasks/binary-test/` -- Create a file with specific content.
 
 **test.sh pattern:**
+
 ```bash
 #!/bin/bash
 mkdir -p /logs/verifier
@@ -78,6 +79,7 @@ Award fractional credit based on how many criteria the agent satisfied.
 **Task:** `tasks/partial-credit/` -- Implement three calculator functions.
 
 **test.sh pattern:**
+
 ```bash
 #!/bin/bash
 mkdir -p /logs/verifier
@@ -105,6 +107,7 @@ Use pytest for structured testing with rich output. This is Harbor's default whe
 **Task:** `tasks/pytest-test/` -- Implement string utility functions.
 
 **test.sh pattern:**
+
 ```bash
 #!/bin/bash
 mkdir -p /logs/verifier
@@ -140,7 +143,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Module 2, Lesson 3         #
 #          Writing Test Scripts                         #

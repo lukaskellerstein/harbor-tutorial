@@ -16,7 +16,6 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-
 LESSON_DIR = Path(__file__).parent
 
 # Credentials live in this lesson's .env file (git-ignored), not in the global
@@ -44,7 +43,8 @@ def check_prerequisites() -> bool:
     ok = True
 
     if shutil.which("docker") and subprocess.run(
-        ["docker", "info"], capture_output=True
+        ["docker", "info"], capture_output=True,
+        check=False,
     ).returncode == 0:
         print("  [OK] Docker is running")
     else:
@@ -136,6 +136,7 @@ def run_evaluation(config_name: str, heading: str) -> None:
         text=True,
         cwd=str(LESSON_DIR),
         env=env,
+        check=False,
     )
 
     if result.stdout:

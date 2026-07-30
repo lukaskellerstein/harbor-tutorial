@@ -67,7 +67,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ============================================================
   Harbor Tutorial - Module 3, Lesson 1
   Running a Single Trial

@@ -18,7 +18,7 @@ The built-in criteria cover files, commands, and structured data — but not "do
 
 Every **subdirectory** of `tests/` becomes its own named reward:
 
-```
+```text
 tests/
   test.sh
   criteria.py                shared custom criteria  (NOT a dimension)
@@ -57,7 +57,7 @@ rk.defines_n_functions(3, weight=2.0)
 
 Forget the call and RewardKit tells you:
 
-```
+```text
 UserWarning: Criterion 'defines_n_functions' was defined with @criterion
 but never called.
 ```
@@ -85,7 +85,7 @@ The shared criteria here import the agent's `textstats` module and call `word_co
 
 **Calling a criterion function directly raises `TypeError`:**
 
-```
+```text
 TypeError: Call criteria through the rewardkit module: rk.stub(...) instead of stub(...)
 ```
 
@@ -93,7 +93,7 @@ The decorated object is a *factory*, not the check. Going through the module is 
 
 **A non-shared criterion in a root file, when subdirectories exist, raises `ValueError`:**
 
-```
+```text
 ValueError: Root-level criteria 'orphaned' in /tests would be ignored in nested
 layout (subdirectories exist). Either move them into a subdirectory or mark them
 @criterion(shared=True).
@@ -137,9 +137,13 @@ rewardkit local/v1 local/v2 --workspace local/workspace
 ## Step-by-Step
 
 ### Step 1: Directories are dimensions
+
 ### Step 2: Writing your own criteria
+
 ### Step 3: Two guardrails, demonstrated live
+
 ### Step 4: A reward with three dimensions (`tasks/pipeline/`)
+
 ### Step 5: Which verifier is better? (`local/`)
 
 `local/workspace/` holds a deliberately, *subtly* broken implementation:
@@ -165,7 +169,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
     per-dimension (one per tests/ subdirectory):
       correctness             1.00
       quality                 1.00

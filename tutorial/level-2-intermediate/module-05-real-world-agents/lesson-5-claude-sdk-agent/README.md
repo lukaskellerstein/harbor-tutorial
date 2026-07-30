@@ -40,7 +40,7 @@ Using an API key instead is still supported: put `export ANTHROPIC_API_KEY=sk-an
 
 The SDK runs Claude Code as a local subprocess:
 
-```
+```text
 Your Python code
      |
 Claude Agent SDK (query() function)
@@ -99,7 +99,7 @@ uv run python main.py
 
 The agent is passed to Harbor as `--agent agent:ClaudeSDKHarborAgent` (`module:ClassName`). The `harbor` CLI is an installed console script, so the current directory is **not** on its `sys.path` — `main.py` sets `PYTHONPATH` to the lesson directory so the subprocess can import `agent`. Without it the run fails immediately with:
 
-```
+```text
 ValueError: Failed to import module 'agent': No module named 'agent'
 ```
 
@@ -122,7 +122,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 2: Understanding the Claude Agent SDK
   The Claude Agent SDK provides programmatic access to Claude Code...
 

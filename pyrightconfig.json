@@ -1,0 +1,299 @@
+{
+  "typeCheckingMode": "standard",
+  "reportMissingTypeStubs": "none",
+  "exclude": [
+    "**/.venv",
+    "**/node_modules",
+    "**/__pycache__"
+  ],
+  "executionEnvironments": [
+    {
+      "root": "infra",
+      "extraPaths": [
+        "infra/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-01-getting-started/lesson-1-hello-harbor",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-01-getting-started/lesson-1-hello-harbor/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-01-getting-started/lesson-2-core-concepts",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-01-getting-started/lesson-2-core-concepts/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-01-getting-started/lesson-3-viewing-results",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-01-getting-started/lesson-3-viewing-results/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-02-working-with-tasks/lesson-1-task-anatomy",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-02-working-with-tasks/lesson-1-task-anatomy/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-02-working-with-tasks/lesson-2-create-a-task",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-02-working-with-tasks/lesson-2-create-a-task/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-02-working-with-tasks/lesson-3-test-scripts",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-02-working-with-tasks/lesson-3-test-scripts/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-02-working-with-tasks/lesson-4-interactive-env",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-02-working-with-tasks/lesson-4-interactive-env/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-03-running-evaluations/lesson-1-single-trial",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-03-running-evaluations/lesson-1-single-trial/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-03-running-evaluations/lesson-2-job-config",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-03-running-evaluations/lesson-2-job-config/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-03-running-evaluations/lesson-3-builtin-agents",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-03-running-evaluations/lesson-3-builtin-agents/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-1-foundations/module-03-running-evaluations/lesson-4-utility-agents",
+      "extraPaths": [
+        "tutorial/level-1-foundations/module-03-running-evaluations/lesson-4-utility-agents/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-04-custom-agents/lesson-1-external-agent",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-04-custom-agents/lesson-1-external-agent/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-04-custom-agents/lesson-2-installed-agent",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-04-custom-agents/lesson-2-installed-agent/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-04-custom-agents/lesson-3-prompt-templates",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-04-custom-agents/lesson-3-prompt-templates/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-04-custom-agents/lesson-4-agent-with-llm",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-04-custom-agents/lesson-4-agent-with-llm/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-05-real-world-agents/lesson-1-claude-code-eval",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-05-real-world-agents/lesson-1-claude-code-eval/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-05-real-world-agents/lesson-2-langchain-agent",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-05-real-world-agents/lesson-2-langchain-agent/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-05-real-world-agents/lesson-3-langgraph-agent",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-05-real-world-agents/lesson-3-langgraph-agent/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-05-real-world-agents/lesson-4-deepagents-agent",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-05-real-world-agents/lesson-4-deepagents-agent/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-05-real-world-agents/lesson-5-claude-sdk-agent",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-05-real-world-agents/lesson-5-claude-sdk-agent/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-06-datasets-benchmarks/lesson-1-local-dataset",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-06-datasets-benchmarks/lesson-1-local-dataset/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-06-datasets-benchmarks/lesson-2-registered-datasets",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-06-datasets-benchmarks/lesson-2-registered-datasets/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-06-datasets-benchmarks/lesson-3-task-metadata",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-06-datasets-benchmarks/lesson-3-task-metadata/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-06-datasets-benchmarks/lesson-4-hf-datasets",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-06-datasets-benchmarks/lesson-4-hf-datasets/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-07-environments-config/lesson-1-docker-environments",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-07-environments-config/lesson-1-docker-environments/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-07-environments-config/lesson-2-environment-features",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-07-environments-config/lesson-2-environment-features/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-07-environments-config/lesson-3-model-routing",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-07-environments-config/lesson-3-model-routing/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-1-reward-contract",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-1-reward-contract/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-2-llm-judge",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-2-llm-judge/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-3-rewardkit-basics",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-3-rewardkit-basics/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-4-judge-criteria",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-4-judge-criteria/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-5-custom-criteria",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-5-custom-criteria/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-6-trajectory-judging",
+      "extraPaths": [
+        "tutorial/level-2-intermediate/module-08-grading-rewards/lesson-6-trajectory-judging/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-09-adapters/lesson-1-adapter-intro",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-09-adapters/lesson-1-adapter-intro/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-09-adapters/lesson-2-swe-bench-adapter",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-09-adapters/lesson-2-swe-bench-adapter/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-09-adapters/lesson-3-swe-bench-claude-code",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-09-adapters/lesson-3-swe-bench-claude-code/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-09-adapters/lesson-4-custom-adapter",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-09-adapters/lesson-4-custom-adapter/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-10-scaling-cloud/lesson-1-cloud-environments",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-10-scaling-cloud/lesson-1-cloud-environments/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-10-scaling-cloud/lesson-2-parallel-evaluation",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-10-scaling-cloud/lesson-2-parallel-evaluation/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-10-scaling-cloud/lesson-3-network-policies",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-10-scaling-cloud/lesson-3-network-policies/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-11-analysis-optimization/lesson-1-metrics",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-11-analysis-optimization/lesson-1-metrics/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-11-analysis-optimization/lesson-2-trajectories",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-11-analysis-optimization/lesson-2-trajectories/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-11-analysis-optimization/lesson-3-sweeps",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-11-analysis-optimization/lesson-3-sweeps/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-11-analysis-optimization/lesson-4-analyze-check",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-11-analysis-optimization/lesson-4-analyze-check/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-12-advanced-workflows/lesson-1-exec-system",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-12-advanced-workflows/lesson-1-exec-system/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-12-advanced-workflows/lesson-2-multi-container",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-12-advanced-workflows/lesson-2-multi-container/.venv/lib/python3.12/site-packages"
+      ]
+    },
+    {
+      "root": "tutorial/level-3-advanced/module-12-advanced-workflows/lesson-3-harbor-hub",
+      "extraPaths": [
+        "tutorial/level-3-advanced/module-12-advanced-workflows/lesson-3-harbor-hub/.venv/lib/python3.12/site-packages"
+      ]
+    }
+  ]
+}

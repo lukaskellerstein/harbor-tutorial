@@ -82,7 +82,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Level 3, Module 9          #
 #          Lesson 1: What Are Adapters?                 #

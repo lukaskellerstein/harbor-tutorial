@@ -61,7 +61,7 @@ def print_config_highlights(config: dict) -> None:
     print(f"  Task:        {task_name}")
     print(f"  Environment: {env_type}")
 
-    other_keys = [k for k in config.keys() if k not in ("agent", "task", "environment")]
+    other_keys = [k for k in config if k not in ("agent", "task", "environment")]
     if other_keys:
         print(f"  Other fields: {', '.join(other_keys)}")
 
@@ -78,7 +78,7 @@ def print_result_highlights(result: dict) -> None:
         print(f"  Duration: {duration}s")
 
     for key in ("error", "agent_error", "verifier_error"):
-        if key in result and result[key]:
+        if result.get(key):
             print(f"  {key}: {result[key]}")
 
 
@@ -133,5 +133,5 @@ def inspect_trial_results(jobs_dir: Path) -> None:
             try:
                 print(f"  Interpretation: Partial credit ({float(reward) * 100:.0f}%)")
             except ValueError:
-                print(f"  Interpretation: Could not parse reward value")
+                print("  Interpretation: Could not parse reward value")
         print()

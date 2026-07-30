@@ -54,6 +54,7 @@ The script checks for Docker, Harbor CLI, and `ANTHROPIC_API_KEY`. All three are
 Three job configs are provided, each for a different scale:
 
 **swe-bench-job.yaml** — Quick test run:
+
 ```yaml
 agents:
   - name: claude-code
@@ -63,6 +64,7 @@ datasets:
 ```
 
 **swe-bench-full.yaml** — Full benchmark, local:
+
 ```yaml
 n_concurrent_trials: 8
 datasets:
@@ -70,6 +72,7 @@ datasets:
 ```
 
 **swe-bench-cloud.yaml** — Full benchmark, cloud:
+
 ```yaml
 n_concurrent_trials: 32
 environment:
@@ -118,7 +121,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 1: Checking Prerequisites
   [OK] Docker is running
   [OK] Harbor CLI installed

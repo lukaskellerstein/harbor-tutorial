@@ -98,7 +98,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Module 2, Lesson 2         #
 #          Scaffolding a Task                           #

@@ -174,7 +174,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 2: The task.toml File
   (displays the full task.toml contents)
 

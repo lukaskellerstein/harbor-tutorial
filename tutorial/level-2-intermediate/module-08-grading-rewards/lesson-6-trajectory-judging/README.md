@@ -60,7 +60,7 @@ Note the **hyphen** — the TOML key is `atif-trajectory`, mapping to the `atif_
 
 > **This does not work through a gateway alias.** To budget how much trajectory fits in context, RewardKit calls `litellm.get_model_info(judge.model)` (`rewardkit/judges.py`), which looks the model up in litellm's built-in price/context map. A gateway alias is not in that map, and the whole dimension dies:
 >
-> ```
+> ```text
 > Exception: This model isn't mapped yet. model=openai/gemma-large,
 > custom_llm_provider=openai.
 > ```
@@ -125,6 +125,7 @@ Covered in Module 11, Lesson 4.
 ## Step-by-Step
 
 ### Step 1: The trajectory is evidence
+
 ### Step 2: Grading the process (`tasks/trajectory-graded/`)
 
 Three dimensions over one trial: `outcome/` (workspace), `process/` (trajectory criteria), `approach/` (judge).
@@ -132,6 +133,7 @@ Three dimensions over one trial: `outcome/` (workspace), `process/` (trajectory 
 > This task runs with `oracle`, which produces no trajectory — it only executes `solve.sh`. So `solve.sh` stages a **recorded** ATIF file at `/logs/agent/trajectory.json`, keeping the lesson free to run. Re-run with `-a claude-code` and the trajectory is genuinely the agent's own.
 
 ### Step 3: The attack (`tasks/reward-hacking/`)
+
 ### Step 4: The fix (`tasks/reward-hardened/`)
 
 Byte-for-byte the same cheating `solve.sh`, the same honest test, one extra line.
@@ -147,7 +149,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
     ┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┓
     ┃ Trials ┃ Exceptions ┃ Approach ┃ Outcome ┃ Process ┃ Reward ┃
     ┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━┩

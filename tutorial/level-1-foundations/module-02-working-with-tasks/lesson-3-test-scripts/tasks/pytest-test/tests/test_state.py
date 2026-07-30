@@ -6,8 +6,11 @@ Each test function verifies a specific behavior. Pytest collects results
 and the CTRF plugin produces structured JSON output.
 """
 
+# The imports below are provided by the task container image, not by this
+# lesson's virtualenv, so they do not resolve when you open this file locally.
+# pyright: reportMissingImports=false, reportMissingModuleSource=false
+
 import importlib.util
-from pathlib import Path
 
 import pytest
 
@@ -17,6 +20,7 @@ def string_utils():
     """Load the string_utils module from /app/string_utils.py."""
     spec = importlib.util.spec_from_file_location("string_utils", "/app/string_utils.py")
     assert spec is not None, "Could not find /app/string_utils.py"
+    assert spec.loader is not None, "/app/string_utils.py has no import loader"
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module

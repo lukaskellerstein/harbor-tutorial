@@ -115,7 +115,7 @@ Results appear in the `jobs/` directory. Compare the LangChain agent's performan
 
 ## Expected Output
 
-```
+```text
 Step 2: Wrapping LangChain as a Harbor Agent
   LangChain v1's create_agent() owns the agent loop...
 

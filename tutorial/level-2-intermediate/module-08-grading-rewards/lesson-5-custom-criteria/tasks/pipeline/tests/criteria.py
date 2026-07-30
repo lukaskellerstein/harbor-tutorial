@@ -14,6 +14,7 @@ what they define. A non-shared criterion registered there would belong to no
 dimension and silently never run -- so RewardKit refuses instead.
 """
 
+import contextlib
 import importlib.util
 from pathlib import Path
 
@@ -51,17 +52,17 @@ def _score_cases(workspace: Path, func_name: str, cases: list) -> float:
     try:
         textstats = _load_module(workspace, "textstats")
         func = getattr(textstats, func_name)
-    except Exception:
+    # The agent wrote this module, so importing it can raise anything at all.
+    # Whatever it is, the criterion scores 0.0.
+    except Exception:  # noqa: BLE001
         return 0.0
 
     passed = 0
     for text, expected in cases:
-        try:
+        # A crash on one input is just that input failing, not a zero.
+        with contextlib.suppress(Exception):
             if func(text) == expected:
                 passed += 1
-        except Exception:
-            # A crash on one input is just that input failing, not a zero.
-            pass
     return passed / len(cases)
 
 

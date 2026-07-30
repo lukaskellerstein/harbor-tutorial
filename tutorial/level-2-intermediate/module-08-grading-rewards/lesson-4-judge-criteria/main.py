@@ -11,7 +11,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from rewardkit.models import Score
+from rewardkit.models import Aggregation, Score
 from rewardkit.reward import aggregate_scores
 
 from results import (
@@ -28,7 +28,13 @@ from results import (
 LESSON_DIR = Path(__file__).parent
 RUBRIC = LESSON_DIR / "tasks" / "poem-rubric" / "tests" / "judge.toml"
 
-AGGREGATIONS = ["weighted_mean", "all_pass", "any_pass", "threshold", "required_pass"]
+AGGREGATIONS: list[Aggregation] = [
+    "weighted_mean",
+    "all_pass",
+    "any_pass",
+    "threshold",
+    "required_pass",
+]
 
 
 def check_prerequisites() -> bool:
@@ -40,7 +46,9 @@ def check_prerequisites() -> bool:
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
     docker_running = (
-        subprocess.run(["docker", "info"], capture_output=True, text=True).returncode
+        subprocess.run(
+            ["docker", "info"], capture_output=True, text=True, check=False
+        ).returncode
         == 0
     )
     gateway_ok = gateway_reachable()

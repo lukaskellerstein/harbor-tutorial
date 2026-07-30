@@ -30,6 +30,7 @@ def check_prerequisites() -> bool:
         result = subprocess.run(
             ["harbor", "--version"],
             capture_output=True, text=True, timeout=10,
+            check=False,
         )
         print(f"Harbor: {result.stdout.strip()}" if result.returncode == 0
               else "WARNING: harbor CLI error")
@@ -40,6 +41,7 @@ def check_prerequisites() -> bool:
     try:
         result = subprocess.run(
             ["docker", "info"], capture_output=True, text=True, timeout=10,
+            check=False,
         )
         print("Docker: running" if result.returncode == 0 else "WARNING: Docker not running")
         ok = ok and result.returncode == 0
@@ -154,15 +156,15 @@ def show_running_instructions() -> None:
     """Show how to run this multi-container task."""
     print_header("Step 7: Running Multi-Container Tasks")
     rel = TASK_DIR.relative_to(LESSON_DIR)
-    print(f"  # Validate with the oracle agent")
+    print("  # Validate with the oracle agent")
     print(f"  harbor trial start -p {rel} -a oracle \\")
-    print(f'      -m "anthropic/claude-sonnet-4-5-20250929"')
+    print('      -m "anthropic/claude-sonnet-4-5-20250929"')
     print()
-    print(f"  # Run with claude-code")
+    print("  # Run with claude-code")
     print(f"  harbor trial start -p {rel} -a claude-code \\")
-    print(f'      -m "anthropic/claude-sonnet-4-5-20250929"')
+    print('      -m "anthropic/claude-sonnet-4-5-20250929"')
     print()
-    print(f"  # Explore interactively")
+    print("  # Explore interactively")
     print(f"  harbor task start-env -p {rel} -e docker -i")
 
 

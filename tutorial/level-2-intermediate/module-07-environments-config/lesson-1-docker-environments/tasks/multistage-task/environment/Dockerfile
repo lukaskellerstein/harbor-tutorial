@@ -7,18 +7,22 @@ FROM golang:1.22-alpine AS builder
 
 WORKDIR /build
 
-# Create a simple Go program
-RUN cat > main.go << 'EOF'
-package main
-
-import "fmt"
-
-func main() {
-    fmt.Println("Hello from a multi-stage Docker build!")
-    fmt.Println("This binary was compiled in the builder stage")
-    fmt.Println("but runs in a minimal runtime stage.")
-}
-EOF
+# Create a simple Go program.
+#
+# Written with printf rather than a shell heredoc: the Dockerfile parser ends a
+# RUN instruction at the newline, so a heredoc body would be read as further
+# Dockerfile instructions ("package main" is not one) and the build would fail.
+RUN printf '%s\n' \
+        'package main' \
+        '' \
+        'import "fmt"' \
+        '' \
+        'func main() {' \
+        '    fmt.Println("Hello from a multi-stage Docker build!")' \
+        '    fmt.Println("This binary was compiled in the builder stage")' \
+        '    fmt.Println("but runs in a minimal runtime stage.")' \
+        '}' \
+        > main.go
 
 # Compile a static binary
 RUN CGO_ENABLED=0 GOOS=linux go build -o greeter main.go

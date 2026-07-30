@@ -35,7 +35,8 @@ def generate_configs(configs_dir: Path, tasks_dir: Path) -> None:
             yaml.dump(config, f, default_flow_style=False, sort_keys=False)
         print(f"\n  Generated: configs/{name}")
         print(f"  Concurrency: {config['n_concurrent_trials']}")
-        for line in yaml.dump(config, default_flow_style=False, sort_keys=False).splitlines():
+        rendered = yaml.dump(config, default_flow_style=False, sort_keys=False) or ""
+        for line in rendered.splitlines():
             print(f"    {line}")
     print()
 
@@ -52,6 +53,7 @@ def run_evaluation(config_path: Path, label: str, cwd: Path) -> float:
         capture_output=True,
         text=True,
         cwd=str(cwd),
+        check=False,
     )
     elapsed = time.time() - start
 

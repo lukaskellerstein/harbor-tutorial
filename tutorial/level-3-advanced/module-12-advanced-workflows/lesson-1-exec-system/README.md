@@ -121,7 +121,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ============================================================
   Harbor Exec Pipelines (Compile / Map / Reduce)
 ============================================================

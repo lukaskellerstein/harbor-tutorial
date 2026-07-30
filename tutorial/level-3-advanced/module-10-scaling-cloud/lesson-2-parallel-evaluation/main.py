@@ -25,7 +25,9 @@ def check_prerequisites() -> bool:
         return False
     print("  [OK] Harbor CLI is installed")
 
-    result = subprocess.run(["docker", "info"], capture_output=True, text=True)
+    result = subprocess.run(
+        ["docker", "info"], capture_output=True, text=True, check=False
+    )
     if result.returncode != 0:
         print("  [FAIL] Docker daemon is not running. Start Docker Desktop.")
         return False

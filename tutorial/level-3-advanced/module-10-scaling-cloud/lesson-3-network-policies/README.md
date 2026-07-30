@@ -91,7 +91,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Level 3, Module 10         #
 #          Lesson 3: Network Policies                   #

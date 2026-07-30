@@ -23,7 +23,7 @@ Harbor supports two kinds of custom agents:
 
 ### BaseAgent Architecture
 
-```
+```text
 ┌─────────────────────┐         ┌──────────────────────┐
 │     Host Machine    │         │   Docker Container   │
 │                     │  exec() │                      │
@@ -131,7 +131,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Module 4, Lesson 1         #
 #     Custom External Agent (BaseAgent)                 #

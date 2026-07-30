@@ -26,7 +26,6 @@ class GrepAgent(BaseAgent):
 
     async def setup(self, environment: BaseEnvironment) -> None:
         """No setup needed — this agent has no dependencies to install."""
-        pass
 
     async def run(
         self,

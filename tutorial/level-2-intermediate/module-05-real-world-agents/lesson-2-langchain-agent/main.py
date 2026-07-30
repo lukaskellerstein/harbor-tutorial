@@ -15,7 +15,6 @@ import urllib.request
 from datetime import datetime
 from pathlib import Path
 
-
 LESSON_DIR = Path(__file__).parent
 
 #: Alias defined in agent-eval-benchmark/infra/litellm/config.yaml (Gemma 4 26B).
@@ -25,7 +24,7 @@ MODEL = "gemma-large"
 def litellm_root() -> str:
     """The LiteLLM gateway root URL (base URL without the /v1 suffix)."""
     base = os.environ.get("LITELLM_BASE_URL", "http://localhost:4000/v1")
-    return base[: -len("/v1")] if base.endswith("/v1") else base
+    return base.removesuffix("/v1")
 
 
 def check_prerequisites() -> bool:
@@ -37,7 +36,9 @@ def check_prerequisites() -> bool:
     ok = True
 
     if shutil.which("docker"):
-        result = subprocess.run(["docker", "info"], capture_output=True, text=True)
+        result = subprocess.run(
+            ["docker", "info"], capture_output=True, text=True, check=False
+        )
         if result.returncode == 0:
             print("  [OK] Docker is running")
         else:
@@ -60,7 +61,9 @@ def check_prerequisites() -> bool:
         print(f"  [FAIL] LiteLLM gateway is not reachable at {litellm_root()}")
         print("         Start the stack from agent-eval-benchmark:")
         print("             cd agent-eval-benchmark/infra && podman compose up -d")
-        print("         (for local models: lms server start && lms load google/gemma-4-e4b)")
+        print(
+            "         (for local models: lms server start && lms load google/gemma-4-e4b)"
+        )
         ok = False
 
     print()
@@ -121,10 +124,14 @@ def run_evaluation() -> None:
     agent_path = "agent:LangchainHarborAgent"
 
     cmd = [
-        "harbor", "run",
-        "-p", str(task_path),
-        "--agent", agent_path,
-        "-m", MODEL,
+        "harbor",
+        "run",
+        "-p",
+        str(task_path),
+        "--agent",
+        agent_path,
+        "-m",
+        MODEL,
     ]
 
     print(f"Running: {' '.join(cmd)}")
@@ -140,6 +147,7 @@ def run_evaluation() -> None:
         text=True,
         cwd=str(LESSON_DIR),
         env=env,
+        check=False,
     )
 
     if result.stdout:
@@ -164,7 +172,9 @@ def inspect_results() -> None:
     print()
 
     jobs_dir = LESSON_DIR / "jobs"
-    job_dirs = sorted(d for d in jobs_dir.glob("*") if d.is_dir()) if jobs_dir.exists() else []
+    job_dirs = (
+        sorted(d for d in jobs_dir.glob("*") if d.is_dir()) if jobs_dir.exists() else []
+    )
     if not job_dirs:
         print("  No jobs/ directory found.")
         return

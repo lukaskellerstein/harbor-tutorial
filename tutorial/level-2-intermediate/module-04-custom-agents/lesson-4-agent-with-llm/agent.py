@@ -14,12 +14,11 @@ litellm/config.yaml) using the `gemma-large` alias (Gemma 4 26B).
 import os
 import re
 
-from litellm import acompletion
-
 from harbor.agents.base import BaseAgent
 from harbor.environments.base import BaseEnvironment
 from harbor.models.agent.context import AgentContext
-
+from litellm import acompletion
+from litellm.types.utils import Choices, ModelResponse
 
 # System prompt that tells the LLM how to format its responses
 SYSTEM_PROMPT = """You are a coding agent that solves tasks inside a Linux container.
@@ -88,7 +87,6 @@ class LLMAgent(BaseAgent):
 
     async def setup(self, environment: BaseEnvironment) -> None:
         """No special setup needed — the agent runs externally."""
-        pass
 
     async def run(
         self,
@@ -111,6 +109,7 @@ class LLMAgent(BaseAgent):
 
         last_stdout = ""
         last_stderr = ""
+        iteration = 0  # so the metadata below is still well-defined if the loop never runs
 
         for iteration in range(1, MAX_ITERATIONS + 1):
             print(f"\n  [LLMAgent] Iteration {iteration}/{MAX_ITERATIONS}")
@@ -127,7 +126,14 @@ class LLMAgent(BaseAgent):
                 temperature=0.0,
             )
 
-            assistant_message = response.choices[0].message.content
+            # acompletion() can also return a streaming wrapper, and a choice can
+            # be a streaming chunk. This call does not stream, so narrow to the
+            # non-streaming shapes before reading the text out.
+            assert isinstance(response, ModelResponse)
+            choice = response.choices[0]
+            assert isinstance(choice, Choices)
+            assistant_message = choice.message.content or ""
+
             messages.append({"role": "assistant", "content": assistant_message})
             print(f"  [LLMAgent] Received response ({len(assistant_message)} chars)")
 
@@ -166,7 +172,7 @@ class LLMAgent(BaseAgent):
                     messages.append({"role": "user", "content": error_msg})
                     break
                 else:
-                    print(f"  [LLMAgent] Command succeeded")
+                    print("  [LLMAgent] Command succeeded")
                     if last_stdout.strip():
                         print(f"  [LLMAgent] Output: {last_stdout.strip()[:200]}")
 

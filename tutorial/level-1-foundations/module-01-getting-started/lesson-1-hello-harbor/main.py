@@ -33,6 +33,7 @@ def check_docker_running() -> bool:
         ["docker", "info"],
         capture_output=True,
         text=True,
+        check=False,
     )
     if result.returncode == 0:
         print("  [OK] Docker is installed and running")
@@ -49,6 +50,7 @@ def check_harbor_installed() -> bool:
             ["harbor", "--version"],
             capture_output=True,
             text=True,
+            check=False,
         )
         version_str = result.stdout.strip() or result.stderr.strip()
         print(f"  Harbor version: {version_str}")
@@ -137,6 +139,7 @@ def run_evaluation() -> None:
         capture_output=True,
         text=True,
         cwd=str(Path(__file__).parent),
+        check=False,
     )
 
     if result.stdout:

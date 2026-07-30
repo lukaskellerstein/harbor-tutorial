@@ -25,7 +25,9 @@ def check_prerequisites() -> bool:
         print("  [FAIL] Harbor CLI not found. Install with: uv tool install harbor")
         return False
 
-    result = subprocess.run(["harbor", "--version"], capture_output=True, text=True)
+    result = subprocess.run(
+        ["harbor", "--version"], capture_output=True, text=True, check=False
+    )
     version = result.stdout.strip() or result.stderr.strip()
     print(f"  Harbor version: {version}")
     print("  [OK] Harbor CLI is installed")
@@ -83,7 +85,8 @@ def generate_job_configs() -> None:
         print(f"  Provider:  {config['environment']['type']}")
         print(f"  Parallel:  {config['n_concurrent_trials']} concurrent trials")
         print("  ---")
-        for line in yaml.dump(config, default_flow_style=False, sort_keys=False).splitlines():
+        rendered = yaml.dump(config, default_flow_style=False, sort_keys=False) or ""
+        for line in rendered.splitlines():
             print(f"    {line}")
     print()
 

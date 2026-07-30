@@ -27,7 +27,8 @@ def check_prerequisites() -> bool:
 
     if docker_ok:
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True
+            ["docker", "info"], capture_output=True, text=True,
+            check=False,
         )
         docker_ok = result.returncode == 0
 
@@ -229,6 +230,7 @@ def run_evaluation() -> None:
         capture_output=True,
         text=True,
         cwd=str(LESSON_DIR),
+        check=False,
     )
 
     if result.stdout:

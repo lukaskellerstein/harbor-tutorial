@@ -13,7 +13,6 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-
 LESSON_DIR = Path(__file__).parent
 
 #: Alias defined in agent-eval-benchmark/infra/litellm/config.yaml (Gemma 4 26B).
@@ -23,7 +22,7 @@ MODEL = "gemma-large"
 def litellm_root() -> str:
     """The LiteLLM gateway root URL (base URL without the /v1 suffix)."""
     base = os.environ.get("LITELLM_BASE_URL", "http://localhost:4000/v1")
-    return base[: -len("/v1")] if base.endswith("/v1") else base
+    return base.removesuffix("/v1")
 
 
 def show_concept() -> None:
@@ -78,7 +77,7 @@ def show_agent_code() -> None:
     agent_path = LESSON_DIR / "agent.py"
     if agent_path.exists():
         content = agent_path.read_text()
-        print(f"\n  File: agent.py\n")
+        print("\n  File: agent.py\n")
         for line in content.splitlines():
             print(f"    {line}")
     print()
@@ -93,7 +92,7 @@ def show_task() -> None:
     instruction_path = LESSON_DIR / "tasks" / "llm-task" / "instruction.md"
     if instruction_path.exists():
         content = instruction_path.read_text()
-        print(f"\n  File: tasks/llm-task/instruction.md\n")
+        print("\n  File: tasks/llm-task/instruction.md\n")
         for line in content.splitlines():
             print(f"    {line}")
     print()
@@ -129,7 +128,9 @@ def check_prerequisites() -> bool:
     ok = True
 
     if shutil.which("docker"):
-        result = subprocess.run(["docker", "info"], capture_output=True, text=True)
+        result = subprocess.run(
+            ["docker", "info"], capture_output=True, text=True, check=False
+        )
         if result.returncode == 0:
             print("  [OK] Docker is running")
         else:
@@ -188,6 +189,7 @@ def run_evaluation() -> None:
         text=True,
         cwd=str(LESSON_DIR),
         env=env,
+        check=False,
     )
 
     if result.stdout:

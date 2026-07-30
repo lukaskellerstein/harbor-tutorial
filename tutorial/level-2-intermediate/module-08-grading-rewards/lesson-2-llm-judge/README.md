@@ -102,18 +102,23 @@ The image is `ghcr.io/astral-sh/uv:python3.12-bookworm-slim`, which ships `uv` p
 ## Step-by-Step
 
 ### Step 1: When you need a judge
+
 `main.py` states the four rules before any code runs.
 
 ### Step 2: The judge script
+
 Walks `tests/llm_judge.py` — rubric, schema, and the `[verifier.env]` wiring.
 
 ### Step 3: Judge a poem
+
 Runs the task with the `oracle` agent (so the poem is fixed and only the *judging* varies) and prints both the recorded rewards and everything the judge printed. That output is captured by Harbor at `verifier/test-stdout.txt` — the first place to look when a score seems wrong, because the reasoning is right there.
 
 ### Step 4: Judge the same poem again
+
 Identical input, identical rubric, second opinion.
 
 ### Step 5: Compare the two runs
+
 The point of the lesson.
 
 ## Running the Lesson
@@ -129,7 +134,7 @@ Two judged trials against `gemma-large` (OpenRouter's free gemma-4 tier by defau
 
 ## Expected Output
 
-```
+```text
 ============================================================
 Checking Prerequisites
 ============================================================

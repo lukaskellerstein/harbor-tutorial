@@ -152,7 +152,7 @@ datasets:
 
 `tasks-configured/claude-setup/` ships a full Claude Code setup inside its `environment/` directory. **The Docker build context is the task's `environment/` directory**, so every file you want to `COPY` has to live inside it:
 
-```
+```text
 tasks-configured/claude-setup/environment/
 ├── Dockerfile
 ├── CLAUDE.md                            -> /app/CLAUDE.md
@@ -230,7 +230,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 1: Checking Prerequisites
   [OK] Docker is running
   [OK] Harbor CLI is installed

@@ -102,7 +102,7 @@ harbor run -c swe-bench-job.yaml
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Level 3, Module 9          #
 #          Lesson 2: Running SWE-Bench                  #

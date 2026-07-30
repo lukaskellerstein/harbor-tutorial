@@ -16,7 +16,6 @@ from pathlib import Path
 
 from results import find_latest_job, load_trial_results, print_results_table
 
-
 LESSON_DIR = Path(__file__).parent
 JOBS_DIR = LESSON_DIR / "jobs"
 
@@ -31,7 +30,8 @@ def check_prerequisites() -> bool:
     ok = True
     if shutil.which("docker"):
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True
+            ["docker", "info"], capture_output=True, text=True,
+            check=False,
         )
         if result.returncode == 0:
             print("  [OK] Docker is running")
@@ -113,6 +113,7 @@ def run_benchmark() -> bool:
         capture_output=False,
         text=True,
         cwd=str(LESSON_DIR),
+        check=False,
     )
 
     print("-" * 60)

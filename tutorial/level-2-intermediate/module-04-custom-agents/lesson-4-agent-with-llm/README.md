@@ -118,7 +118,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Module 4, Lesson 4         #
 #     LLM-Powered Custom Agent                         #

@@ -27,7 +27,6 @@ class EnvironmentExplorerAgent(BaseAgent):
 
     async def setup(self, environment: BaseEnvironment) -> None:
         """No special setup needed for this demo agent."""
-        pass
 
     async def run(
         self,

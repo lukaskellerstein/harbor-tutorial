@@ -33,7 +33,9 @@ def check_prerequisites() -> bool:
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
     docker_running = (
-        subprocess.run(["docker", "info"], capture_output=True, text=True).returncode
+        subprocess.run(
+            ["docker", "info"], capture_output=True, text=True, check=False
+        ).returncode
         == 0
     )
     gateway_ok = gateway_reachable()
@@ -154,8 +156,8 @@ def compare_runs(first: dict[str, float], second: dict[str, float]) -> None:
 
     print(f"  {'dimension':<12} {'run 1':>7} {'run 2':>7} {'delta':>7}")
     print(f"  {'-' * 12} {'-' * 7} {'-' * 7} {'-' * 7}")
-    for key in first:
-        a, b = float(first[key]), float(second.get(key, 0.0))
+    for key, value in first.items():
+        a, b = float(value), float(second.get(key, 0.0))
         print(f"  {key:<12} {a:>7.2f} {b:>7.2f} {b - a:>+7.2f}")
     print()
 

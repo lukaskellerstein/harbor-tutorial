@@ -1,1 +1,10 @@
 .env
+
+__pycache__
+
+.venv/
+__pycache__/
+*.pyc
+.python-version
+jobs/
+trials/

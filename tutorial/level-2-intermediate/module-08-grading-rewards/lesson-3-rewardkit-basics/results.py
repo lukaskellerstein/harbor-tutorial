@@ -13,7 +13,9 @@ def run_task(lesson_dir: Path, task_name: str, agent: str = "oracle") -> bool:
     print(f"  $ harbor run -p tasks/{task_name} -a {agent} -y")
     print()
 
-    result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(lesson_dir))
+    result = subprocess.run(
+        cmd, capture_output=True, text=True, cwd=str(lesson_dir), check=False
+    )
     for stream in (result.stdout, result.stderr):
         for line in (stream or "").splitlines():
             print(f"    {line}")

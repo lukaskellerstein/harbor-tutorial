@@ -22,16 +22,19 @@ Install: `uv tool install harbor` or `pip install harbor`. Requires Python 3.12+
 ## Preferred Technologies & Local References
 
 ### Harbor (the subject of this tutorial)
+
 - **Source code**: /Users/lkellers/Projects/github/harbor-framework/harbor
-- **Docs**: https://harborframework.com/docs
-- **Cookbook**: https://github.com/harbor-framework/harbor-cookbook
+- **Docs**: <https://harborframework.com/docs>
+- **Cookbook**: <https://github.com/harbor-framework/harbor-cookbook>
 
 ### LMStudio (local model serving)
-- **CLI docs**: https://lmstudio.ai/docs/cli
-- **Headless mode**: https://lmstudio.ai/docs/developer/core/headless
-- **Selected model**: Gemma4-E4B — https://lmstudio.ai/models/google/gemma-4-e4b
+
+- **CLI docs**: <https://lmstudio.ai/docs/cli>
+- **Headless mode**: <https://lmstudio.ai/docs/developer/core/headless>
+- **Selected model**: Gemma4-E4B — <https://lmstudio.ai/models/google/gemma-4-e4b>
 
 ### AI Agent Frameworks
+
 | Framework | Source Code | Examples |
 |-----------|------------|----------|
 | Langchain | /Users/lkellers/Projects/github/langchain-ai/langchain | /Users/lkellers/Projects/github/lukaskellerstein/ai-agents-course/Version_2/6_langchain-ai/1_langchain |
@@ -40,10 +43,12 @@ Install: `uv tool install harbor` or `pip install harbor`. Requires Python 3.12+
 | Claude Agent SDK | /Users/lkellers/Projects/github/anthropics/claude-agent-sdk-python | /Users/lkellers/Projects/github/lukaskellerstein/vibe-coding-course/5_Claude_Agent_SDK/python |
 
 ### RAG
+
 - **Vector DB**: Qdrant
 
 ### Evaluation Benchmarks
-- **SWE-Bench**: https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified
+
+- **SWE-Bench**: <https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified>
 
 ## Rules
 

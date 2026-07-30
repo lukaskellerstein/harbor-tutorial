@@ -11,7 +11,6 @@ it to generate a solution strategy, then execute that strategy inside
 the Harbor container via environment.exec().
 """
 
-import asyncio
 from typing import Any
 
 from harbor.agents.base import BaseAgent
@@ -56,16 +55,11 @@ class ClaudeSDKHarborAgent(BaseAgent):
         """
         from claude_agent_sdk import (
             ClaudeAgentOptions,
-            AssistantMessage,
             ResultMessage,
-            TextBlock,
-            ToolUseBlock,
-            query,
             create_sdk_mcp_server,
+            query,
             tool,
         )
-
-        loop = asyncio.get_running_loop()
 
         # Create an MCP tool that executes commands in the Harbor container
         @tool(

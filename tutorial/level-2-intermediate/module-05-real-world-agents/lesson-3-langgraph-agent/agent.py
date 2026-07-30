@@ -18,16 +18,16 @@ litellm/config.yaml) using the `gemma-large` alias (Gemma 4 26B).
 import os
 from typing import Annotated, TypedDict
 
+from harbor.agents.base import BaseAgent
+from harbor.environments.base import BaseEnvironment
+from harbor.models.agent.context import AgentContext
 from langchain_core.messages import AnyMessage, HumanMessage, SystemMessage
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
-
-from harbor.agents.base import BaseAgent
-from harbor.environments.base import BaseEnvironment
-from harbor.models.agent.context import AgentContext
+from pydantic import SecretStr
 
 # Alias defined in agent-eval-benchmark/infra/litellm/config.yaml (Gemma 4 26B).
 DEFAULT_MODEL = "gemma-large"
@@ -75,7 +75,6 @@ class LanggraphHarborAgent(BaseAgent):
 
     async def setup(self, environment: BaseEnvironment) -> None:
         """No setup needed — the agent runs on the host, not in the container."""
-        pass
 
     async def run(
         self,
@@ -109,7 +108,7 @@ class LanggraphHarborAgent(BaseAgent):
         llm = ChatOpenAI(
             model=model_name,
             base_url=os.environ.get("LITELLM_BASE_URL", "http://localhost:4000/v1"),
-            api_key=os.environ.get("LITELLM_API_KEY", "sk-litellm-master"),
+            api_key=SecretStr(os.environ.get("LITELLM_API_KEY", "sk-litellm-master")),
             temperature=0.0,
         )
         llm_with_tools = llm.bind_tools(tools)

@@ -18,7 +18,7 @@ After running an evaluation, Harbor stores detailed results in the `jobs/` direc
 
 Every time you run `harbor run`, Harbor creates a job directory under `jobs/`. Each job contains one or more trial directories, and each trial contains everything you need to understand what happened:
 
-```
+```text
 jobs/
 └── <job-name>/
     └── <trial-id>/
@@ -122,7 +122,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Lesson 3                   #
 #          Viewing Results: Exploring Trial Output      #

@@ -27,7 +27,7 @@ A task is the fundamental unit of evaluation in Harbor. It packages everything n
 
 Every task directory follows the same structure:
 
-```
+```text
 task-name/
 ├── instruction.md         # Natural-language instruction for the agent
 ├── task.toml              # Configuration and metadata
@@ -71,7 +71,7 @@ The lesson script reads and displays each file, explaining its purpose:
 
 The five components connect in this order:
 
-```
+```text
 Build Dockerfile -> Send instruction to agent -> Agent works in container
 -> Upload and run test.sh -> Read reward from /logs/verifier/reward.txt
 ```
@@ -100,7 +100,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Module 2, Lesson 1         #
 #          Task Directory Structure                     #

@@ -18,7 +18,7 @@ A dataset in Harbor is a collection of tasks organized in a single directory. In
 
 A dataset is the simplest possible structure: a directory containing one or more task subdirectories. There is no special manifest file for the dataset itself. Harbor discovers tasks by scanning the directory for subdirectories that contain a `task.toml` file.
 
-```
+```text
 my-dataset/          <-- the dataset
 ├── task-one/        <-- each subdirectory is a task
 │   ├── task.toml
@@ -89,7 +89,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 1: Checking Prerequisites
   Docker:  [OK]
   Harbor:  [OK]

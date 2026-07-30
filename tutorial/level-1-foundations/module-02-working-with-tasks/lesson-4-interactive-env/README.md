@@ -143,7 +143,8 @@ harbor task start-env -p tasks/debug-task -e docker -i
 ## Expected Output
 
 From `main.py`:
-```
+
+```text
 ########################################################
 #          HARBOR TUTORIAL - Module 2, Lesson 4         #
 #          Debugging with Interactive Environments      #
@@ -196,7 +197,8 @@ Summary
 ```
 
 From the interactive session:
-```
+
+```text
 root@abc123:/app# ls
 root@abc123:/app# bash /solution/solve.sh
 fetch_status solution created.

@@ -154,7 +154,7 @@ All three tasks run with the `oracle` agent, which executes `solution/solve.sh` 
 
 ## Expected Output
 
-```
+```text
 ########################################################
 #          HARBOR TUTORIAL - Level 2, Module 8          #
 #          Lesson 1: Rewards & the Verifier Contract    #

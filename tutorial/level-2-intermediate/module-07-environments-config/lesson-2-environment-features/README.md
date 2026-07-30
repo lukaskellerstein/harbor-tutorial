@@ -108,7 +108,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
 Step 1: The BaseEnvironment API
 
   exec(command, cwd, env, timeout_sec, user) -> ExecResult

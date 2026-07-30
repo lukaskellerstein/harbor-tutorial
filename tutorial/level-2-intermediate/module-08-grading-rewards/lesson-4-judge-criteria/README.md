@@ -51,7 +51,7 @@ Without `files`, the judge grades nothing. Two modes control how the call is mad
 - `mode = "batched"` (default) — one call scoring every criterion. Cheap.
 - `mode = "individual"` — one call per criterion. Costlier, but **required** if any criterion sets its own `files`. Combining per-criterion `files` with `batched` raises:
 
-  ```
+  ```text
   ValueError: per-criterion 'files' requires the judge to use mode = "individual"
   ```
 
@@ -61,20 +61,20 @@ Without `files`, the judge grades nothing. Two modes control how the call is mad
 
 But **the criterion `name` is part of the judge's prompt.** RewardKit renders each criterion as (`rewardkit/judges.py:_build_criteria_block`):
 
-```
+```text
 - 'contains_profanity': Does the poem contain profanity or slurs? (score: yes/no)
 ```
 
 Name the criterion after the *outcome you want* rather than the *question you asked*, and you hand the judge a contradiction. This exact rubric, with the criterion named `no_profanity`:
 
-```
+```text
 no_profanity  ->  0.00   (raw='yes', weight=1.0)  [negated]
     The poem contains no profanity or slurs.
 ```
 
 A score of `0.00` on a poem the judge just described as clean. The judge answered the *label* (`yes, no profanity`), `negate` flipped the already-correct answer, and the reward silently dropped. Renaming it to `contains_profanity` — matching the question — fixes it:
 
-```
+```text
 contains_profanity  ->  1.00   (raw='no', weight=1.0)  [negated]
     The poem contains no profanity.
 ```
@@ -109,7 +109,7 @@ LITELLM_DROP_PARAMS = "1"
 
 `LITELLM_DROP_PARAMS` is **required**, and the reason is not obvious. RewardKit's `LLMJudge` always sends `reasoning_effort` (it defaults to `"medium"`). The litellm *client* inside the container validates parameters per provider before sending anything, and the `openai/` provider rejects it:
 
-```
+```text
 litellm.UnsupportedParamsError: openai does not support parameters:
 ['reasoning_effort'], for model=gemma-large
 ```
@@ -148,15 +148,19 @@ That costs real money per trial, so this lesson ships the config without running
 ## Step-by-Step
 
 ### Step 1: Rubric anatomy
+
 Prints `tests/judge.toml` in full and covers formats, flags, and the naming trap.
 
 ### Step 2: Judging against the rubric
+
 One trial with the `oracle` agent, then the per-criterion breakdown with the judge's reasoning.
 
 ### Step 3: Aggregation changes everything
+
 The same scores through all five modes.
 
 ### Step 4: Swapping the judge
+
 `REWARDKIT_JUDGE`, `REWARDKIT_MODEL`, and agent judges.
 
 ## Running the Lesson
@@ -170,7 +174,7 @@ uv run python main.py
 
 ## Expected Output
 
-```
+```text
   reward.json:
     reward   0.59
 

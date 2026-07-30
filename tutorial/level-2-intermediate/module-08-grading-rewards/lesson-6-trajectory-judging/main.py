@@ -34,7 +34,9 @@ def check_prerequisites() -> bool:
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
     docker_running = (
-        subprocess.run(["docker", "info"], capture_output=True, text=True).returncode
+        subprocess.run(
+            ["docker", "info"], capture_output=True, text=True, check=False
+        ).returncode
         == 0
     )
     gateway_ok = gateway_reachable()

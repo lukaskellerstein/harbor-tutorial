@@ -8,19 +8,22 @@ You are working with a web application that has two services:
 ## Your Task
 
 1. Use the API to create a new user by sending a POST request:
-   ```
+
+   ```bash
    curl -X POST http://localhost:5000/users \
      -H "Content-Type: application/json" \
      -d '{"name": "harbor_test_user", "email": "test@harbor.dev"}'
    ```
 
 2. Verify the user was stored in the database by querying PostgreSQL directly:
-   ```
+
+   ```bash
    PGPASSWORD=harbor psql -h db -U harbor -d harbordb -c "SELECT * FROM users WHERE name='harbor_test_user';"
    ```
 
 3. Use the API to retrieve all users and confirm the new user appears:
-   ```
+
+   ```bash
    curl http://localhost:5000/users
    ```
 
