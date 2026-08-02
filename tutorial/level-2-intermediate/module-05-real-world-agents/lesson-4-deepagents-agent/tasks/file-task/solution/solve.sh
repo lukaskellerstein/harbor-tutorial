@@ -1,5 +1,5 @@
 #!/bin/bash
-cat << 'EOF' > /app/calculator.py
+cat <<'EOF' >/app/calculator.py
 def add(a: int | float, b: int | float) -> float:
     return float(a + b)
 
@@ -15,7 +15,7 @@ def divide(a: int | float, b: int | float) -> float:
     return float(a / b)
 EOF
 
-cat << 'EOF' > /app/test_calculator.py
+cat <<'EOF' >/app/test_calculator.py
 from calculator import add, subtract, multiply, divide
 
 assert add(2, 3) == 5

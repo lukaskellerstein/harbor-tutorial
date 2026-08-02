@@ -1,2 +1,2 @@
 #!/bin/bash
-/app/greeter > /app/greeting.txt
+/app/greeter >/app/greeting.txt

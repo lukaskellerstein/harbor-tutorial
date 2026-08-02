@@ -116,10 +116,7 @@ def run_evaluation() -> None:
     print("=" * 60)
 
     task_path = Path(__file__).parent / "tasks" / "hello-world"
-    print(
-        f"\nRunning: harbor run -p {task_path} -a oracle "
-        "--no-delete --ek keep_containers=true"
-    )
+    print(f"\nRunning: harbor run -p {task_path} -a oracle --no-delete --ek keep_containers=true")
     print("  Agent: oracle (runs the reference solution)")
     print("  Task:  hello-world (create a file with 'Hello, world!')")
     print()
@@ -133,8 +130,15 @@ def run_evaluation() -> None:
 
     result = subprocess.run(
         [
-            "harbor", "run", "-p", str(task_path), "-a", "oracle",
-            "--no-delete", "--ek", "keep_containers=true",
+            "harbor",
+            "run",
+            "-p",
+            str(task_path),
+            "-a",
+            "oracle",
+            "--no-delete",
+            "--ek",
+            "keep_containers=true",
         ],
         capture_output=True,
         text=True,

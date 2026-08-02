@@ -56,8 +56,14 @@ def run_single_trial() -> Path | None:
     print()
 
     cmd = [
-        "harbor", "trial", "start",
-        "-p", "tasks/hello-task", "-a", "oracle", "--delete",
+        "harbor",
+        "trial",
+        "start",
+        "-p",
+        "tasks/hello-task",
+        "-a",
+        "oracle",
+        "--delete",
     ]
 
     print("This command does the following:")

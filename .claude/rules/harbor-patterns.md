@@ -246,4 +246,4 @@ Always read the source before using an API:
 - **Adapters**: `adapters/`
 - **Examples**: `examples/`
 
-All paths relative to: `/Users/lkellers/Projects/github/harbor-framework/harbor`
+All paths relative to: `~/Projects/Github/harbor-framework/harbor`

@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir -p /app/project
-echo '{"name": "demo", "version": "1.0", "entries": 5}' > /app/project/config.json
-cat << 'EOF' > /app/project/generate.py
+echo '{"name": "demo", "version": "1.0", "entries": 5}' >/app/project/config.json
+cat <<'EOF' >/app/project/generate.py
 import json
 
 with open("/app/project/config.json") as f:

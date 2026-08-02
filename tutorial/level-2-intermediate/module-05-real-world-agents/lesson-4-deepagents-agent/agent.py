@@ -49,9 +49,7 @@ class HarborSandboxBackend(BaseSandbox):
     Harbor-specific code the agent needs — no custom tool definitions.
     """
 
-    def __init__(
-        self, environment: BaseEnvironment, loop: asyncio.AbstractEventLoop
-    ) -> None:
+    def __init__(self, environment: BaseEnvironment, loop: asyncio.AbstractEventLoop) -> None:
         self._environment = environment
         self._loop = loop
 
@@ -59,9 +57,7 @@ class HarborSandboxBackend(BaseSandbox):
     def id(self) -> str:
         return f"harbor-{type(self._environment).__name__}"
 
-    def execute(
-        self, command: str, *, timeout: int | None = None
-    ) -> ExecuteResponse:
+    def execute(self, command: str, *, timeout: int | None = None) -> ExecuteResponse:
         """Run a shell command inside the task container.
 
         BaseSandbox invokes this from a worker thread (via asyncio.to_thread),
@@ -75,13 +71,9 @@ class HarborSandboxBackend(BaseSandbox):
         )
         result = future.result(timeout=timeout_sec + 30)
         parts = [p for p in (result.stdout, result.stderr) if p]
-        return ExecuteResponse(
-            output="\n".join(parts), exit_code=result.return_code
-        )
+        return ExecuteResponse(output="\n".join(parts), exit_code=result.return_code)
 
-    def upload_files(
-        self, files: list[tuple[str, bytes]]
-    ) -> list[FileUploadResponse]:
+    def upload_files(self, files: list[tuple[str, bytes]]) -> list[FileUploadResponse]:
         """Write file contents into the container (backs the write_file tool).
 
         Content is transferred base64-encoded to survive shell quoting.
@@ -90,10 +82,7 @@ class HarborSandboxBackend(BaseSandbox):
         for path, content in files:
             encoded = base64.b64encode(content).decode("ascii")
             quoted = shlex.quote(path)
-            result = self.execute(
-                f"mkdir -p $(dirname {quoted}) && "
-                f"printf %s {encoded} | base64 -d > {quoted}"
-            )
+            result = self.execute(f"mkdir -p $(dirname {quoted}) && printf %s {encoded} | base64 -d > {quoted}")
             error = None if result.exit_code == 0 else result.output or "upload failed"
             responses.append(FileUploadResponse(path=path, error=error))
         return responses
@@ -107,11 +96,7 @@ class HarborSandboxBackend(BaseSandbox):
                 content = base64.b64decode(result.output.encode("ascii"))
                 responses.append(FileDownloadResponse(path=path, content=content))
             else:
-                responses.append(
-                    FileDownloadResponse(
-                        path=path, error=result.output or "download failed"
-                    )
-                )
+                responses.append(FileDownloadResponse(path=path, error=result.output or "download failed"))
         return responses
 
 

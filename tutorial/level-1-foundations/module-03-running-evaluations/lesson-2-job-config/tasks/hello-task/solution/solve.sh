@@ -1,2 +1,2 @@
 #!/bin/bash
-printf "Hello, Harbor!" > /home/user/hello.txt
+printf "Hello, Harbor!" >/home/user/hello.txt

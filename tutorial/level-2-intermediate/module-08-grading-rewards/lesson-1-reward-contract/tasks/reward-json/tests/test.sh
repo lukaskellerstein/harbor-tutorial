@@ -16,30 +16,30 @@ REPORT=/app/report.md
 # --- dimension 1: how many required sections are present -------------------
 FOUND=0
 for SECTION in "## Summary" "## Findings" "## Conclusion"; do
-    if grep -qF "$SECTION" "$REPORT" 2>/dev/null; then
-        FOUND=$((FOUND + 1))
-    fi
+  if grep -qF "$SECTION" "$REPORT" 2>/dev/null; then
+    FOUND=$((FOUND + 1))
+  fi
 done
 SECTIONS=$(awk "BEGIN {printf \"%.2f\", $FOUND / 3}")
 
 # --- dimension 2: does it open with a level-1 title? ------------------------
 if head -n 1 "$REPORT" 2>/dev/null | grep -q "^# "; then
-    TITLE=1
+  TITLE=1
 else
-    TITLE=0
+  TITLE=0
 fi
 
 # --- dimension 3: is it substantial? ---------------------------------------
 # REQUIRED_WORDS arrives from [verifier.env] in task.toml.
 if [ -f "$REPORT" ]; then
-    WORDS=$(wc -w < "$REPORT")
+  WORDS=$(wc -w <"$REPORT")
 else
-    WORDS=0
+  WORDS=0
 fi
 if [ "$WORDS" -ge "${REQUIRED_WORDS:-50}" ]; then
-    LENGTH=1
+  LENGTH=1
 else
-    LENGTH=0
+  LENGTH=0
 fi
 
 echo "sections: $FOUND/3 -> $SECTIONS"
@@ -47,7 +47,7 @@ echo "title:    $TITLE"
 echo "words:    $WORDS (need ${REQUIRED_WORDS:-50}) -> $LENGTH"
 
 # reward.json is just a flat JSON object of {name: number}. No library needed.
-cat > /logs/verifier/reward.json <<EOF
+cat >/logs/verifier/reward.json <<EOF
 {
   "sections": $SECTIONS,
   "title": $TITLE,

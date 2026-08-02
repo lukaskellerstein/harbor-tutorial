@@ -54,9 +54,7 @@ class GrepAgent(BaseAgent):
 
         # Step 3: Create the file inside the container
         self.logger.info("Step 3: Creating file inside container...")
-        create_result = await environment.exec(
-            command=f"echo '{file_content}' > {file_path}"
-        )
+        create_result = await environment.exec(command=f"echo '{file_content}' > {file_path}")
         if create_result.return_code == 0:
             self.logger.info("  File created successfully")
         else:

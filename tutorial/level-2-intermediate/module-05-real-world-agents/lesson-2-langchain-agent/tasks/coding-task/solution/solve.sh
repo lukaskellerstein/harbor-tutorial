@@ -1,5 +1,5 @@
 #!/bin/bash
-cat << 'EOF' > /app/fibonacci.py
+cat <<'EOF' >/app/fibonacci.py
 import sys
 
 def fibonacci(n: int) -> int:

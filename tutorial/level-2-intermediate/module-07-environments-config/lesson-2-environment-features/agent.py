@@ -47,9 +47,7 @@ class EnvironmentExplorerAgent(BaseAgent):
         self.logger.info(f"[exec] stdout:\n{result.stdout}")
 
         # Write the directory listing to a results file
-        await environment.exec(
-            command="ls -la /app/data/ > /app/results/listing.txt"
-        )
+        await environment.exec(command="ls -la /app/data/ > /app/results/listing.txt")
 
         # ----------------------------------------------------------
         # 2. exec() with env and timeout_sec
@@ -75,16 +73,12 @@ class EnvironmentExplorerAgent(BaseAgent):
         # ----------------------------------------------------------
         # 4. exec() — Copy config to results (fulfills task step 2)
         # ----------------------------------------------------------
-        await environment.exec(
-            command="cat /app/data/config.json > /app/results/config_copy.txt"
-        )
+        await environment.exec(command="cat /app/data/config.json > /app/results/config_copy.txt")
 
         # ----------------------------------------------------------
         # 5. upload_file() — Upload a file from host into container
         # ----------------------------------------------------------
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".txt", delete=False
-        ) as tmp:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False) as tmp:
             tmp.write("This file was uploaded from the host machine.\n")
             tmp.flush()
             tmp_path = tmp.name
@@ -108,12 +102,8 @@ class EnvironmentExplorerAgent(BaseAgent):
             target_path=str(download_target),
         )
         if download_target.exists():
-            self.logger.info(
-                f"[download_file] downloaded config to {download_target}"
-            )
-            self.logger.info(
-                f"[download_file] contents: {download_target.read_text()}"
-            )
+            self.logger.info(f"[download_file] downloaded config to {download_target}")
+            self.logger.info(f"[download_file] contents: {download_target.read_text()}")
 
         # ----------------------------------------------------------
         # 7. exec() — Gather environment info (fulfills task step 3)

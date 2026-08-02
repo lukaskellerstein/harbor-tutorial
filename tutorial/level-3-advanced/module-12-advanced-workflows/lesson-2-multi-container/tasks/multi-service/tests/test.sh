@@ -13,14 +13,14 @@ mkdir -p /logs/verifier
 
 # Check if the test user exists in the database
 RESULT=$(PGPASSWORD=harbor psql -h db -U harbor -d harbordb -t -c \
-    "SELECT COUNT(*) FROM users WHERE name='harbor_test_user';")
+  "SELECT COUNT(*) FROM users WHERE name='harbor_test_user';")
 
 COUNT=$(echo "$RESULT" | tr -d ' ')
 
 if [ "$COUNT" -ge 1 ]; then
-    echo "PASS: User 'harbor_test_user' found in database ($COUNT rows)"
-    echo "1" > /logs/verifier/reward.txt
+  echo "PASS: User 'harbor_test_user' found in database ($COUNT rows)"
+  echo "1" >/logs/verifier/reward.txt
 else
-    echo "FAIL: User 'harbor_test_user' not found in database"
-    echo "0" > /logs/verifier/reward.txt
+  echo "FAIL: User 'harbor_test_user' not found in database"
+  echo "0" >/logs/verifier/reward.txt
 fi

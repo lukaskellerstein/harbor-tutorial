@@ -24,9 +24,7 @@ def top_word_correct(workspace: Path) -> bool:
     """top_word() picks the right word, and does not crash on empty input."""
     import importlib.util
 
-    spec = importlib.util.spec_from_file_location(
-        "textstats", workspace / "textstats.py"
-    )
+    spec = importlib.util.spec_from_file_location("textstats", workspace / "textstats.py")
     if spec is None or spec.loader is None:
         return False
     module = importlib.util.module_from_spec(spec)

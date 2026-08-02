@@ -51,17 +51,17 @@ class ShellScriptAgent(BaseInstalledAgent):
                 "# Usage: solve.sh <json_file> <jq_filter> <output_file>\n"
                 "set -euo pipefail\n"
                 "\n"
-                "JSON_FILE=\"$1\"\n"
-                "JQ_FILTER=\"$2\"\n"
-                "OUTPUT_FILE=\"$3\"\n"
+                'JSON_FILE="$1"\n'
+                'JQ_FILTER="$2"\n'
+                'OUTPUT_FILE="$3"\n'
                 "\n"
-                "if [ ! -f \"$JSON_FILE\" ]; then\n"
-                "    echo \"ERROR: JSON file not found: $JSON_FILE\" >&2\n"
+                'if [ ! -f "$JSON_FILE" ]; then\n'
+                '    echo "ERROR: JSON file not found: $JSON_FILE" >&2\n'
                 "    exit 1\n"
                 "fi\n"
                 "\n"
-                "RESULT=$(jq -r \"$JQ_FILTER\" \"$JSON_FILE\")\n"
-                "echo \"$RESULT\" > \"$OUTPUT_FILE\"\n"
+                'RESULT=$(jq -r "$JQ_FILTER" "$JSON_FILE")\n'
+                'echo "$RESULT" > "$OUTPUT_FILE"\n'
                 "echo \"Extracted '$JQ_FILTER' -> $RESULT\"\n"
                 "SCRIPT_EOF\n"
                 "chmod +x /home/user/solve.sh"

@@ -27,7 +27,9 @@ def check_prerequisites() -> bool:
 
     if docker_ok:
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True,
+            ["docker", "info"],
+            capture_output=True,
+            text=True,
             check=False,
         )
         docker_ok = result.returncode == 0
@@ -206,10 +208,14 @@ def run_evaluation() -> None:
     template_path = LESSON_DIR / "templates" / "template.md.j2"
 
     cmd = [
-        "harbor", "run",
-        "-p", str(task_path),
-        "-a", "agent:TemplatedAgent",
-        "--agent-kwarg", f"prompt_template_path={template_path}",
+        "harbor",
+        "run",
+        "-p",
+        str(task_path),
+        "-a",
+        "agent:TemplatedAgent",
+        "--agent-kwarg",
+        f"prompt_template_path={template_path}",
     ]
 
     print("  Command: harbor run -p tasks/code-task -a agent:TemplatedAgent \\")

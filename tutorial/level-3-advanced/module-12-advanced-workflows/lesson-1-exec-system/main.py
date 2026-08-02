@@ -31,7 +31,9 @@ def check_harbor_installed() -> bool:
     try:
         result = subprocess.run(
             ["harbor", "--version"],
-            capture_output=True, text=True, timeout=10,
+            capture_output=True,
+            text=True,
+            timeout=10,
             check=False,
         )
         if result.returncode == 0:
@@ -66,7 +68,10 @@ def show_cli_usage() -> None:
         ("From a config file", "harbor exec -c exec-config.yaml"),
         ("Inline paths + instruction", 'harbor exec -p "src/*.py" -i "Fix all bugs"'),
         ("Scan a directory", 'harbor exec -p src/ --scan -i "Review and improve"'),
-        ("With agent and model", 'harbor exec -p "src/*.py" -a claude-code -m "anthropic/claude-sonnet-4-5-20250929" -i "Fix bugs"'),
+        (
+            "With agent and model",
+            'harbor exec -p "src/*.py" -a claude-code -m "anthropic/claude-sonnet-4-5-20250929" -i "Fix bugs"',
+        ),
         ("Print resolved config only", "harbor exec -c exec-config.yaml --print-config"),
         ("With artifact collection", 'harbor exec -p "src/*.py" -i "Fix bugs" -f result.py'),
     ]
@@ -150,8 +155,7 @@ def simulate_compile_phase() -> None:
         print(f"  {f.relative_to(LESSON_DIR)}  ({f.stat().st_size} bytes)")
 
     total = len(compiled_files) * len(instructions)
-    print(f"\nCartesian product: {len(compiled_files)} files x "
-          f"{len(instructions)} instruction(s) = {total} task(s)")
+    print(f"\nCartesian product: {len(compiled_files)} files x {len(instructions)} instruction(s) = {total} task(s)")
 
 
 def show_use_cases() -> None:

@@ -1,2 +1,2 @@
 #!/bin/bash
-cat /workspace/input.txt | rev > /workspace/output.txt
+cat /workspace/input.txt | rev >/workspace/output.txt

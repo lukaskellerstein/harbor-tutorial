@@ -37,11 +37,7 @@ def check_prerequisites() -> bool:
 
     docker_ok = shutil.which("docker") is not None
     if docker_ok:
-        docker_ok = (
-            subprocess.run(
-                ["docker", "info"], capture_output=True, check=False
-            ).returncode == 0
-        )
+        docker_ok = subprocess.run(["docker", "info"], capture_output=True, check=False).returncode == 0
 
     harbor_ok = shutil.which("harbor") is not None
     git_ok = shutil.which("git") is not None
@@ -61,9 +57,7 @@ def check_prerequisites() -> bool:
         lfs_initialized = bool(smudge.stdout.strip())
 
     print(f"  Docker:  {'[OK]' if docker_ok else '[FAIL] Docker daemon not running'}")
-    print(
-        f"  Harbor:  {'[OK]' if harbor_ok else '[FAIL] Install with: uv tool install harbor'}"
-    )
+    print(f"  Harbor:  {'[OK]' if harbor_ok else '[FAIL] Install with: uv tool install harbor'}")
     print(f"  Git:     {'[OK]' if git_ok else '[FAIL] Install git'}")
 
     if lfs_initialized:

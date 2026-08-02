@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > /home/user/calculator.py << 'PYEOF'
+cat >/home/user/calculator.py <<'PYEOF'
 def calculate(expr: str) -> str:
     parts = expr.strip().split()
     if len(parts) != 3:

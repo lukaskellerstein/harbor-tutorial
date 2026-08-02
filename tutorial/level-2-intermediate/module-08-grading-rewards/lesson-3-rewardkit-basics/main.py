@@ -31,12 +31,7 @@ def check_prerequisites() -> bool:
 
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
-    docker_running = (
-        subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, check=False
-        ).returncode
-        == 0
-    )
+    docker_running = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False).returncode == 0
 
     print(f"  Docker CLI:     {'[OK]' if docker_ok else '[MISSING]'}")
     print(f"  Docker running: {'[OK]' if docker_running else '[NOT RUNNING]'}")
@@ -103,7 +98,7 @@ def explain_rewardkit() -> None:
     print("       and    /logs/verifier/reward-details.json  <- the breakdown")
     print()
     print("  No subdirectories under tests/ means a FLAT layout: everything")
-    print("  contributes to a single reward named \"reward\".")
+    print('  contributes to a single reward named "reward".')
     print()
 
 
@@ -141,7 +136,7 @@ def step_wordstats() -> None:
     print("  And note what the criteria do NOT do: none of them depends on")
     print("  another one having run first. Criteria execute CONCURRENTLY, in")
     print("  an asyncio TaskGroup -- registration order is not execution order.")
-    print("  Writing json_key_equals(\"results.json\", ...) and expecting the")
+    print('  Writing json_key_equals("results.json", ...) and expecting the')
     print("  command_succeeds above it to have created that file is a race, and")
     print("  it loses more often than it wins.")
     print()

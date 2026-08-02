@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > /home/user/csv_stats.py << 'PYEOF'
+cat >/home/user/csv_stats.py <<'PYEOF'
 import csv
 
 with open("/home/user/data.csv") as f:

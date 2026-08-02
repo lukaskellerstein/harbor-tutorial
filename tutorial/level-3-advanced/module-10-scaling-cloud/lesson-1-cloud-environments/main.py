@@ -25,9 +25,7 @@ def check_prerequisites() -> bool:
         print("  [FAIL] Harbor CLI not found. Install with: uv tool install harbor")
         return False
 
-    result = subprocess.run(
-        ["harbor", "--version"], capture_output=True, text=True, check=False
-    )
+    result = subprocess.run(["harbor", "--version"], capture_output=True, text=True, check=False)
     version = result.stdout.strip() or result.stderr.strip()
     print(f"  Harbor version: {version}")
     print("  [OK] Harbor CLI is installed")

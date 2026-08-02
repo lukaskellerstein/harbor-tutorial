@@ -36,9 +36,7 @@ def check_prerequisites() -> bool:
     ok = True
 
     if shutil.which("docker"):
-        result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, check=False
-        )
+        result = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False)
         if result.returncode == 0:
             print("  [OK] Docker is running")
         else:
@@ -61,9 +59,7 @@ def check_prerequisites() -> bool:
         print(f"  [FAIL] LiteLLM gateway is not reachable at {litellm_root()}")
         print("         Start the stack from agent-eval-benchmark:")
         print("             cd agent-eval-benchmark/infra && podman compose up -d")
-        print(
-            "         (for local models: lms server start && lms load google/gemma-4-e4b)"
-        )
+        print("         (for local models: lms server start && lms load google/gemma-4-e4b)")
         ok = False
 
     print()
@@ -172,9 +168,7 @@ def inspect_results() -> None:
     print()
 
     jobs_dir = LESSON_DIR / "jobs"
-    job_dirs = (
-        sorted(d for d in jobs_dir.glob("*") if d.is_dir()) if jobs_dir.exists() else []
-    )
+    job_dirs = sorted(d for d in jobs_dir.glob("*") if d.is_dir()) if jobs_dir.exists() else []
     if not job_dirs:
         print("  No jobs/ directory found.")
         return
@@ -191,9 +185,7 @@ def inspect_results() -> None:
 
             started, finished = data.get("started_at"), data.get("finished_at")
             if started and finished:
-                duration = (
-                    datetime.fromisoformat(finished) - datetime.fromisoformat(started)
-                ).total_seconds()
+                duration = (datetime.fromisoformat(finished) - datetime.fromisoformat(started)).total_seconds()
                 print(f"  Duration: {duration:.1f}s")
 
             if data.get("exception_info"):

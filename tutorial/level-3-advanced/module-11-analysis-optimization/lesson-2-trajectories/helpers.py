@@ -20,7 +20,9 @@ def check_prerequisites() -> bool:
     try:
         result = subprocess.run(
             ["docker", "info"],
-            capture_output=True, text=True, timeout=15,
+            capture_output=True,
+            text=True,
+            timeout=15,
             check=False,
         )
         if result.returncode != 0:
@@ -34,7 +36,9 @@ def check_prerequisites() -> bool:
     try:
         result = subprocess.run(
             ["harbor", "--help"],
-            capture_output=True, text=True, timeout=10,
+            capture_output=True,
+            text=True,
+            timeout=10,
             check=False,
         )
         if result.returncode != 0:
@@ -55,18 +59,25 @@ def run_trial() -> str | None:
         shutil.rmtree(TRIALS_DIR)
 
     cmd = [
-        "harbor", "trial", "start",
-        "-p", str(TRACE_TASK_DIR),
-        "-a", "oracle",
+        "harbor",
+        "trial",
+        "start",
+        "-p",
+        str(TRACE_TASK_DIR),
+        "-a",
+        "oracle",
         "--delete",
-        "--trials-dir", str(TRIALS_DIR),
+        "--trials-dir",
+        str(TRIALS_DIR),
     ]
     print(f"Running: {' '.join(cmd)}")
     print()
 
     result = subprocess.run(
         cmd,
-        capture_output=True, text=True, timeout=120,
+        capture_output=True,
+        text=True,
+        timeout=120,
         cwd=str(LESSON_DIR),
         check=False,
     )
@@ -182,19 +193,11 @@ def get_atif_example() -> dict:
                         "tool_call_id": "call_001",
                         "function_name": "bash",
                         "arguments": {
-                            "command": (
-                                "cat > /home/user/greeting.py << 'EOF'\n"
-                                'print("Hello, Harbor!")\n'
-                                "EOF"
-                            )
+                            "command": ("cat > /home/user/greeting.py << 'EOF'\nprint(\"Hello, Harbor!\")\nEOF")
                         },
                     }
                 ],
-                "observation": {
-                    "results": [
-                        {"source_call_id": "call_001", "content": "(exit code 0)"}
-                    ]
-                },
+                "observation": {"results": [{"source_call_id": "call_001", "content": "(exit code 0)"}]},
                 "metrics": {
                     "prompt_tokens": 150,
                     "completion_tokens": 45,

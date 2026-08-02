@@ -81,9 +81,7 @@ class ClaudeSDKHarborAgent(BaseAgent):
             if hasattr(result, "stderr") and result.stderr:
                 output_parts.append(f"[stderr] {result.stderr}")
             output = "\n".join(output_parts) or "(no output)"
-            return {
-                "content": [{"type": "text", "text": output}]
-            }
+            return {"content": [{"type": "text", "text": output}]}
 
         # Create an SDK MCP server with our container tool
         server = create_sdk_mcp_server(
@@ -128,10 +126,6 @@ class ClaudeSDKHarborAgent(BaseAgent):
             if isinstance(message, ResultMessage):
                 # Log final result info
                 if message.total_cost_usd is not None:
-                    self.logger.info(
-                        f"Claude SDK cost: ${message.total_cost_usd:.4f}"
-                    )
+                    self.logger.info(f"Claude SDK cost: ${message.total_cost_usd:.4f}")
                 if message.is_error:
-                    self.logger.warning(
-                        f"Claude SDK reported error: {message.result}"
-                    )
+                    self.logger.warning(f"Claude SDK reported error: {message.result}")

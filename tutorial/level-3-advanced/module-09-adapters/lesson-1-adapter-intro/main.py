@@ -157,7 +157,9 @@ def try_list_datasets() -> None:
         return
     result = subprocess.run(
         ["harbor", "dataset", "list"],
-        capture_output=True, text=True, timeout=30,
+        capture_output=True,
+        text=True,
+        timeout=30,
         check=False,
     )
     if result.returncode == 0 and result.stdout.strip():

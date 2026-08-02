@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > /app/fetch_status.py << 'PYTHON'
+cat >/app/fetch_status.py <<'PYTHON'
 import requests
 
 def main():

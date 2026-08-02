@@ -1,10 +1,20 @@
+# Secrets — never commit. infra/.env.example is the committed template.
 .env
+.envrc
+*.key
+*.pem
+*.agekey
 
+# Claude Code machine-local overrides
+.claude/settings.local.json
+
+# Python
 __pycache__
-
-.venv/
 __pycache__/
 *.pyc
+.venv/
 .python-version
+
+# Harbor run output
 jobs/
 trials/

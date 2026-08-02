@@ -23,9 +23,9 @@ EXPECTED="1
 88"
 
 if [ -f /app/sorted.txt ] && [ "$(cat /app/sorted.txt)" = "$EXPECTED" ]; then
-    echo "sorted.txt is correct"
-    echo "1" > /logs/verifier/reward.txt
+  echo "sorted.txt is correct"
+  echo "1" >/logs/verifier/reward.txt
 else
-    echo "sorted.txt is missing or wrong -- this trial FAILED"
-    echo "0" > /logs/verifier/reward.txt
+  echo "sorted.txt is missing or wrong -- this trial FAILED"
+  echo "0" >/logs/verifier/reward.txt
 fi

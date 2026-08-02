@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo -n "Hello, Harbor!" > /app/greeting.txt
+echo -n "Hello, Harbor!" >/app/greeting.txt

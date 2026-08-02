@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "task-2-complete" > /home/user/result.txt
+echo "task-2-complete" >/home/user/result.txt

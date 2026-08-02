@@ -33,9 +33,7 @@ def check_prerequisites() -> bool:
     ok = True
 
     if shutil.which("docker"):
-        result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, check=False
-        )
+        result = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False)
         if result.returncode == 0:
             print("  [OK] Docker is running")
         else:
@@ -152,10 +150,14 @@ def run_evaluation() -> None:
     model = "anthropic/claude-sonnet-4-5-20250929"
 
     cmd = [
-        "harbor", "run",
-        "-p", str(task_path),
-        "--agent", agent_path,
-        "-m", model,
+        "harbor",
+        "run",
+        "-p",
+        str(task_path),
+        "--agent",
+        agent_path,
+        "-m",
+        model,
     ]
 
     print(f"Running: {' '.join(cmd)}")

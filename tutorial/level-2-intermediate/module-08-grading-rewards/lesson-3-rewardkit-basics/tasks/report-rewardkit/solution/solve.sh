@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > /app/report.md <<'EOF'
+cat >/app/report.md <<'EOF'
 # Quarterly Container Report
 
 ## Summary

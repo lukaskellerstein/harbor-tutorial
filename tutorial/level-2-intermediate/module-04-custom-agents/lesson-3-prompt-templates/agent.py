@@ -24,9 +24,7 @@ class TemplatedAgent(BaseInstalledAgent):
 
     async def install(self, environment: BaseEnvironment) -> None:
         """Minimal install -- Python is already available in the container."""
-        await self.exec_as_agent(
-            environment, command="python3 --version"
-        )
+        await self.exec_as_agent(environment, command="python3 --version")
 
     @with_prompt_template
     async def run(
@@ -71,9 +69,7 @@ print(fibonacci(10))
         self.logger.info("Created /home/user/fibonacci.py")
 
         # Verify it runs correctly
-        result = await self.exec_as_agent(
-            environment, command="python3 /home/user/fibonacci.py"
-        )
+        result = await self.exec_as_agent(environment, command="python3 /home/user/fibonacci.py")
         self.logger.info(f"Script output: {result.stdout.strip()}")
 
         # Store metadata

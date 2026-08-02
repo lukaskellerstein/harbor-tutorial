@@ -33,7 +33,9 @@ def check_prerequisites() -> bool:
     harbor_ok = shutil.which("harbor") is not None
     if docker_ok:
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True,
+            ["docker", "info"],
+            capture_output=True,
+            text=True,
             check=False,
         )
         docker_ok = result.returncode == 0
@@ -76,7 +78,7 @@ def show_tasks() -> None:
         ("matrix-multiply", "hard", "Multiply two matrices (partial credit)"),
     ]
     print(f"  {'Task':<22} {'Difficulty':<10}  Description")
-    print(f"  {'-'*22} {'-'*10}  {'-'*38}")
+    print(f"  {'-' * 22} {'-' * 10}  {'-' * 38}")
     for name, diff, desc in tasks:
         print(f"  {name:<22} {diff:<10}  {desc}")
     print()
@@ -88,13 +90,15 @@ def run_evaluation() -> None:
     print("Step 4: Running the Evaluation")
     print("=" * 60)
     print()
-    cmd = ["harbor", "run", "-p", str(TASKS_DIR), "-a", "oracle",
-           "--delete", "-o", str(JOBS_DIR)]
+    cmd = ["harbor", "run", "-p", str(TASKS_DIR), "-a", "oracle", "--delete", "-o", str(JOBS_DIR)]
     print(f"  Command: {' '.join(cmd)}")
     print()
     print("-" * 60)
     result = subprocess.run(
-        cmd, capture_output=True, text=True, cwd=str(LESSON_DIR),
+        cmd,
+        capture_output=True,
+        text=True,
+        cwd=str(LESSON_DIR),
         check=False,
     )
     if result.stdout:

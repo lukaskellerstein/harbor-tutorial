@@ -37,12 +37,7 @@ def check_prerequisites() -> bool:
 
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
-    docker_running = (
-        subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, check=False
-        ).returncode
-        == 0
-    )
+    docker_running = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False).returncode == 0
     gateway_ok = gateway_reachable()
 
     print(f"  Docker CLI:      {'[OK]' if docker_ok else '[MISSING]'}")
@@ -73,9 +68,9 @@ def explain_layout() -> None:
     print("      test.sh")
     print("      criteria.py              shared custom criteria (not a dimension)")
     print("      reward.toml              aggregation config (not a dimension)")
-    print("      correctness/functions.py -> reward \"correctness\"")
-    print("      structure/files.py       -> reward \"structure\"")
-    print("      quality/quality.toml     -> reward \"quality\"")
+    print('      correctness/functions.py -> reward "correctness"')
+    print('      structure/files.py       -> reward "structure"')
+    print('      quality/quality.toml     -> reward "quality"')
     print()
     print("  Two files at the root are NOT dimensions, for different reasons:")
     print("    criteria.py  a .py file at the root is imported for its shared")
@@ -108,7 +103,7 @@ def explain_custom_criteria() -> None:
     print("     cannot guess your arguments, so you must call it, and the")
     print("     description is str.format-ed with what you passed:")
     print()
-    print("     @criterion(description=\"defines at least {n} public functions\")")
+    print('     @criterion(description="defines at least {n} public functions")')
     print("     def defines_n_functions(workspace: Path, n: int) -> bool:")
     print("         ...")
     print()
@@ -171,7 +166,7 @@ def step_run() -> None:
     print()
     show_criteria_by_dimension(reward_details(job_dir))
     print("  Reporting both an aggregate and a gate means never choosing")
-    print("  between \"how good was it\" and \"did it clear the bar\".")
+    print('  between "how good was it" and "did it clear the bar".')
     print()
 
 
@@ -206,9 +201,7 @@ def step_compare() -> None:
         "--output",
         str(LOCAL / "reward.json"),
     ]
-    result = subprocess.run(
-        cmd, capture_output=True, text=True, cwd=str(LESSON_DIR), check=False
-    )
+    result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(LESSON_DIR), check=False)
     for line in (result.stdout or "").splitlines():
         print(f"    {line}")
     for line in (result.stderr or "").splitlines():

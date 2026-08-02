@@ -33,12 +33,7 @@ def check_prerequisites() -> bool:
 
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
-    docker_running = (
-        subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, check=False
-        ).returncode
-        == 0
-    )
+    docker_running = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False).returncode == 0
     gateway_ok = gateway_reachable()
 
     print(f"  Docker CLI:      {'[OK]' if docker_ok else '[MISSING]'}")
@@ -74,13 +69,13 @@ def explain_trajectories() -> None:
     print()
     print("  Harbor agents write ATIF to /logs/agent/trajectory.json:")
     print()
-    print("    {\"schema_version\": \"ATIF-v1.7\",")
-    print("     \"agent\": {\"name\": \"claude-code\", ...},")
-    print("     \"steps\": [{\"step_id\": 2, \"source\": \"agent\",")
-    print("                \"tool_calls\": [{\"function_name\": \"Write\", ...}]}]}")
+    print('    {"schema_version": "ATIF-v1.7",')
+    print('     "agent": {"name": "claude-code", ...},')
+    print('     "steps": [{"step_id": 2, "source": "agent",')
+    print('                "tool_calls": [{"function_name": "Write", ...}]}]}')
     print()
     print("  !! PATH GOTCHA !!")
-    print("  The trajectory_* criteria default to path=\"/logs/trajectory.json\".")
+    print('  The trajectory_* criteria default to path="/logs/trajectory.json".')
     print("  Harbor writes /logs/agent/trajectory.json. The default is wrong for")
     print("  every Harbor task, and it fails SILENTLY -- a missing file loads as")
     print("  None and the criterion scores 0 with no error. Your whole process")
@@ -155,7 +150,7 @@ def step_reward_hacking() -> dict[str, float]:
     print("  filesystem the agent just had write access to. Including the")
     print("  directory it is about to read its verdict from.")
     print()
-    print("  tasks/reward-hacking has a \"solution\" that never sorts anything:")
+    print('  tasks/reward-hacking has a "solution" that never sorts anything:')
     print()
     print("    mkdir -p /logs/verifier")
     print("    echo '{\"reward\": 1.0}' > /logs/verifier/reward.json")
@@ -260,7 +255,7 @@ def show_summary() -> None:
     print()
     print("  Grading the process:")
     print("    - trajectory_tool_used / _not_used / _turn_count")
-    print("    - ALWAYS pass path=\"/logs/agent/trajectory.json\"; the default")
+    print('    - ALWAYS pass path="/logs/agent/trajectory.json"; the default')
     print("      is wrong for Harbor and fails silently")
     print("    - atif-trajectory in a rubric (hyphen!) gives the judge the")
     print("      agent's reasoning as well as its output")
@@ -268,7 +263,7 @@ def show_summary() -> None:
     print("  Defending the verifier:")
     print("    - the agent can write to /logs/verifier in the default mode")
     print("    - rm -f the reward files before writing yours")
-    print("    - environment_mode = \"separate\" makes that structural")
+    print('    - environment_mode = "separate" makes that structural')
     print("    - harbor analyze --failing hunts for it after the fact")
     print()
     print("  You have finished Module 8: Grading & Rewards.")

@@ -11,7 +11,7 @@
 # writable, so planting it is three lines.
 
 mkdir -p /logs/verifier
-cat > /logs/verifier/reward.json <<'EOF'
+cat >/logs/verifier/reward.json <<'EOF'
 {
   "reward": 1.0
 }

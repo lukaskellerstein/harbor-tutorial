@@ -25,7 +25,9 @@ def check_prerequisites() -> bool:
 
     if docker_ok:
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True,
+            ["docker", "info"],
+            capture_output=True,
+            text=True,
             check=False,
         )
         docker_ok = result.returncode == 0
@@ -132,13 +134,13 @@ def explain_d_vs_p_flags() -> None:
     print()
     print("Examples:")
     print()
-    print('  # Local dataset (directory on your filesystem)')
-    print('  harbor run -p ./my-tasks -a oracle')
+    print("  # Local dataset (directory on your filesystem)")
+    print("  harbor run -p ./my-tasks -a oracle")
     print()
-    print('  # Registered dataset (downloaded from registry)')
+    print("  # Registered dataset (downloaded from registry)")
     print('  harbor run -d "harbor/hello-world" -a oracle')
     print()
-    print('  # Registered dataset with model specification')
+    print("  # Registered dataset with model specification")
     print('  harbor run -d "harbor/hello-world" -a claude-code \\')
     print('    -m "anthropic/claude-sonnet-4-5-20250929"')
     print()

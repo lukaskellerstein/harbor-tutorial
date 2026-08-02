@@ -11,17 +11,13 @@ def check_prerequisites() -> bool:
     print("Checking prerequisites")
     print("=" * 60)
 
-    result = subprocess.run(
-        ["docker", "info"], capture_output=True, text=True, check=False
-    )
+    result = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False)
     if result.returncode != 0:
         print("ERROR: Docker is not running. Please start Docker and try again.")
         return False
     print("[OK] Docker is running")
 
-    result = subprocess.run(
-        ["harbor", "--help"], capture_output=True, text=True, check=False
-    )
+    result = subprocess.run(["harbor", "--help"], capture_output=True, text=True, check=False)
     if result.returncode != 0:
         print("ERROR: Harbor is not installed. Run: uv tool install harbor")
         return False

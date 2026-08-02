@@ -26,7 +26,7 @@ echo "----------------------"
 
 # 1. Skill: only .claude/skills/harbor-report/SKILL.md specifies this layout.
 if [ "$(sed -n '1p' "$REPORT" 2>/dev/null)" = "# Build Report" ] \
-   && grep -qx 'Verified-By: fact-checker' "$REPORT" 2>/dev/null; then
+  && grep -qx 'Verified-By: fact-checker' "$REPORT" 2>/dev/null; then
   pass "skill loaded (report follows the harbor-report format)"
 else
   fail "skill did not load (report header/Verified-By line missing)"
@@ -51,7 +51,7 @@ fi
 #    Look in both places -- the live config dir, and the copy the Stop hook
 #    makes into the mounted log dir.
 if find /app/.claude/projects /logs/agent/sessions/projects \
-     -path '*subagents*' -name '*.jsonl' 2>/dev/null | grep -q .; then
+  -path '*subagents*' -name '*.jsonl' 2>/dev/null | grep -q .; then
   pass "subagent loaded (fact-checker ran in its own context)"
 else
   fail "subagent did not load (no subagents/*.jsonl transcript)"
@@ -65,4 +65,4 @@ else
 fi
 
 echo "Score: $PASSED/$TOTAL"
-python3 -c "print($PASSED / $TOTAL)" > /logs/verifier/reward.txt
+python3 -c "print($PASSED / $TOTAL)" >/logs/verifier/reward.txt

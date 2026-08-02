@@ -2,21 +2,21 @@
 mkdir -p /logs/verifier
 
 if [ ! -f /home/user/transform.py ]; then
-    echo "0.0" > /logs/verifier/reward.txt
-    echo "FAIL: transform.py not found"
-    exit 0
+  echo "0.0" >/logs/verifier/reward.txt
+  echo "FAIL: transform.py not found"
+  exit 0
 fi
 
 python3 /home/user/transform.py 2>/dev/null
 
 if [ ! -f /home/user/output.json ]; then
-    echo "0.0" > /logs/verifier/reward.txt
-    echo "FAIL: output.json not found"
-    exit 0
+  echo "0.0" >/logs/verifier/reward.txt
+  echo "FAIL: output.json not found"
+  exit 0
 fi
 
 # Validate with Python for reliable JSON comparison
-python3 << 'PYEOF'
+python3 <<'PYEOF'
 import json
 
 with open("/home/user/output.json") as f:

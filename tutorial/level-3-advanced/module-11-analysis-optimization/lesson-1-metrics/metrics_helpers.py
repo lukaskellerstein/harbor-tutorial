@@ -32,9 +32,7 @@ class AggregateMetrics:
     pass_at_1: float = 0.0
 
 
-def parse_trial_results(
-    jobs_dir: Path, tasks_dir: Path
-) -> list[TrialInfo]:
+def parse_trial_results(jobs_dir: Path, tasks_dir: Path) -> list[TrialInfo]:
     """Parse result.json files from the latest job and enrich with task metadata.
 
     Args:
@@ -48,9 +46,7 @@ def parse_trial_results(
         return []
 
     # Find the most recent job directory
-    job_dirs = sorted(
-        [d for d in jobs_dir.iterdir() if d.is_dir()], reverse=True
-    )
+    job_dirs = sorted([d for d in jobs_dir.iterdir() if d.is_dir()], reverse=True)
     if not job_dirs:
         return []
 
@@ -209,8 +205,5 @@ def display_grouped_by_difficulty(trials: list[TrialInfo]) -> None:
 
     for difficulty, group_trials in sorted_groups:
         m = compute_metrics(group_trials)
-        print(
-            f"  {difficulty:<12} {m.count:>6} {m.mean_reward:>8.4f} "
-            f"{m.pass_rate:>9.1%} {m.pass_at_1:>7.1%}"
-        )
+        print(f"  {difficulty:<12} {m.count:>6} {m.mean_reward:>8.4f} {m.pass_rate:>9.1%} {m.pass_at_1:>7.1%}")
     print()

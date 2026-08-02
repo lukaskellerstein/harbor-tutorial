@@ -139,9 +139,7 @@ def run_with_oracle(task_dirs: list[Path]) -> None:
         print()
         return
 
-    docker_result = subprocess.run(
-        ["docker", "info"], capture_output=True, text=True, check=False
-    )
+    docker_result = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False)
     if docker_result.returncode != 0:
         print("  Docker not running. Start Docker Desktop to run tasks.")
         print()
@@ -155,8 +153,10 @@ def run_with_oracle(task_dirs: list[Path]) -> None:
 
     result = subprocess.run(
         ["harbor", "run", "-p", str(first), "-a", "oracle"],
-        capture_output=True, text=True,
-        cwd=str(Path(__file__).parent), timeout=300,
+        capture_output=True,
+        text=True,
+        cwd=str(Path(__file__).parent),
+        timeout=300,
         check=False,
     )
     if result.stdout:

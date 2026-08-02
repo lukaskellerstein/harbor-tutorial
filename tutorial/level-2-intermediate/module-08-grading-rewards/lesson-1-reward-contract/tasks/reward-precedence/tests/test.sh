@@ -18,27 +18,27 @@ REPORT=/app/report.md
 
 FOUND=0
 for SECTION in "## Summary" "## Findings" "## Conclusion"; do
-    if grep -qF "$SECTION" "$REPORT" 2>/dev/null; then
-        FOUND=$((FOUND + 1))
-    fi
+  if grep -qF "$SECTION" "$REPORT" 2>/dev/null; then
+    FOUND=$((FOUND + 1))
+  fi
 done
 SECTIONS=$(awk "BEGIN {printf \"%.2f\", $FOUND / 3}")
 
 if head -n 1 "$REPORT" 2>/dev/null | grep -q "^# "; then
-    TITLE=1
+  TITLE=1
 else
-    TITLE=0
+  TITLE=0
 fi
 
 if [ -f "$REPORT" ]; then
-    WORDS=$(wc -w < "$REPORT")
+  WORDS=$(wc -w <"$REPORT")
 else
-    WORDS=0
+  WORDS=0
 fi
 if [ "$WORDS" -ge 50 ]; then
-    LENGTH=1
+  LENGTH=1
 else
-    LENGTH=0
+  LENGTH=0
 fi
 
 # The "reward" roll-up. Anything that consumes the one-dimensional convention
@@ -49,9 +49,9 @@ ROLLUP=$(awk "BEGIN {printf \"%.2f\", ($SECTIONS + $TITLE + $LENGTH) / 3}")
 echo "sections=$SECTIONS title=$TITLE length=$LENGTH -> reward=$ROLLUP"
 echo "(also writing reward.txt = 0.00, which Harbor will ignore)"
 
-echo "0.00" > /logs/verifier/reward.txt
+echo "0.00" >/logs/verifier/reward.txt
 
-cat > /logs/verifier/reward.json <<EOF
+cat >/logs/verifier/reward.json <<EOF
 {
   "sections": $SECTIONS,
   "title": $TITLE,

@@ -3,7 +3,7 @@
 # Reference solution: create the word-counting script.
 # The oracle agent runs this file to validate the task setup.
 
-cat > /app/count_words.py << 'PYTHON'
+cat >/app/count_words.py <<'PYTHON'
 def main():
     with open("/app/input.txt", "r") as f:
         text = f.read()

@@ -29,10 +29,15 @@ def check_prerequisites() -> bool:
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
     if docker_ok:
-        docker_ok = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True,
-            check=False,
-        ).returncode == 0
+        docker_ok = (
+            subprocess.run(
+                ["docker", "info"],
+                capture_output=True,
+                text=True,
+                check=False,
+            ).returncode
+            == 0
+        )
     print(f"  Docker: {'[OK]' if docker_ok else '[FAIL] not running'}")
     print(f"  Harbor: {'[OK]' if harbor_ok else '[FAIL] not found'}")
     print()
@@ -92,7 +97,9 @@ def run_task(task_name: str, label: str) -> tuple[str, str]:
     start = time.time()
     result = subprocess.run(
         ["harbor", "run", "-p", str(task_path), "-a", "oracle"],
-        capture_output=True, text=True, cwd=str(LESSON_DIR),
+        capture_output=True,
+        text=True,
+        cwd=str(LESSON_DIR),
         check=False,
     )
     elapsed = f"{time.time() - start:.1f}s"
@@ -125,7 +132,7 @@ def run_all_tasks() -> None:
     print("=" * 60)
     print()
     print(f"  {'Task':<32} {'Status':<8} {'Time':<8}")
-    print(f"  {'-'*32} {'-'*8} {'-'*8}")
+    print(f"  {'-' * 32} {'-' * 8} {'-' * 8}")
     for label, status, elapsed in results:
         print(f"  {label:<32} {status:<8} {elapsed:<8}")
     print()

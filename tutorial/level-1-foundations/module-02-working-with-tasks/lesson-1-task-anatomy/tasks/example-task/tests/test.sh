@@ -9,9 +9,9 @@ mkdir -p /logs/verifier
 
 # Check if the script exists
 if [ ! -f /app/count_words.py ]; then
-    echo "FAIL: /app/count_words.py does not exist"
-    echo 0 > /logs/verifier/reward.txt
-    exit 0
+  echo "FAIL: /app/count_words.py does not exist"
+  echo 0 >/logs/verifier/reward.txt
+  exit 0
 fi
 
 # Run the script and capture output
@@ -22,9 +22,9 @@ echo "Expected word count: $EXPECTED"
 echo "Actual output:       $ACTUAL"
 
 if [ "$ACTUAL" = "$EXPECTED" ]; then
-    echo "PASS: Word count is correct"
-    echo 1 > /logs/verifier/reward.txt
+  echo "PASS: Word count is correct"
+  echo 1 >/logs/verifier/reward.txt
 else
-    echo "FAIL: Word count does not match"
-    echo 0 > /logs/verifier/reward.txt
+  echo "FAIL: Word count does not match"
+  echo 0 >/logs/verifier/reward.txt
 fi

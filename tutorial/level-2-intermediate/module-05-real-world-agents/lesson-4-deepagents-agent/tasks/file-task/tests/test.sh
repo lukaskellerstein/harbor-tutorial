@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ ! -f /app/calculator.py ]; then
   echo "FAIL: /app/calculator.py does not exist"
-  echo 0 > /logs/verifier/reward.txt
+  echo 0 >/logs/verifier/reward.txt
   exit 0
 fi
 
@@ -30,8 +30,8 @@ else:
 
 if echo "$OUTPUT" | grep -q "PASS"; then
   echo "PASS: All calculator functions work correctly"
-  echo 1 > /logs/verifier/reward.txt
+  echo 1 >/logs/verifier/reward.txt
 else
   echo "FAIL: $OUTPUT"
-  echo 0 > /logs/verifier/reward.txt
+  echo 0 >/logs/verifier/reward.txt
 fi

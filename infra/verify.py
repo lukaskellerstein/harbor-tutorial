@@ -18,9 +18,7 @@ def check_command(name: str, cmd: list[str], expected: str = "") -> bool:
     if not path:
         return check(name, False, f"`{cmd[0]}` not found in PATH")
     try:
-        result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=10, check=False
-        )
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=10, check=False)
         version = result.stdout.strip() or result.stderr.strip()
         version_line = version.splitlines()[0] if version else "installed"
         return check(name, True, version_line)
@@ -82,7 +80,10 @@ def main() -> None:
     print("\n2. Docker Daemon")
     try:
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, timeout=10,
+            ["docker", "info"],
+            capture_output=True,
+            text=True,
+            timeout=10,
             check=False,
         )
         results.append(check("Docker daemon running", result.returncode == 0))

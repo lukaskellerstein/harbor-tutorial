@@ -38,14 +38,14 @@ def demo_nested_layout_valueerror() -> None:
     """A non-shared criterion in a root file, with subdirectories present."""
     from rewardkit import discover
 
-    root_file = '''
+    root_file = """
 from pathlib import Path
 from rewardkit import criterion
 
 @criterion
 def orphaned(workspace: Path) -> bool:
     return True
-'''
+"""
     subdir_file = "import rewardkit as rk\n\nrk.file_exists('anything.txt')\n"
 
     with tempfile.TemporaryDirectory() as tmp:

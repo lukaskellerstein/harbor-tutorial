@@ -45,12 +45,7 @@ def check_prerequisites() -> bool:
 
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
-    docker_running = (
-        subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, check=False
-        ).returncode
-        == 0
-    )
+    docker_running = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False).returncode == 0
     gateway_ok = gateway_reachable()
 
     print(f"  Docker CLI:      {'[OK]' if docker_ok else '[MISSING]'}")
@@ -99,8 +94,8 @@ def explain_rubric() -> None:
     print()
     print("    - 'contains_profanity': Does the poem contain profanity? (score: yes/no)")
     print()
-    print("  so a name that disagrees with the description -- \"no_profanity\"")
-    print("  paired with \"does it contain profanity?\" -- puts a contradiction")
+    print('  so a name that disagrees with the description -- "no_profanity"')
+    print('  paired with "does it contain profanity?" -- puts a contradiction')
     print("  in front of the judge. It answers the label, negate flips the")
     print("  already-correct answer, and a clean poem scores 0.00. Name")
     print("  criteria after the QUESTION, not after the outcome you want.")
@@ -182,8 +177,8 @@ def step_aggregations(details: dict | None) -> None:
     print()
     print("  Look at the gap between weighted_mean and all_pass above. They are")
     print("  scoring the same judgement and they disagree wildly, because")
-    print("  all_pass asks \"is every criterion > 0?\" -- NOT \"is every criterion")
-    print("  1.0?\". On graded criteria that is a very low bar: a likert answer")
+    print('  all_pass asks "is every criterion > 0?" -- NOT "is every criterion')
+    print('  1.0?". On graded criteria that is a very low bar: a likert answer')
     print("  of 2/5 normalises to 0.25 and sails through. all_pass only bites")
     print("  when something scores exactly 0.0, which for likert means the")
     print("  judge picked the very bottom of the scale.")
@@ -221,7 +216,7 @@ def step_overrides() -> None:
     print("  means you can re-grade an entire benchmark with a stronger judge")
     print("  without a single diff to the rubrics.")
     print()
-    print("  Agent judges: set judge = \"claude-code\" (or \"codex\") and the")
+    print('  Agent judges: set judge = "claude-code" (or "codex") and the')
     print("  judge gets a filesystem instead of a fixed list of files -- it can")
     print("  explore the workspace, run things, and grade what it finds:")
     print()
@@ -253,7 +248,7 @@ def show_summary() -> None:
     print("    - [judge] + [[criterion]] or it is not a rubric")
     print("    - `files` decides what the judge can see; without it, nothing")
     print("    - binary / likert(points) / numeric(min,max)")
-    print("    - mode = \"individual\" is REQUIRED if a criterion sets its own")
+    print('    - mode = "individual" is REQUIRED if a criterion sets its own')
     print("      `files` -- batched raises ValueError")
     print("    - negate for natural-language polarity, optional for soft criteria")
     print("    - [scoring] aggregation is a real decision, not a default")

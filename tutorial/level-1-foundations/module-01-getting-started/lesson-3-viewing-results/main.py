@@ -25,7 +25,9 @@ def check_prerequisites() -> bool:
 
     if docker_ok:
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True,
+            ["docker", "info"],
+            capture_output=True,
+            text=True,
             check=False,
         )
         docker_ok = result.returncode == 0
@@ -48,17 +50,21 @@ def run_evaluation() -> Path | None:
     lesson_dir = Path(__file__).parent
     task_path = lesson_dir / "tasks" / "hello-world"
 
-    print(
-        f"\nRunning: harbor run -p {task_path} -a oracle "
-        "--no-delete --ek keep_containers=true"
-    )
+    print(f"\nRunning: harbor run -p {task_path} -a oracle --no-delete --ek keep_containers=true")
     print("(Using the oracle agent to guarantee a successful trial)")
     print()
 
     result = subprocess.run(
         [
-            "harbor", "run", "-p", str(task_path), "-a", "oracle",
-            "--no-delete", "--ek", "keep_containers=true",
+            "harbor",
+            "run",
+            "-p",
+            str(task_path),
+            "-a",
+            "oracle",
+            "--no-delete",
+            "--ek",
+            "keep_containers=true",
         ],
         capture_output=True,
         text=True,

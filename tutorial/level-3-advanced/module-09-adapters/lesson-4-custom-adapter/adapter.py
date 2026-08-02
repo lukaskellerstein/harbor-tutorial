@@ -186,26 +186,16 @@ def generate_task_directory(
     (task_dir / "solution").mkdir(parents=True, exist_ok=True)
 
     # Write all task files
-    (task_dir / "instruction.md").write_text(
-        generate_instruction(challenge), encoding="utf-8"
-    )
-    (task_dir / "task.toml").write_text(
-        generate_task_toml(challenge, dataset_name), encoding="utf-8"
-    )
-    (task_dir / "environment" / "Dockerfile").write_text(
-        generate_dockerfile(challenge), encoding="utf-8"
-    )
+    (task_dir / "instruction.md").write_text(generate_instruction(challenge), encoding="utf-8")
+    (task_dir / "task.toml").write_text(generate_task_toml(challenge, dataset_name), encoding="utf-8")
+    (task_dir / "environment" / "Dockerfile").write_text(generate_dockerfile(challenge), encoding="utf-8")
 
     test_script = task_dir / "tests" / "test.sh"
-    test_script.write_text(
-        generate_test_script(challenge), encoding="utf-8"
-    )
+    test_script.write_text(generate_test_script(challenge), encoding="utf-8")
     test_script.chmod(0o755)
 
     solve_script = task_dir / "solution" / "solve.sh"
-    solve_script.write_text(
-        generate_solve_script(challenge), encoding="utf-8"
-    )
+    solve_script.write_text(generate_solve_script(challenge), encoding="utf-8")
     solve_script.chmod(0o755)
 
     return task_dir

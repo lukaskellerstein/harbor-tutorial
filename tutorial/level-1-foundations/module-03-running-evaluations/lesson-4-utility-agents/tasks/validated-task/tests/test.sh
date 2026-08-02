@@ -2,9 +2,9 @@
 mkdir -p /logs/verifier
 
 if [ ! -f /home/user/fizzbuzz.py ]; then
-    echo "0.0" > /logs/verifier/reward.txt
-    echo "FAIL: fizzbuzz.py not found"
-    exit 0
+  echo "0.0" >/logs/verifier/reward.txt
+  echo "FAIL: fizzbuzz.py not found"
+  exit 0
 fi
 
 # Expected output for FizzBuzz 1-20
@@ -32,13 +32,13 @@ Buzz"
 ACTUAL=$(python3 /home/user/fizzbuzz.py 2>/dev/null)
 
 if [ "$ACTUAL" = "$EXPECTED" ]; then
-    echo "1.0" > /logs/verifier/reward.txt
-    echo "PASS: FizzBuzz output is correct."
+  echo "1.0" >/logs/verifier/reward.txt
+  echo "PASS: FizzBuzz output is correct."
 else
-    echo "0.0" > /logs/verifier/reward.txt
-    echo "FAIL: Output does not match expected FizzBuzz sequence."
-    echo "--- Expected ---"
-    echo "$EXPECTED"
-    echo "--- Got ---"
-    echo "$ACTUAL"
+  echo "0.0" >/logs/verifier/reward.txt
+  echo "FAIL: Output does not match expected FizzBuzz sequence."
+  echo "--- Expected ---"
+  echo "$EXPECTED"
+  echo "--- Got ---"
+  echo "$ACTUAL"
 fi

@@ -141,32 +141,34 @@ def show_check_output_format() -> None:
     print()
 
     example: dict = {
-        "results": [{
-            "task_name": "quality-task",
-            "checks": {
-                "instruction_completeness": {
-                    "outcome": "pass",
-                    "explanation": "All five test behaviors are described.",
+        "results": [
+            {
+                "task_name": "quality-task",
+                "checks": {
+                    "instruction_completeness": {
+                        "outcome": "pass",
+                        "explanation": "All five test behaviors are described.",
+                    },
+                    "test_coverage": {
+                        "outcome": "pass",
+                        "explanation": "Tests cover the core operations.",
+                    },
+                    "solution_correctness": {
+                        "outcome": "pass",
+                        "explanation": "Solution implements all requirements.",
+                    },
+                    "environment_setup": {
+                        "outcome": "pass",
+                        "explanation": "Dockerfile creates correct setup.",
+                    },
+                    "anti_cheating": {
+                        "outcome": "pass",
+                        "explanation": "Tests/solution are not in the image.",
+                    },
                 },
-                "test_coverage": {
-                    "outcome": "pass",
-                    "explanation": "Tests cover the core operations.",
-                },
-                "solution_correctness": {
-                    "outcome": "pass",
-                    "explanation": "Solution implements all requirements.",
-                },
-                "environment_setup": {
-                    "outcome": "pass",
-                    "explanation": "Dockerfile creates correct setup.",
-                },
-                "anti_cheating": {
-                    "outcome": "pass",
-                    "explanation": "Tests/solution are not in the image.",
-                },
-            },
-            "cost_usd": 0.0142,
-        }]
+                "cost_usd": 0.0142,
+            }
+        ]
     }
     print(json.dumps(example, indent=2))
     print()
@@ -247,22 +249,23 @@ def show_analyze_command(trial_dir: str | None) -> None:
     print()
 
     example: dict = {
-        "results": [{
-            "trial_name": "quality-task_oracle_0",
-            "summary": "The oracle agent ran the solution script. "
-            "All 5 tests passed with reward 1.0.",
-            "checks": {
-                "reward_hacking": {
-                    "outcome": "pass",
-                    "explanation": "Agent solved legitimately via solution script.",
+        "results": [
+            {
+                "trial_name": "quality-task_oracle_0",
+                "summary": "The oracle agent ran the solution script. All 5 tests passed with reward 1.0.",
+                "checks": {
+                    "reward_hacking": {
+                        "outcome": "pass",
+                        "explanation": "Agent solved legitimately via solution script.",
+                    },
+                    "task_specification": {
+                        "outcome": "pass",
+                        "explanation": "Instructions clearly specify all behavior.",
+                    },
                 },
-                "task_specification": {
-                    "outcome": "pass",
-                    "explanation": "Instructions clearly specify all behavior.",
-                },
-            },
-            "cost_usd": 0.0038,
-        }]
+                "cost_usd": 0.0038,
+            }
+        ]
     }
     print(json.dumps(example, indent=2))
     print()

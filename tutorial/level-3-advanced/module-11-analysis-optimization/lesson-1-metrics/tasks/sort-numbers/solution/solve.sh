@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > /home/user/sort_numbers.py << 'PYEOF'
+cat >/home/user/sort_numbers.py <<'PYEOF'
 with open("/home/user/numbers.txt") as f:
     numbers = [int(line.strip()) for line in f if line.strip()]
 numbers.sort()

@@ -28,7 +28,9 @@ def check_harbor_installed() -> bool:
     try:
         result = subprocess.run(
             ["harbor", "--version"],
-            capture_output=True, text=True, timeout=10,
+            capture_output=True,
+            text=True,
+            timeout=10,
             check=False,
         )
         if result.returncode == 0:
@@ -141,7 +143,9 @@ def show_browsing() -> None:
     try:
         result = subprocess.run(
             ["harbor", "dataset", "list"],
-            capture_output=True, text=True, timeout=30,
+            capture_output=True,
+            text=True,
+            timeout=30,
             check=False,
         )
         if result.returncode == 0 and result.stdout.strip():
