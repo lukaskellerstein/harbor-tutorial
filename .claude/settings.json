@@ -40,6 +40,15 @@
       "Write",
       "mcp__playwright-harbor-tutor"
     ],
+    "ask": [
+      "Bash(docker compose down -v:*)",
+      "Bash(docker compose down --volumes:*)",
+      "Bash(docker volume rm:*)",
+      "Bash(docker system prune:*)",
+      "Bash(docker image prune:*)",
+      "Bash(docker rmi:*)",
+      "Bash(docker image rm:*)"
+    ],
     "deny": [
       "Bash(rm -rf /)",
       "Bash(rm -rf /*)",
@@ -80,6 +89,7 @@
       "Edit(~/.zsh_secrets)",
       "Read(~/.config/sops/age/**)",
       "Edit(~/.config/sops/age/**)",
+      "Edit(~/.secrets/**)",
 
       "Read(./secrets/**)",
       "Read(./.secrets/**)",
@@ -87,6 +97,10 @@
       "Read(./**/.env.local)",
       "Read(./**/.env.production)",
       "Read(./**/.env.staging)",
+      "Edit(./**/.env)",
+      "Edit(./**/.env.local)",
+      "Edit(./**/.env.production)",
+      "Edit(./**/.env.staging)",
       "Read(./.npmrc)",
       "Read(./**/*credentials*.json)",
       "Read(./**/serviceAccountKey.json)",

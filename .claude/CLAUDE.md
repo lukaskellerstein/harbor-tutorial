@@ -19,7 +19,11 @@ Reference files: [`rules/01-project-config.md`](rules/01-project-config.md)
 [`rules/09-code-quality.md`](rules/09-code-quality.md),
 [`rules/10-tech-stack.md`](rules/10-tech-stack.md),
 [`rules/11-communication.md`](rules/11-communication.md),
-[`rules/12-security.md`](rules/12-security.md).
+[`rules/12-security.md`](rules/12-security.md),
+[`rules/machine-tools.md`](rules/machine-tools.md) (the `nvim-tools` and
+`lukas-ps` CLIs — pre-approved, read-only),
+[`rules/lsp.md`](rules/lsp.md) (the `LSP` tool — only in repos that opted in,
+and deferred, so it must be loaded before it can be called).
 
 Project-specific references, all of them authoritative over the generic files
 above where they overlap: [`rules/tutorial-structure.md`](rules/tutorial-structure.md),
@@ -55,11 +59,14 @@ you to test.
   natively on the host at 1234, not in a container — it needs GPU access.
 - **Secrets** — every `.env` in this repo is gitignored and none is committed.
   `infra/.env.example` is the committed template for the support stack, and its
-  hosted-provider keys are intentionally blank. Two lesson leaves under
-  `module-05-real-world-agents` also read a leaf-local `.env` via `python-dotenv`
-  for `CLAUDE_CODE_OAUTH_TOKEN` — an account-wide credential, so prefer letting
-  `~/Projects/.envrc` deliver it from `~/.secrets/secrets.enc.yaml` and leave the
-  leaf `.env` absent. See [`rules/12-security.md`](rules/12-security.md).
+  hosted-provider keys are intentionally blank. **No leaf `.env` exists, and none
+  should be created** (audited 2026-08-02): `CLAUDE_CODE_OAUTH_TOKEN` is an
+  account-wide credential, so it reaches the two `module-05-real-world-agents`
+  leaves from the environment — `~/Projects/.envrc` delivers it from
+  `~/.secrets/secrets.enc.yaml`, and `load_dotenv` falls through to `os.environ`
+  when the file is absent. Adding the key to that store is `secret-edit`; writing
+  it into a file here is the thing this bullet exists to prevent. See
+  [`rules/12-security.md`](rules/12-security.md).
 - **Harbor is CLI-first.** Most lessons shell out to `harbor`; the Python API is
   used only for custom agents and adapters.
 
@@ -83,21 +90,9 @@ These actions are pre-approved. Run them yourself when the situation calls for i
 - `uv run python infra/verify.py`
 - `uv tree` / `uv pip list` inside a lesson leaf
 
-Two CLIs from this machine's mac-setup are always on `PATH` (`~/.local/bin`):
-
-- `nvim-tools --json --all` — every error, lint, formatting and type finding
-  across this repo, one JSON envelope, from the same gated tools the editor
-  runs. `--json` alone skips the slow type checker; `--status --path <file>`
-  answers for one file; `--diff-all` previews the safe fixes without writing.
-  A tool reporting `gated-off` has no config in this repo — that is the
-  "no config, no tool" contract working, not a breakage.
-- `lukas-ps --json [name]` — RAM/CPU of any process tree on this machine (the
-  dev server, a test run, an editor); `[name]` filters by process name,
-  `-p PID` filters to the tree owning that process.
-
-`nvim-tools --fix-all` exists but **writes across the repo** — it is a
-mutation, not inspection; run `--diff-all` and ask first unless it is listed
-above as pre-approved.
+This machine's own `nvim-tools` and `lukas-ps` are pre-approved too, and are
+documented once in [`rules/machine-tools.md`](rules/machine-tools.md) — do not
+restate them here.
 
 ### Pre-approved mutations
 

@@ -51,17 +51,15 @@ What to actually check, beyond "it exited 0":
 - **Clean up.** `docker compose down` only if you brought it up and the user is
   not mid-session; never `-v`, which destroys the `qdrant-data` volume.
 
-**Every code change** — repo-wide lint / format / type check, from this
-machine's gated tooling:
+**Every code change** — repo-wide lint / format / type check:
 
 ```bash
 nvim-tools --json --all
 ```
 
-Your change must not add findings (compare against the Understand-step
-baseline). Tools reporting `gated-off` have no config in this repo — expected
-under "no config, no tool", not a failure. This complements running the lesson;
-it never replaces it.
+Your change must not add findings, measured against the baseline you took in the
+Understand step. How to read the output (including `gated-off`), and why this
+never replaces running the lesson: [`machine-tools.md`](machine-tools.md).
 
 **Non-testable changes** (docs, config, IaC only): explicitly state why no
 runtime test is needed.
