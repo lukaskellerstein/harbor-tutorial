@@ -23,10 +23,15 @@ def check_prerequisites() -> bool:
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
     if docker_ok:
-        docker_ok = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True,
-            check=False,
-        ).returncode == 0
+        docker_ok = (
+            subprocess.run(
+                ["docker", "info"],
+                capture_output=True,
+                text=True,
+                check=False,
+            ).returncode
+            == 0
+        )
     print(f"  Docker: {'[OK]' if docker_ok else '[FAIL] not running'}")
     print(f"  Harbor: {'[OK]' if harbor_ok else '[FAIL] not found'}")
     print()
@@ -43,20 +48,13 @@ def explain_api() -> None:
     print("async interface to the running container.")
     print()
     methods = [
-        ("exec(command, cwd, env, timeout_sec, user) -> ExecResult",
-         "Run a shell command inside the container"),
-        ("upload_file(source_path, target_path)",
-         "Copy a file from host into the container"),
-        ("download_file(source_path, target_path)",
-         "Copy a file from the container to host"),
-        ("upload_dir(source_dir, target_dir)",
-         "Copy a directory from host into the container"),
-        ("download_dir(source_dir, target_dir)",
-         "Copy a directory from the container to host"),
-        ("is_file(path) -> bool",
-         "Check if a container path is a regular file"),
-        ("is_dir(path) -> bool",
-         "Check if a container path is a directory"),
+        ("exec(command, cwd, env, timeout_sec, user) -> ExecResult", "Run a shell command inside the container"),
+        ("upload_file(source_path, target_path)", "Copy a file from host into the container"),
+        ("download_file(source_path, target_path)", "Copy a file from the container to host"),
+        ("upload_dir(source_dir, target_dir)", "Copy a directory from host into the container"),
+        ("download_dir(source_dir, target_dir)", "Copy a directory from the container to host"),
+        ("is_file(path) -> bool", "Check if a container path is a regular file"),
+        ("is_dir(path) -> bool", "Check if a container path is a directory"),
     ]
     for sig, desc in methods:
         print(f"  {sig}")
@@ -78,7 +76,7 @@ def explain_exec_result() -> None:
     print("  Usage:")
     print('    result = await environment.exec(command="ls /app")')
     print("    if result.return_code == 0:")
-    print('        print(result.stdout)')
+    print("        print(result.stdout)")
     print()
 
 
@@ -118,7 +116,9 @@ def run_harbor(label: str, args: list[str]) -> None:
     print()
     result = subprocess.run(
         ["harbor"] + args,
-        capture_output=True, text=True, cwd=str(LESSON_DIR),
+        capture_output=True,
+        text=True,
+        cwd=str(LESSON_DIR),
         check=False,
     )
     if result.stdout:
@@ -144,10 +144,16 @@ def run_evaluations() -> None:
     print("Step 6: Running with EnvironmentExplorerAgent")
     print("=" * 60)
     print()
-    run_harbor("Explorer agent completed", [
-        "run", "-p", str(TASK_DIR),
-        "--agent", "agent:EnvironmentExplorerAgent",
-    ])
+    run_harbor(
+        "Explorer agent completed",
+        [
+            "run",
+            "-p",
+            str(TASK_DIR),
+            "--agent",
+            "agent:EnvironmentExplorerAgent",
+        ],
+    )
 
 
 def show_summary() -> None:

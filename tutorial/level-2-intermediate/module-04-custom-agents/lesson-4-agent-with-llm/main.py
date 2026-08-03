@@ -128,9 +128,7 @@ def check_prerequisites() -> bool:
     ok = True
 
     if shutil.which("docker"):
-        result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, check=False
-        )
+        result = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False)
         if result.returncode == 0:
             print("  [OK] Docker is running")
         else:
@@ -170,10 +168,14 @@ def run_evaluation() -> None:
     task_path = LESSON_DIR / "tasks" / "llm-task"
 
     cmd = [
-        "harbor", "run",
-        "-p", str(task_path),
-        "--agent", "agent:LLMAgent",
-        "-m", MODEL,
+        "harbor",
+        "run",
+        "-p",
+        str(task_path),
+        "--agent",
+        "agent:LLMAgent",
+        "-m",
+        MODEL,
     ]
 
     print(f"  Running: {' '.join(cmd)}")

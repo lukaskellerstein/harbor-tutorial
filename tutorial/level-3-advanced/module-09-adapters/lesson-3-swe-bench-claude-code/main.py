@@ -30,7 +30,9 @@ def check_prerequisites() -> bool:
     ok = True
     if shutil.which("docker"):
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True,
+            ["docker", "info"],
+            capture_output=True,
+            text=True,
             check=False,
         )
         if result.returncode == 0:

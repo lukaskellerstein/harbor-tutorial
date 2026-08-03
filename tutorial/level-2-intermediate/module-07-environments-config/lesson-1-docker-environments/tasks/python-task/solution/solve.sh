@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > /app/check_deps.py << 'PYEOF'
+cat >/app/check_deps.py <<'PYEOF'
 import requests
 
 response = requests.get("https://httpbin.org/get")

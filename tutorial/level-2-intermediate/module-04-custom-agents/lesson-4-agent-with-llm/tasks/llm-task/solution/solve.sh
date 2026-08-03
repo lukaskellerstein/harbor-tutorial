@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > /home/user/primes.py << 'PYEOF'
+cat >/home/user/primes.py <<'PYEOF'
 def is_prime(n: int) -> bool:
     if n < 2:
         return False

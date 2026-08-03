@@ -25,9 +25,7 @@ def check_prerequisites() -> bool:
         return False
     print("  [OK] Harbor CLI is installed")
 
-    result = subprocess.run(
-        ["docker", "info"], capture_output=True, text=True, check=False
-    )
+    result = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False)
     if result.returncode != 0:
         print("  [FAIL] Docker daemon is not running. Start Docker Desktop.")
         return False
@@ -116,13 +114,9 @@ def run_comparison() -> None:
     configs_dir = Path(__file__).parent / "configs"
     cwd = Path(__file__).parent
 
-    serial_time = run_evaluation(
-        configs_dir / "serial.yaml", "Serial (n_concurrent_trials=1)", cwd
-    )
+    serial_time = run_evaluation(configs_dir / "serial.yaml", "Serial (n_concurrent_trials=1)", cwd)
     print()
-    parallel_time = run_evaluation(
-        configs_dir / "parallel.yaml", "Parallel (n_concurrent_trials=4)", cwd
-    )
+    parallel_time = run_evaluation(configs_dir / "parallel.yaml", "Parallel (n_concurrent_trials=4)", cwd)
 
     print()
     print("=" * 60)

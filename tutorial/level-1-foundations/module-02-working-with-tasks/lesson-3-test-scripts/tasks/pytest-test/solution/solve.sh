@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > /app/string_utils.py << 'PYTHON'
+cat >/app/string_utils.py <<'PYTHON'
 def reverse_string(s: str) -> str:
     return s[::-1]
 

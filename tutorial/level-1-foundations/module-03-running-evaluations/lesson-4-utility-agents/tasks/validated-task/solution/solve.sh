@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > /home/user/fizzbuzz.py << 'PYEOF'
+cat >/home/user/fizzbuzz.py <<'PYEOF'
 for i in range(1, 21):
     if i % 15 == 0:
         print("FizzBuzz")

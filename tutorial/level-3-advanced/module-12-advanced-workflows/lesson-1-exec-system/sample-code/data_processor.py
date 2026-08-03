@@ -19,9 +19,7 @@ def transform_records(records: list[dict]) -> list[dict]:
     return result
 
 
-def filter_by_field(
-    records: list[dict], field: str, value: Any
-) -> list[dict]:
+def filter_by_field(records: list[dict], field: str, value: Any) -> list[dict]:
     # Bug: no handling for missing field in record
     return [r for r in records if r[field] == value]
 

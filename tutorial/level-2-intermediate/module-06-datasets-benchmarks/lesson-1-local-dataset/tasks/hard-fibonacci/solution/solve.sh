@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > /workspace/fibonacci.py << 'PYEOF'
+cat >/workspace/fibonacci.py <<'PYEOF'
 def fibonacci(n: int) -> list[int]:
     if n <= 0:
         return []

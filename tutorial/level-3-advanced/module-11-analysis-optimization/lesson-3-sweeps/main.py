@@ -36,7 +36,10 @@ def check_prerequisites() -> bool:
         print("ERROR: Docker is not installed. Please install Docker first.")
         return False
     result = subprocess.run(
-        ["docker", "info"], capture_output=True, text=True, timeout=15,
+        ["docker", "info"],
+        capture_output=True,
+        text=True,
+        timeout=15,
         check=False,
     )
     if result.returncode != 0:
@@ -62,10 +65,15 @@ def run_sweep() -> list[Path]:
     print()
 
     cmd = [
-        "harbor", "sweeps", "run",
-        "-c", str(SWEEP_CONFIG),
-        "--max-sweeps", "2",
-        "--trials-per-task", "1",
+        "harbor",
+        "sweeps",
+        "run",
+        "-c",
+        str(SWEEP_CONFIG),
+        "--max-sweeps",
+        "2",
+        "--trials-per-task",
+        "1",
     ]
 
     print(f"Command: {' '.join(cmd)}")

@@ -78,8 +78,14 @@ def run_demo_trial() -> None:
     print("-" * 60)
 
     cmd = [
-        "harbor", "trial", "start",
-        "-p", "tasks/hello-task", "-a", "oracle", "--delete",
+        "harbor",
+        "trial",
+        "start",
+        "-p",
+        "tasks/hello-task",
+        "-a",
+        "oracle",
+        "--delete",
     ]
 
     result = run_harbor_command(cmd)

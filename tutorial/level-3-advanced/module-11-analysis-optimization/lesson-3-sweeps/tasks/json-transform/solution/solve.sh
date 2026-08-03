@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > /home/user/transform.py << 'PYEOF'
+cat >/home/user/transform.py <<'PYEOF'
 import json
 
 with open("/home/user/input.json") as f:

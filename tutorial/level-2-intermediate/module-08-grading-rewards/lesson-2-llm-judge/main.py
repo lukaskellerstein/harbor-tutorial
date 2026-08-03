@@ -32,12 +32,7 @@ def check_prerequisites() -> bool:
 
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
-    docker_running = (
-        subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, check=False
-        ).returncode
-        == 0
-    )
+    docker_running = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False).returncode == 0
     gateway_ok = gateway_reachable()
 
     print(f"  Docker CLI:      {'[OK]' if docker_ok else '[MISSING]'}")
@@ -67,8 +62,8 @@ def explain_judging() -> None:
     print("  This task asks for a FUNNY poem. No amount of grep will score that.")
     print()
     print("  The rules that still apply:")
-    print("    1. Write the rubric down. \"Is it good?\" is not gradable;")
-    print("       \"is the joke landing?\" is.")
+    print('    1. Write the rubric down. "Is it good?" is not gradable;')
+    print('       "is the joke landing?" is.')
     print("    2. Run every deterministic check FIRST. Never spend an LLM call")
     print("       on a question len() can answer.")
     print("    3. Demand structured output and validate it. A model that")

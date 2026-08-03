@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > /app/sort_numbers.py <<'EOF'
+cat >/app/sort_numbers.py <<'EOF'
 """Sort the integers in numbers.txt into sorted.txt."""
 
 from pathlib import Path

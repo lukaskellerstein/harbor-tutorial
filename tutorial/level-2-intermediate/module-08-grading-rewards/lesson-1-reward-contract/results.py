@@ -26,7 +26,10 @@ def run_task(lesson_dir: Path, task_name: str, agent: str = "oracle") -> bool:
     print()
 
     result = subprocess.run(
-        cmd, capture_output=True, text=True, cwd=str(lesson_dir),
+        cmd,
+        capture_output=True,
+        text=True,
+        cwd=str(lesson_dir),
         check=False,
     )
     for stream in (result.stdout, result.stderr):

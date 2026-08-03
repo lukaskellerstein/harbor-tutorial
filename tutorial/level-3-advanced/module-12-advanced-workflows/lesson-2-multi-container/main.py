@@ -29,18 +29,22 @@ def check_prerequisites() -> bool:
     try:
         result = subprocess.run(
             ["harbor", "--version"],
-            capture_output=True, text=True, timeout=10,
+            capture_output=True,
+            text=True,
+            timeout=10,
             check=False,
         )
-        print(f"Harbor: {result.stdout.strip()}" if result.returncode == 0
-              else "WARNING: harbor CLI error")
+        print(f"Harbor: {result.stdout.strip()}" if result.returncode == 0 else "WARNING: harbor CLI error")
         ok = ok and result.returncode == 0
     except FileNotFoundError:
         print("WARNING: harbor CLI not found. Install: uv tool install harbor")
         ok = False
     try:
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, timeout=10,
+            ["docker", "info"],
+            capture_output=True,
+            text=True,
+            timeout=10,
             check=False,
         )
         print("Docker: running" if result.returncode == 0 else "WARNING: Docker not running")
@@ -131,21 +135,21 @@ def explain_service_interaction() -> None:
     print()
     print("BaseEnvironment provides service-specific methods:")
     print()
-    print('  # Execute in a sidecar')
-    print('  result = await environment.service_exec(')
+    print("  # Execute in a sidecar")
+    print("  result = await environment.service_exec(")
     print('      command="pg_isready", service="db")')
     print()
-    print('  # Download file from a sidecar')
-    print('  await environment.service_download_file(')
+    print("  # Download file from a sidecar")
+    print("  await environment.service_download_file(")
     print('      source_path="/var/log/app.log",')
     print('      target_path="./app.log", service="db")')
     print()
-    print('  # Download directory from a sidecar')
-    print('  await environment.service_download_dir(')
+    print("  # Download directory from a sidecar")
+    print("  await environment.service_download_dir(")
     print('      source_dir="/app/output/",')
     print('      target_dir="./output/", service="db")')
     print()
-    print('  # Stop a sidecar')
+    print("  # Stop a sidecar")
     print('  await environment.stop_service(service="db")')
     print()
     print("NOTE: Sidecar execs use sh (not bash) and do not inherit")

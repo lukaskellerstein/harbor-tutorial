@@ -33,7 +33,10 @@ def check_prerequisites() -> bool:
 
     try:
         result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, timeout=15,
+            ["docker", "info"],
+            capture_output=True,
+            text=True,
+            timeout=15,
             check=False,
         )
         if result.returncode != 0:
@@ -46,7 +49,10 @@ def check_prerequisites() -> bool:
 
     try:
         result = subprocess.run(
-            ["harbor", "--help"], capture_output=True, text=True, timeout=10,
+            ["harbor", "--help"],
+            capture_output=True,
+            text=True,
+            timeout=10,
             check=False,
         )
         if result.returncode != 0:
@@ -76,17 +82,26 @@ def run_oracle_trial() -> str | None:
         shutil.rmtree(TRIALS_DIR)
 
     cmd = [
-        "harbor", "trial", "start",
-        "-p", str(QUALITY_TASK_DIR),
-        "-a", "oracle",
+        "harbor",
+        "trial",
+        "start",
+        "-p",
+        str(QUALITY_TASK_DIR),
+        "-a",
+        "oracle",
         "--delete",
-        "--trials-dir", str(TRIALS_DIR),
+        "--trials-dir",
+        str(TRIALS_DIR),
     ]
     print(f"Running: {' '.join(cmd)}")
     print()
 
     result = subprocess.run(
-        cmd, capture_output=True, text=True, timeout=120, cwd=str(LESSON_DIR),
+        cmd,
+        capture_output=True,
+        text=True,
+        timeout=120,
+        cwd=str(LESSON_DIR),
         check=False,
     )
 

@@ -81,9 +81,16 @@ def run_oracle_trial() -> dict | None:
     print("-" * 60)
 
     cmd = [
-        "harbor", "trial", "start",
-        "-p", "tasks/validated-task", "-a", "oracle",
-        "--delete", "--trials-dir", "trials/oracle",
+        "harbor",
+        "trial",
+        "start",
+        "-p",
+        "tasks/validated-task",
+        "-a",
+        "oracle",
+        "--delete",
+        "--trials-dir",
+        "trials/oracle",
     ]
 
     run_harbor_command(cmd)
@@ -103,9 +110,16 @@ def run_nop_trial() -> dict | None:
     print("-" * 60)
 
     cmd = [
-        "harbor", "trial", "start",
-        "-p", "tasks/validated-task", "-a", "nop",
-        "--delete", "--trials-dir", "trials/nop",
+        "harbor",
+        "trial",
+        "start",
+        "-p",
+        "tasks/validated-task",
+        "-a",
+        "nop",
+        "--delete",
+        "--trials-dir",
+        "trials/nop",
     ]
 
     run_harbor_command(cmd)

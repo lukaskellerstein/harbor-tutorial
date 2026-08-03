@@ -11,9 +11,7 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-DATABASE_URL = os.environ.get(
-    "DATABASE_URL", "postgresql://harbor:harbor@db:5432/harbordb"
-)
+DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://harbor:harbor@db:5432/harbordb")
 
 
 def get_db_connection() -> psycopg2.extensions.connection:
@@ -28,10 +26,7 @@ def list_users():
     rows = cur.fetchall()
     cur.close()
     conn.close()
-    users = [
-        {"id": r[0], "name": r[1], "email": r[2], "created_at": str(r[3])}
-        for r in rows
-    ]
+    users = [{"id": r[0], "name": r[1], "email": r[2], "created_at": str(r[3])} for r in rows]
     return jsonify(users)
 
 

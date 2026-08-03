@@ -32,12 +32,7 @@ def check_prerequisites() -> bool:
 
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
-    docker_running = (
-        subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, check=False
-        ).returncode
-        == 0
-    )
+    docker_running = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False).returncode == 0
 
     print(f"  Docker CLI:     {'[OK]' if docker_ok else '[MISSING]'}")
     print(f"  Docker running: {'[OK]' if docker_running else '[NOT RUNNING]'}")
@@ -59,7 +54,7 @@ def explain_contract() -> None:
     print("  A verifier communicates with Harbor through ONE of two files:")
     print()
     print("    /logs/verifier/reward.txt    a single float, e.g.  0.67")
-    print('    /logs/verifier/reward.json   a flat JSON object, e.g.')
+    print("    /logs/verifier/reward.json   a flat JSON object, e.g.")
     print('                                 {"accuracy": 0.9, "style": 0.5}')
     print()
     print("  Harbor normalizes both into a dict. reward.txt becomes")
@@ -116,7 +111,7 @@ def step_reward_json() -> None:
     print("  Several reward keys -> the metric is computed PER KEY, so you can")
     print("  see which dimension an agent is failing, not just that it failed.")
     print()
-    print("  Note: this task writes no \"reward\" key. Tooling that assumes the")
+    print('  Note: this task writes no "reward" key. Tooling that assumes the')
     print("  one-dimensional convention (min_reward gates, harbor analyze")
     print("  --passing/--failing, harbor check) will not find a score here.")
     print()
@@ -130,7 +125,7 @@ def step_precedence() -> None:
     print()
     print("  This verifier writes BOTH files, with conflicting values:")
     print("    reward.txt  -> 0.00  (a deliberate lie)")
-    print("    reward.json -> the real scores, plus a \"reward\" roll-up")
+    print('    reward.json -> the real scores, plus a "reward" roll-up')
     print()
 
     if not run_task(LESSON_DIR, "reward-precedence"):
@@ -166,13 +161,13 @@ def show_summary() -> None:
     print("Summary")
     print("=" * 60)
     print()
-    print("  reward.txt   one float -> always {\"reward\": <float>}")
+    print('  reward.txt   one float -> always {"reward": <float>}')
     print("  reward.json  {name: number} -> any number of named dimensions")
     print("  Both present -> reward.json wins, reward.txt is ignored")
     print()
     print("  Rules of thumb:")
     print("    - Reach for reward.json the moment you have >1 thing to measure.")
-    print("    - Always include a \"reward\" roll-up alongside your dimensions,")
+    print('    - Always include a "reward" roll-up alongside your dimensions,')
     print("      or the one-dimensional tooling has nothing to read.")
     print("    - Never write both files -- one of them is dead code.")
     print()

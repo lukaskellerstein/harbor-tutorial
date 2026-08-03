@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > /app/calculator.py << 'PYTHON'
+cat >/app/calculator.py <<'PYTHON'
 def add(a, b):
     return a + b
 

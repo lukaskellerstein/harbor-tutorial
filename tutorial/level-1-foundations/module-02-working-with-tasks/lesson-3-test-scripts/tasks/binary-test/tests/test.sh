@@ -9,9 +9,9 @@ mkdir -p /logs/verifier
 
 # Check if the file exists
 if [ ! -f /app/greeting.txt ]; then
-    echo "FAIL: /app/greeting.txt does not exist"
-    echo 0 > /logs/verifier/reward.txt
-    exit 0
+  echo "FAIL: /app/greeting.txt does not exist"
+  echo 0 >/logs/verifier/reward.txt
+  exit 0
 fi
 
 # Check the contents
@@ -19,9 +19,9 @@ ACTUAL=$(cat /app/greeting.txt | tr -d '\n')
 EXPECTED="Hello, Harbor!"
 
 if [ "$ACTUAL" = "$EXPECTED" ]; then
-    echo "PASS: File content matches"
-    echo 1 > /logs/verifier/reward.txt
+  echo "PASS: File content matches"
+  echo 1 >/logs/verifier/reward.txt
 else
-    echo "FAIL: Expected '$EXPECTED', got '$ACTUAL'"
-    echo 0 > /logs/verifier/reward.txt
+  echo "FAIL: Expected '$EXPECTED', got '$ACTUAL'"
+  echo 0 >/logs/verifier/reward.txt
 fi

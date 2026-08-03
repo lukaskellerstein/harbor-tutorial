@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > /app/textstats.py <<'EOF'
+cat >/app/textstats.py <<'EOF'
 """Word statistics helpers."""
 
 from collections import Counter
@@ -24,7 +24,7 @@ def top_word(text: str) -> str:
     return Counter(words).most_common(1)[0][0]
 EOF
 
-cat > /app/analyze.py <<'EOF'
+cat >/app/analyze.py <<'EOF'
 """Run the text-analysis pipeline over sample.txt."""
 
 import json

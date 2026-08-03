@@ -30,8 +30,11 @@ def show_directory_tree(task_dir: Path) -> None:
     print()
 
     expected = [
-        "instruction.md", "task.toml", "environment/Dockerfile",
-        "tests/test.sh", "solution/solve.sh",
+        "instruction.md",
+        "task.toml",
+        "environment/Dockerfile",
+        "tests/test.sh",
+        "solution/solve.sh",
     ]
     all_present = True
     for rel_path in expected:
@@ -41,8 +44,7 @@ def show_directory_tree(task_dir: Path) -> None:
         print(f"  {'[OK]' if exists else '[MISSING]'} {rel_path}")
 
     print()
-    print("  All five components are present." if all_present
-          else "  WARNING: Some components are missing!")
+    print("  All five components are present." if all_present else "  WARNING: Some components are missing!")
     print()
 
 
@@ -122,9 +124,9 @@ def explain_task_toml() -> None:
     print('    name = "org/task-name"   # Unique identifier')
     print()
     print("  [metadata]")
-    print("    difficulty = \"easy\"       # easy, medium, hard")
-    print("    category = \"programming\" # Task category")
-    print("    tags = [\"python\"]        # Searchable tags")
+    print('    difficulty = "easy"       # easy, medium, hard')
+    print('    category = "programming" # Task category')
+    print('    tags = ["python"]        # Searchable tags')
     print()
     print("  [agent]")
     print("    timeout_sec = 120.0      # Max seconds for agent")

@@ -128,9 +128,7 @@ def main() -> None:
     if not POEM_PATH.exists():
         print(f"{POEM_PATH} does not exist -- nothing to judge.")
         # Do not call the LLM just to have it score an empty string.
-        REWARD_PATH.write_text(
-            json.dumps({"line_count": 0.0, "funny": 0.0, "on_topic": 0.0, "reward": 0.0})
-        )
+        REWARD_PATH.write_text(json.dumps({"line_count": 0.0, "funny": 0.0, "on_topic": 0.0, "reward": 0.0}))
         return
 
     poem = POEM_PATH.read_text()

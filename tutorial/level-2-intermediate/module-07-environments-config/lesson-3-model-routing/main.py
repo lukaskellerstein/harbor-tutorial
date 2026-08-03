@@ -21,10 +21,15 @@ def check_prerequisites() -> bool:
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
     if docker_ok:
-        docker_ok = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True,
-            check=False,
-        ).returncode == 0
+        docker_ok = (
+            subprocess.run(
+                ["docker", "info"],
+                capture_output=True,
+                text=True,
+                check=False,
+            ).returncode
+            == 0
+        )
     print(f"  Docker: {'[OK]' if docker_ok else '[FAIL] not running'}")
     print(f"  Harbor: {'[OK]' if harbor_ok else '[FAIL] not found'}")
     print()
@@ -40,7 +45,7 @@ def explain_litellm_format() -> None:
     print("  Harbor uses the LiteLLM convention:  provider/model-name")
     print()
     print(f"  {'Provider':<14} {'Model':<40} {'API'}")
-    print(f"  {'-'*14} {'-'*40} {'-'*16}")
+    print(f"  {'-' * 14} {'-' * 40} {'-' * 16}")
     models = [
         ("anthropic/", "claude-sonnet-4-5-20250929", "Anthropic"),
         ("anthropic/", "claude-opus-4-1", "Anthropic"),
@@ -110,7 +115,9 @@ def explain_lmstudio() -> None:
     if lms_available:
         print("  LMStudio CLI detected on this system!")
         result = subprocess.run(
-            ["lms", "status"], capture_output=True, text=True,
+            ["lms", "status"],
+            capture_output=True,
+            text=True,
             check=False,
         )
         status = result.stdout.strip() if result.returncode == 0 else "not running"
@@ -127,7 +134,7 @@ def explain_agent_env() -> None:
     print("=" * 60)
     print()
     print(f"  {'Variable':<24} {'Purpose'}")
-    print(f"  {'-'*24} {'-'*36}")
+    print(f"  {'-' * 24} {'-' * 36}")
     print(f"  {'OPENAI_BASE_URL':<24} Override the OpenAI API endpoint")
     print(f"  {'OPENAI_API_KEY':<24} OpenAI (or compatible) API key")
     print(f"  {'ANTHROPIC_API_KEY':<24} Anthropic API key")
@@ -148,7 +155,9 @@ def run_task_validation() -> None:
     print()
     result = subprocess.run(
         ["harbor", "run", "-p", str(TASK_DIR), "-a", "oracle"],
-        capture_output=True, text=True, cwd=str(LESSON_DIR),
+        capture_output=True,
+        text=True,
+        cwd=str(LESSON_DIR),
         check=False,
     )
     if result.stdout:

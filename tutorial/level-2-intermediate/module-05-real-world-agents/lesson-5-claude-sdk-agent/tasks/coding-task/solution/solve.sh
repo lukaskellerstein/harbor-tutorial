@@ -1,5 +1,5 @@
 #!/bin/bash
-cat << 'EOF' > /app/word_counter.py
+cat <<'EOF' >/app/word_counter.py
 def count_words(filepath: str) -> tuple[int, int]:
     with open(filepath) as f:
         text = f.read()

@@ -6,10 +6,7 @@ hf-datasets lesson.
 # A real, public Harbor dataset repository hosted on Hugging Face.
 # The /tree/main/<subdir> suffix is the same URL you get by browsing to the
 # directory in the Hugging Face web UI and copying the address bar.
-HF_REPO = (
-    "https://huggingface.co/datasets/harborframework/harbor-datasets"
-    "/tree/main/datasets/bird-bench"
-)
+HF_REPO = "https://huggingface.co/datasets/harborframework/harbor-datasets/tree/main/datasets/bird-bench"
 
 # One task inside that dataset. bird-bench tasks ship a solution/ directory,
 # so the oracle agent can score them 1.0 without any model or API key.

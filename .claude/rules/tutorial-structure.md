@@ -31,7 +31,23 @@ requires-python = ">=3.12"
 [project.dependencies]
 harbor = ">=0.16"
 # Add lesson-specific deps here
+
+[tool.ruff]
+# Lint/format policy lives in the repo-root ruff.toml. Pull it in explicitly:
+# a leaf carrying [tool.ruff] SHADOWS the root config rather than merging with
+# it, so without this line the lesson silently runs ruff's own defaults
+# (413 rules, line-length 88) while looking correctly configured.
+extend = "../../../../ruff.toml"
+# This lesson directory is its own source root, so sibling modules
+# (results.py, helpers.py, agent.py) sort as first-party imports
+# whether ruff is invoked here or from the repo root.
+src = ["."]
 ```
+
+> The `extend` path above assumes the standard depth
+> `tutorial/<level>/<module>/<lesson>/`. Count the directories if you nest
+> differently — a wrong relative path makes ruff fail to find the file rather
+> than fall back silently, so `ruff check .` in the new leaf will tell you.
 
 ## .gitignore Template
 

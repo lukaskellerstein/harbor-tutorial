@@ -23,9 +23,7 @@ CASES = [
 @criterion(description="word_count() is correct on {n} held-out inputs")
 def word_count_correct(workspace: Path, n: int) -> float:
     """Fraction of held-out cases the agent's word_count() gets right."""
-    spec = importlib.util.spec_from_file_location(
-        "textstats", workspace / "textstats.py"
-    )
+    spec = importlib.util.spec_from_file_location("textstats", workspace / "textstats.py")
     if spec is None or spec.loader is None:
         return 0.0
     module = importlib.util.module_from_spec(spec)

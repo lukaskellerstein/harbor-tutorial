@@ -10,15 +10,15 @@ REPORT=/app/report.md
 
 FOUND=0
 for SECTION in "## Summary" "## Findings" "## Conclusion"; do
-    if grep -qF "$SECTION" "$REPORT" 2>/dev/null; then
-        echo "  found:   $SECTION"
-        FOUND=$((FOUND + 1))
-    else
-        echo "  MISSING: $SECTION"
-    fi
+  if grep -qF "$SECTION" "$REPORT" 2>/dev/null; then
+    echo "  found:   $SECTION"
+    FOUND=$((FOUND + 1))
+  else
+    echo "  MISSING: $SECTION"
+  fi
 done
 
 REWARD=$(awk "BEGIN {printf \"%.2f\", $FOUND / 3}")
 echo "sections: $FOUND/3  ->  reward $REWARD"
 
-echo "$REWARD" > /logs/verifier/reward.txt
+echo "$REWARD" >/logs/verifier/reward.txt

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo "Hello, world!" > /app/hello.txt
+echo "Hello, world!" >/app/hello.txt
 
 echo "Done!"

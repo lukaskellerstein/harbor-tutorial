@@ -38,9 +38,7 @@ def check_prerequisites() -> bool:
     ok = True
 
     if shutil.which("docker"):
-        result = subprocess.run(
-            ["docker", "info"], capture_output=True, text=True, check=False
-        )
+        result = subprocess.run(["docker", "info"], capture_output=True, text=True, check=False)
         if result.returncode == 0:
             print("  [OK] Docker is running")
         else:
@@ -123,10 +121,14 @@ def run_evaluation() -> None:
     agent_path = "agent:DeepagentsHarborAgent"
 
     cmd = [
-        "harbor", "run",
-        "-p", str(task_path),
-        "--agent", agent_path,
-        "-m", MODEL,
+        "harbor",
+        "run",
+        "-p",
+        str(task_path),
+        "--agent",
+        agent_path,
+        "-m",
+        MODEL,
     ]
 
     print(f"Running: {' '.join(cmd)}")
@@ -164,9 +166,7 @@ def trial_duration_sec(data: dict) -> float | None:
     started, finished = data.get("started_at"), data.get("finished_at")
     if not started or not finished:
         return None
-    return (
-        datetime.fromisoformat(finished) - datetime.fromisoformat(started)
-    ).total_seconds()
+    return (datetime.fromisoformat(finished) - datetime.fromisoformat(started)).total_seconds()
 
 
 def inspect_results() -> None:

@@ -25,7 +25,9 @@ def check_prerequisites() -> bool:
     docker_ok = shutil.which("docker") is not None
     harbor_ok = shutil.which("harbor") is not None
     result = subprocess.run(
-        ["docker", "info"], capture_output=True, text=True,
+        ["docker", "info"],
+        capture_output=True,
+        text=True,
         check=False,
     )
     docker_running = result.returncode == 0

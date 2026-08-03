@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > /home/user/matrix_mul.py << 'PYEOF'
+cat >/home/user/matrix_mul.py <<'PYEOF'
 def read_matrix(path: str) -> list[list[int]]:
     with open(path) as f:
         return [[int(x) for x in line.split()] for line in f if line.strip()]

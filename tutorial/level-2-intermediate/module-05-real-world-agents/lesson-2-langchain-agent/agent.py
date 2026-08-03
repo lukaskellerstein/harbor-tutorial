@@ -75,9 +75,7 @@ class LangchainHarborAgent(BaseAgent):
             and verify your work. The command runs inside a Docker container
             with the task's environment.
             """
-            result = await environment.exec(
-                command=command, timeout_sec=EXEC_TIMEOUT_SEC
-            )
+            result = await environment.exec(command=command, timeout_sec=EXEC_TIMEOUT_SEC)
             parts = [p for p in (result.stdout, result.stderr) if p]
             return "\n".join(parts) or "(no output)"
 

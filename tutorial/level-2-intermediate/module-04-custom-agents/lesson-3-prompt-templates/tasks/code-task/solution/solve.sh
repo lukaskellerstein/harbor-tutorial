@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > /home/user/fibonacci.py << 'PYEOF'
+cat >/home/user/fibonacci.py <<'PYEOF'
 def fibonacci(n: int) -> list[int]:
     """Return the first n Fibonacci numbers."""
     if n <= 0:

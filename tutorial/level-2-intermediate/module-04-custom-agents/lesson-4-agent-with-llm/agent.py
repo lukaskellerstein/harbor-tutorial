@@ -142,10 +142,12 @@ class LLMAgent(BaseAgent):
             if not commands:
                 print("  [LLMAgent] No bash commands found in response")
                 # Ask the LLM to provide commands
-                messages.append({
-                    "role": "user",
-                    "content": "Please provide the solution as bash commands in a ```bash code block.",
-                })
+                messages.append(
+                    {
+                        "role": "user",
+                        "content": "Please provide the solution as bash commands in a ```bash code block.",
+                    }
+                )
                 continue
 
             print(f"  [LLMAgent] Extracted {len(commands)} command block(s)")

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > /app/poem.txt <<'EOF'
+cat >/app/poem.txt <<'EOF'
 I added a print statement, then thirty more,
 Until my terminal begged me to stop.
 The bug was a typo on line twenty-four.

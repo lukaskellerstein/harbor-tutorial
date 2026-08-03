@@ -13,6 +13,11 @@ dependencies = [
 typeCheckingMode = "standard"
 
 [tool.ruff]
+# Lint/format policy comes from the repo-root ruff.toml (one place to change it).
+# It must be pulled in explicitly: a leaf carrying [tool.ruff] SHADOWS the root
+# config entirely rather than merging with it, so without this line the leaf
+# silently runs ruff's own defaults (413 rules, line-length 88).
+extend = "../../../../ruff.toml"
 # This lesson directory is its own source root, so sibling modules
 # (results.py, helpers.py, agent.py) sort as first-party imports
 # whether ruff is invoked here or from the repo root.

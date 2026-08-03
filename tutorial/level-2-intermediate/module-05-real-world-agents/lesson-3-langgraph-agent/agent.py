@@ -91,9 +91,7 @@ class LanggraphHarborAgent(BaseAgent):
             Use this to run bash commands, create files and directories,
             install packages, and verify your work.
             """
-            result = await environment.exec(
-                command=command, timeout_sec=EXEC_TIMEOUT_SEC
-            )
+            result = await environment.exec(command=command, timeout_sec=EXEC_TIMEOUT_SEC)
             parts = [p for p in (result.stdout, result.stderr) if p]
             return "\n".join(parts) or "(no output)"
 
@@ -125,9 +123,7 @@ class LanggraphHarborAgent(BaseAgent):
         graph.add_edge(START, "chatbot")
         # tools_condition is LangGraph's prebuilt router: it inspects the last
         # message and returns "tools" if it carries tool calls, else END.
-        graph.add_conditional_edges(
-            "chatbot", tools_condition, {"tools": "tools", END: END}
-        )
+        graph.add_conditional_edges("chatbot", tools_condition, {"tools": "tools", END: END})
         graph.add_edge("tools", "chatbot")
 
         compiled = graph.compile()

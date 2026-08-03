@@ -2,7 +2,7 @@
 
 # Reference solution for the FizzBuzz task.
 
-cat > /app/fizzbuzz.py << 'PYTHON'
+cat >/app/fizzbuzz.py <<'PYTHON'
 for i in range(1, 101):
     if i % 15 == 0:
         print("FizzBuzz")

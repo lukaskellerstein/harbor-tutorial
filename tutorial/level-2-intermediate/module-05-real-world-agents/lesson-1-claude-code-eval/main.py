@@ -42,10 +42,15 @@ def check_prerequisites() -> bool:
 
     ok = True
 
-    if shutil.which("docker") and subprocess.run(
-        ["docker", "info"], capture_output=True,
-        check=False,
-    ).returncode == 0:
+    if (
+        shutil.which("docker")
+        and subprocess.run(
+            ["docker", "info"],
+            capture_output=True,
+            check=False,
+        ).returncode
+        == 0
+    ):
         print("  [OK] Docker is running")
     else:
         print("  [FAIL] Docker is not available or its daemon is not running")
@@ -154,11 +159,15 @@ def run_evaluation(config_name: str, heading: str) -> None:
 def inspect_results() -> None:
     """Report rewards, failures, and verifier assertions for the latest job."""
     jobs_dir = LESSON_DIR / "jobs"
-    job_dirs = sorted(
-        (p for p in jobs_dir.iterdir() if p.is_dir()),
-        key=lambda p: p.stat().st_mtime,
-        reverse=True,
-    ) if jobs_dir.exists() else []
+    job_dirs = (
+        sorted(
+            (p for p in jobs_dir.iterdir() if p.is_dir()),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
+        if jobs_dir.exists()
+        else []
+    )
 
     if not job_dirs:
         print("  No job results found. The evaluation may not have run.\n")
@@ -276,9 +285,7 @@ def main() -> None:
     show_claude_config()
     show_tasks(LESSON_DIR / "tasks-configured")
 
-    run_evaluation(
-        "job-configured.yaml", "Step 5: Running Claude Code With Project Config"
-    )
+    run_evaluation("job-configured.yaml", "Step 5: Running Claude Code With Project Config")
     inspect_results()
 
     show_summary()

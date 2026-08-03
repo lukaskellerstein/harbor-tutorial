@@ -19,7 +19,7 @@ def divide(a: int, b: int) -> float:
 
 
 def power(base: int, exp: int) -> int:
-    return base ** exp
+    return base**exp
 
 
 if __name__ == "__main__":

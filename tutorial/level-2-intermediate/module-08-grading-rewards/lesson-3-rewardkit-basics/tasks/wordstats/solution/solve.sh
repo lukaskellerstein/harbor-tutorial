@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > /app/wordstats.py <<'EOF'
+cat >/app/wordstats.py <<'EOF'
 """Word statistics for sample.txt."""
 
 import json
