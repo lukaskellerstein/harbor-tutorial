@@ -18,3 +18,6 @@ __pycache__/
 # Harbor run output
 jobs/
 trials/
+
+# Claude Code worktree sessions: claude -w <name>
+.worktrees/
